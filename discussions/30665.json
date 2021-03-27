@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "102045",
+    "ThreadId": "30665",
+    "Html": "I am converting my all crystal reports to MS sql reports. Now I want to convert all the formulas applied on crystal reports to be applied on sql reporting to do the same function. Now In crystal reports in many fields variables are declared and use. In MS sql reports we can not declare &nbsp;variables. so please suggest me the alternative solution.\r\n",
+    "PostedDate": "2008-07-01T21:04:07.2-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

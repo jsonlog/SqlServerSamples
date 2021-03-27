@@ -1,0 +1,61 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Environment:\n===============\n  1.       Win 2k3 or XP X86 DEU\n        2.     SQL Server 10.0.1600.22\n        3.     SQL Samples 090306\n \nRepro Steps:\n===============\n1.  Run the SQL2008.AdventureWorks_All_Databases.x86.msi.\n2.  Do every step by default until installation completed. \n3.  Check the user Views of AdventureWorksDW.\n \nExpectation:\n===============\nThere should be 6 user views in  AdventureWorksDW.\n \nActual Result:\n===============\nThere is no user view in AdventureWorksDW.\nPlease view the attached file DBinstall.log.",
+    "LastUpdatedDate": "2013-02-21T18:37:37.29-08:00",
+    "PlannedForRelease": "SQL Server 2008 SR2",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Medium",
+      "Severity": 100,
+      "Id": 2
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2009-03-12T23:19:33.53-07:00",
+    "Status": {
+      "Name": "Active",
+      "Id": 2
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Installer:  There is no user view in  AdventureWorksDW DB on x86 GRE.",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 0,
+    "Id": 9509
+  },
+  "FileAttachments": [
+    {
+      "FileId": 2863,
+      "FileName": "DBinstall.log",
+      "DownloadUrl": ".\\2863"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "I've allready reported the same problem at the end of 2008. Unfortunately I didn't get a qualified answer and by now the issue seems to be removed - I can't find it anymore...",
+      "PostedDate": "2009-06-25T07:45:24.963-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "It only reproduce on  DEU environment: OS(DEU) + Katmai(DEU)\n \nVerified on latest Sample Build 90828, still repro",
+      "PostedDate": "2009-09-06T19:56:31.987-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T18:37:37.29-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

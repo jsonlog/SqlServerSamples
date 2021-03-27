@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Hello,\n\nI'm using SQL Server 2016 Management Studio v.17 and received the following message when attempting to import an SSIS package within Integration Services Catalog\"\n\n__TITLE: SQL Server Integration Services\n------------------------------\n\nThe connection type \"AzureStorage\" specified for connection manager \"connection name\" is not recognized as a valid connection manager type. This error is returned when an attempt is made to create a connection____ manager for an unknown connection type. Check the spelling in the connection type name.\"\n__\n\nThe SSIS package runs fine through SQL Server Agent and Visual Studio 2015.  I've downloaded the __Azure Feature Pack for Integration Services \n____\n\nIs there another patch for SSMS? that I don't know of?\n\nThank you",
+    "LastUpdatedDate": "2017-03-02T09:31:14.637-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2017-03-02T09:31:14.637-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "SSMS Integration Services Catalog error",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 22490
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

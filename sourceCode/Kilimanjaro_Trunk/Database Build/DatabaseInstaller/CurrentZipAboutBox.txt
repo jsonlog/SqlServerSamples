@@ -1,0 +1,2 @@
+﻿Microsoft SQL Server 2008R2 RTM Sample Databases
+Build 00511 

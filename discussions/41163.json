@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "136484",
+    "ThreadId": "41163",
+    "Html": "Hello,<br>\r\n<br>\r\nI am enable to access my database on local net, i'am writting application to access this database from 2 computer's,\r\n<p>tank's for your help.</p>\r\n",
+    "PostedDate": "2008-11-30T22:31:10.09-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "137441",
+    "ThreadId": "41163",
+    "Html": "Since that's beyond the scope of &quot;samples questions&quot;, your best bet will be to seek help in the SQL Server forums: <a href=\"http://msdn.microsoft.com/en-us/sqlserver/bb671079.aspx\">http://msdn.microsoft.com/en-us/sqlserver/bb671079.aspx</a> Possibly the getting started forum. Try looking for &quot;surface area configuration&quot; and/or &quot;network configuration [SQL Server]&quot; in BOL. There are lots more helpful articles in Books Online, too, and complete books published by MSPress and others to get you started.\r\n",
+    "PostedDate": "2008-12-03T14:20:23.323-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

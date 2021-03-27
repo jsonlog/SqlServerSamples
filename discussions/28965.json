@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "96516",
+    "ThreadId": "28965",
+    "Html": "Hello!<br>\r\n<br>\r\nI installed SQL Server 2008. Based on this adventureworks DB and adventureworks BI (both worked).<br>\r\nI maked some mistakes during the setup of the SQL server - so i uninstalled it and installed it again.<br>\r\nI dont uninstalled adventureworks DB and adventureworks BI.<br>\r\nAfter the SQL Server Setup the resetup of the adventureworks DB works fine - but ...<br>\r\n<br>\r\n... i am not able to reinstall (repair / modify / uninstall) the adventureworks BI ... any hints ?<br>\r\n<br>\r\n<br>\r\nTHX<br>\r\n  \r\n",
+    "PostedDate": "2008-06-03T09:08:01.503-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "97968",
+    "ThreadId": "28965",
+    "Html": "The database should still be there so I think all you need to do is to attache them...<br>\r\n1. go into SQL management console and connect to your new install.<br>\r\n2. expand to databases right click and select attach.<br>\r\n3. select add and you shuld get a dialog to browse for the files.<br>\r\n4.&nbsp; The samples will be in something like program files\\microsoft SQL server\\100\\tools\\samples\\*.mdf\r\n",
+    "PostedDate": "2008-06-10T10:12:05.633-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "98022",
+    "ThreadId": "28965",
+    "Html": "when I do this using SQL 2005 and using the correct directory, I get &quot;could not find row in sysindexes for database id 7, objectid 1, index1. Run DBCC checktable on sysindexes&quot;&nbsp; Well the simple question is how do I run checktable on a db i'm trying to attach?&nbsp; is there something else I need todo? <br>\r\n<br>\r\nthanks.\r\n",
+    "PostedDate": "2008-06-10T14:10:42.463-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "99618",
+    "ThreadId": "28965",
+    "Html": "murphymj, if you still need help with this, please send me a private message and I'll work with you offline.\r\n",
+    "PostedDate": "2008-06-18T13:52:26.937-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "143727",
+    "ThreadId": "28965",
+    "Html": "<p>Thanks for the tip Andrew...  I had installed/uninstalled/re-installed SQL Server 2008; I had also re-installed the AdventureWorks db, but I either didn't do the uninstall for those correctly or there was a problem when I did the re-install of the data, because the files wouldn't show up in the database list in SSMS...  I was able to successfully re-attach as you suggested.  Note that the files were found in:</p>\r\n<p>    C:\\Program Files\\Microsoft SQL Server\\MSSQL10.MSSQLSERVER\\MSSQL\\DATA</p>\r\n",
+    "PostedDate": "2008-12-31T09:00:59.52-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

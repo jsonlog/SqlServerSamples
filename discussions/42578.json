@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "141542",
+    "ThreadId": "42578",
+    "Html": "Hi<br>\r\nThe sample of Northwindoledb doesn't work there is another place with a recent copy of the project ?\r\n",
+    "PostedDate": "2008-12-18T02:05:01.03-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "141691",
+    "ThreadId": "42578",
+    "Html": "Which sample are you asking about, henitz? I don't believe we shipped a Northwind sample for 2005 or 2008.<br>\r\n<br>\r\nI did put the Northwind creation scripts in CodeGallery, but I've never tested them on any version of SQL Server CE.\r\n",
+    "PostedDate": "2008-12-18T13:17:43.193-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

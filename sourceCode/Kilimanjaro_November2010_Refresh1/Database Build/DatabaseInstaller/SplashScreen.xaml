@@ -1,0 +1,24 @@
+﻿<Window x:Class="Microsoft.SqlServer.DatabaseInstaller.SplashScreenWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="SQL Server 2008R2 SR1 Database Installer" Height="595" Width="731" x:Name="SplashScreen" 
+	Background="{DynamicResource SplashImageBrush}" 
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+    <Grid>
+    	<ScrollViewer RenderTransformOrigin="1.35,1.05" Margin="21,160,19,51" x:Name="EulaScrollViewer" Background="#99FFFFFF">
+    		<TextBlock Text="" TextWrapping="Wrap" x:Name="EulaTextBlock"/>
+    	</ScrollViewer>
+        
+    	<Button HorizontalAlignment="Right" Margin="0,0,96.377,16.04" x:Name="NextButton" VerticalAlignment="Bottom" 
+                Content="Next" RenderTransformOrigin="4.012,10.656" 
+                d:LayoutOverrides="Width, Height" 
+                Click="NextButton_Click" 
+                IsEnabled="{Binding ElementName=AgreementCheckbox, Path=IsChecked}"/>
+    	<Button HorizontalAlignment="Right" Margin="0,0,29.377,16.04" VerticalAlignment="Bottom" Content="Cancel" d:LayoutOverrides="Width, Height" x:Name="CancelButton" Click="CancelButton_Click" />
+    	<CheckBox HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="I accept the license terms" RenderTransformOrigin="2.09,26.942" Margin="56,0,0,16.04" x:Name="AgreementCheckbox"/>
+    	<TextBlock x:Name="InstallerTitleTextBlock" VerticalAlignment="Top" Text="" TextWrapping="Wrap" 
+                   Margin="43,121,109,0" Height="28.96"
+                   Style="{StaticResource TitleTextStyle}" />
+        
+    </Grid>
+</Window>

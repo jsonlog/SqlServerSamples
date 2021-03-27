@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "69820",
+    "ThreadId": "20981",
+    "Html": "\r\nI have downloaded SQL SERVER 2005 Express and the AdventureWorks DB. I'm <br />running windoss XP. I have copied (from a MS .NET book) a C# program in Visual Studio <br />2005 to connect &amp; read the dbase. THe connection string is <br />@\"server=.\\sqlexpress;Integrated Security=SSPI;initial <br />catalog=AdventureWorks\". <br />When I run the program, I get an exception when it trys to connect:\t{\"Cannot <br />open database \\\"AdventureWorks\\\" requested by the login. The login <br />failed.\\r\\nLogin failed for user 'MALCOLM\\\\Magic'.\"}\tSystem.Exception <br />{System.Data.SqlClient.SqlException}, where MALCOLM is the computer name &amp; <br />MAGIC is the account. THis account has admin privileges. I have created <br />another acoount on my computer &amp; get the same result. I can 'login' to SQL <br />Server Manager Studio Express.<br />It works fine on another computer - so it must be my computer's config.<br />HOw can I dig deeper into this problem &amp; understand what's causing it?<br /><br />",
+    "PostedDate": "2008-01-24T14:25:29.807-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "70038",
+    "ThreadId": "20981",
+    "Html": "\r\nPROBLEM SOLVED - apparently you have to first ATTACH the dbase in Visusl Studio<br />",
+    "PostedDate": "2008-01-25T14:38:26.64-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

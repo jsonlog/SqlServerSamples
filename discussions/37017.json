@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "122816",
+    "ThreadId": "37017",
+    "Html": "<ol>\r\n    <li>I successfully installed SQL Server 2008 Developer Edition (with all features selected).&nbsp; Please note that Visual Studio 2008 Professional Edition (including SP1) was already installed on my machine.\r\n    <li>I downloaded <strong>SQL2008.AdventureWorks_OLTP_DB_v2008.x86.msi</strong> from <a href=\"http://www.codeplex.com/MSFTDBProdSamples/Release/ProjectReleases.aspx?ReleaseId=16040\">http://www.codeplex.com/MSFTDBProdSamples/Release/ProjectReleases.aspx?ReleaseId=16040</a> and successfully installed it.\r\n    <li>I downloaded <strong>SQL2008.All_Product_Samples_Without_DBs.x86.msi</strong> from <a href=\"http://www.codeplex.com/SqlServerSamples/Release/ProjectReleases.aspx?ReleaseId=16037\">http://www.codeplex.com/SqlServerSamples/Release/ProjectReleases.aspx?ReleaseId=16037</a> and successfully installed it.\r\n    <p>At this point, I assumed that all the files contained in my <strong>C:\\Program Files\\Microsoft SQL Server\\100\\Samples</strong> subdirectory were the <span style=\"text-decoration:underline\">latest version</span>.</p>\r\n    <p>Since I was interested in running the <span style=\"text-decoration:underline\">Storefront</span> application, I opened the <strong>readme_storefront.htm</strong> file located in my <strong>C:\\Program Files\\Microsoft SQL Server\\100\\Samples\\Integrated Samples\\Storefront</strong> subdirectory.</p>\r\n    <li>I began executing the steps contained in the &quot;Building the Sample&quot; section of <strong>readme_storefront.htm</strong>.&nbsp; Unfortunately, when I attempted to execute sub-step 1b under &quot;Step2: Build the sample&quot; (i.e. Rebuild Solution) within Visual Studio, I received an error message that the file <strong><span style=\"text-decoration:underline\">Unsafe</span>SampleKey.snk</strong> within the <em>StoreServerComponents</em> sub-project did not exist.&nbsp; I fixed this problem by going to Properties for <em>StoreServerComponents</em>, clicking on the Signing tab, and browsing to the previously created <strong>SampleKey.snk</strong> file.\r\n    <li>I then proceeded to &quot;Step 3: Configuring SQL Server&quot;.&nbsp; Within SLQ Server's Management Studio, I opened <strong>awstore.sql</strong>.&nbsp; I was surprised to see a creation date of June 30, 2003, as well as references to &quot;AdventureWorks&quot; (2005), invalid column names (e.g. VersionDate), invalid objects (e.g. dbo.AWBuildVersion), and numerous other (but similar) problems. </li>\r\n</ol>\r\n<p>At this point, I did not attempt any further steps.<br>\r\n<br>\r\nMy questions are:</p>\r\n<ol>\r\n    <li>Is there a more recent version of <strong>awstore.sql</strong>, and if so, where can I find it?\r\n    <li>I thought that the version of <strong>SQL2008.All_Product_Samples_Without_DBs.x86.msi</strong> I downloaded was supposed to be the latest version, and if not, where can I find it? </li>\r\n</ol>\r\n<p>Thanks in advance for any help.</p>\r\n",
+    "PostedDate": "2008-10-03T18:53:28.673-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "123242",
+    "ThreadId": "37017",
+    "Html": "The readme for that sample contains instructions on how to generate that SNK file. It also clearly states that it uses the original AdventureWorks schema (v2005), not AdventureWorks2008.<br>\r\n<br>\r\nTo answer your questions:<br>\r\n<br>\r\n1. Is that the file creation date? Or just the timestamp in the T-SQL comments that you're looking at? The original storefront was created for SQL Server 2005 and still uses the AdventureWorks v2005 OLTP database; that sample has not be converted for use with v2008 yet. <br>\r\n<br>\r\n2. The files in&nbsp;<strong>SQL2008.All_Product_Samples_Without_DBs.x86.msi</strong> are the most recent available. Samples originally created for SQL Server 2005 were updated and tested against SQL Server 2008.\r\n",
+    "PostedDate": "2008-10-06T11:29:40.707-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "123290",
+    "ThreadId": "37017",
+    "Html": "<em>&quot;The readme for that sample contains instructions on how to generate that SNK file. It also clearly states that it uses the original AdventureWorks schema (v2005), not AdventureWorks2008.&quot;<br>\r\n</em>I missed the part about, &quot;...&nbsp;it uses the original AdventureWorks schema (v2005), not AdventureWorks2008.&quot;&nbsp; My fault.<br>\r\n<br>\r\n<em>&quot;1. Is that the file creation date? Or just the timestamp in the T-SQL comments that you're looking at?&quot;<br>\r\n</em>It's the&nbsp;timestamp in the T-SQL comments in the <strong>awstore.sql</strong> file that I was referencing.&nbsp; Isn't <strong>awstore.sql</strong> one of the files contained in&nbsp;<strong>SQL2008.All_Product_Samples_Without_DBs.x86.msi</strong>?&nbsp; If so, per my previous comments,&nbsp;I respectfully beg to differ with your statement that, <em>&quot;2. The files in&nbsp;<strong>SQL2008.All_Product_Samples_Without_DBs.x86.msi</strong> are the most recent available. Samples originally created for SQL Server 2005 were updated and tested against SQL Server 2008.&quot;</em><br>\r\n<br>\r\nIf you wish, I can&nbsp;e-mail you the <strong>awstore.sql</strong> file that (I assume) was installed by&nbsp;<strong>SQL2008.All_Product_Samples_Without_DBs.x86.msi</strong>.&nbsp; Please let me know.<br>\r\n<br>\r\nP.S.&nbsp; <strong>awstore.sql</strong> is the first (and only) script file that I opened and attempted to execute after I installed&nbsp;<strong>SQL2008.All_Product_Samples_Without_DBs.x86.msi</strong>.&nbsp; I have not checked to see if any of the other script files fail to successfully execute due to&nbsp;invalid column names, invalid objects, etc. as a result of not really being updated to support SQL Server 2008.<br>\r\n",
+    "PostedDate": "2008-10-06T13:39:33.757-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "123530",
+    "ThreadId": "37017",
+    "Html": "I haven't broken out WinMerge or WinDiff to compare them, since the storefront was revved and tested for Katmai before I joined the team. Obviously, we need to put an updated date and a warning in the comments that it doesn't work with AdventureWorks2008 yet. I'm sorry you've had trouble getting started! Thanks for the solid feedback, though.\r\n",
+    "PostedDate": "2008-10-07T10:22:55.323-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "123540",
+    "ThreadId": "37017",
+    "Html": "For whatever it's worth, I also took a look at the &quot;DB3D&quot; and &quot;HRResume&quot; applications (within the <strong>Integrated Samples</strong> folder).&nbsp; I discovered that the same problems (as found in the &quot;Storefront&quot; application) exist with the&nbsp;scripts in those applications as well.<br>\r\n<br>\r\nSo it's starting to look like the&nbsp;files in&nbsp;<strong>SQL2008.All_Product_Samples_Without_DBs.x86.msi</strong> are <span style=\"text-decoration:underline\">not</span> compliant with SQL Server 2008 (despite having &quot;2008&quot; in the filename).<br>\r\n<br>\r\nGiven that SQL Server 2008 is the latest version of Microsoft's enterprise database offering, I'm&nbsp;surprised&nbsp;that the script files associated with the Product Samples were not updated and tested to support SQL Server 2008, especially in time for its release.<br>\r\n<br>\r\nThanks again for your help.\r\n",
+    "PostedDate": "2008-10-07T11:08:49.2-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

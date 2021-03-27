@@ -1,0 +1,82 @@
+[
+  {
+    "Id": "140315",
+    "ThreadId": "42241",
+    "Html": "I have downloaded the full 2008 SQL Server package and have had no problems with the installation- as far as I am aware.<br>\r\nWhen I try to dowload &amp; install the AdventureWorks database I get an error message that says the &quot;Free Text&quot; search has not been installed for the instance (MSSQLSERVER) yet when I run the 'repair' tool from the setup routines - there is a page that shows the installation tests conducted and &quot;Free Text&quot; search is shown as installed for the instance quoted.<br>\r\nWhen I run the Managaement Studio I can connect to MSSQLSERVER but I cannot see any databases to import or link to.<br>\r\n<br>\r\nMy past experience is primarily in MS Access at a professional standard and I want to be able to use SQL Server as a replacement backend and to improve my own ability and knowledge of SQL.<br>\r\n<br>\r\nAny guidance would be welcome and I look forward to be able to open a sample database for meaningful use.<br>\r\n<br>\r\nIs Access a useful route into SQL Server???  \r\n",
+    "PostedDate": "2008-12-13T15:23:17.763-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "140622",
+    "ThreadId": "42241",
+    "Html": "Howdy, FrankH. The error message should be regarding full text search, if that service is not installed/running. Look in Configuration Manager for a 2008 service named &quot;SQL Full-text Filter Daemon Launcher (MSSQLSERVER)&quot; where MSSQLSERVER is the name of the default instance or could be different if you're using a non-default instance.<br>\r\n<br>\r\nI'm not sure that I grok the Access question (not sure what  you mean by route), but if I do, then the design skills your learned for data modeling in Access will translate OK into SQL Server, but there is a lot more to learn about using SQL Server as a data store: T-SQL syntax, new data types, new services, index optimization, etc. I'd advise you to start from scratch and work through an introductory SQL Server 2008 book before you dive into your first project.<br>\r\n<br>\r\nIf you were asking if Access makes a good front-end application platform for SQL Server databases, then the answer would be &quot;Sure, you can use Access forms as a front-end against a SQL Server database just fine.&quot; I haven't done this in a long-time, but that just shows how old I am. Heh.<br>\r\n<br>\r\nHTH.\r\n",
+    "PostedDate": "2008-12-15T08:33:42.02-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "141382",
+    "ThreadId": "42241",
+    "Html": "Thanks ReedMe,<br>\r\nI have followed your advice and have found the &quot;start&quot; button for the full-text search, so I have now been able to load the AdventureWorks samples.<br>\r\nI have gone through the introductory eBook - Introduction to SQL Server 2008 and got my certificate - I haven't had one of those since 'Nineteen Canteen' - I bet this is longer than you've not played with Access. From the reading I have done upto now it appears that the theory and practice I have had in Access will be useful in SQL server as well as the SQL I have learned in using SQL in Access both through the query builder and manual coding.<br>\r\n<br>\r\nI was sure that I had downloaded an eBook as an introductory SQL Server 2008 book but cannot locate it on any of my drives and am struggling to locate it in the download package I used originally.<br>\r\nCould you recommend a book that would give me a good grounding in the use of SQL Server and utilise the AdventureWorks samples provided as well as other samples available on the site.<br>\r\n<br>\r\nMany thanks for your effort they are really appreciated,<br>\r\nFrankH  \r\n",
+    "PostedDate": "2008-12-17T10:12:41.343-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "141388",
+    "ThreadId": "42241",
+    "Html": "Glad you got see you got squared away with the 2008 samples and back on the certification bandwagon. Nineteen canteen was a long time ago for me and Access, too. Heh.<br>\r\n<br>\r\nBesides Books Online, there's only one book that I know of (so far) which uses our 2008 samples so far. I linked to Joe's book from the blog: <a href=\"http://blogs.msdn.com/reedme/archive/2008/09/24/sql-server-samples-in-the-news-and-print.aspx\">http://blogs.msdn.com/reedme/archive/2008/09/24/sql-server-samples-in-the-news-and-print.aspx</a> I'm not sure that the recipes book is a good starting point for novices, but Joe's a good author and it's a good book.<br>\r\n<br>\r\nIt may go without saying, but there's actually a wealth of &quot;free&quot; information in Books Online, and I recommend that you start there. Don't just use it as an index of things to look up when you need to know something specific. If you're really looking for an introduction to SQL Server 2008, flip over to the Table of Contents in BOL and read it like a book. Unfortunately, most of the questions that I answer about SQL Server are already covered in BOL if only people would read the &quot;Fine Manual&quot;. ;-)<br>\r\n<br>\r\nHoller if we can help in any way.\r\n",
+    "PostedDate": "2008-12-17T10:39:06.153-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "144877",
+    "ThreadId": "42241",
+    "Html": "I have been trying so many time on downloading the mssql 2008 server SQLEXPRWT_x64_ENU.exe for few times.&nbsp; I have checked my internet traffic which is fine.&nbsp; However, I still couldn't load the trial version for test.&nbsp; Is something I missed to cause the misloading?&nbsp; Please kindly advise.&nbsp; Thanks.<br>\r\n<br>\r\nVen J.<br>\r\n",
+    "PostedDate": "2009-01-06T14:51:21.517-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "144879",
+    "ThreadId": "42241",
+    "Html": "Howdy, venus. This really isn't a forum for supporting the Download Center, but if you can provide the error messages that you're getting it would be easier to help. More than likely there's a problem with a segment of internet between you and the closest download POP.<br>\r\n<br>\r\nAre you pulling it down from here? <br>\r\n<a href=\"http://www.microsoft.com/downloads/details.aspx?FamilyId=7522A683-4CB2-454E-B908-E805E9BD4E28&displaylang=en\">http://www.microsoft.com/downloads/details.aspx?FamilyId=7522A683-4CB2-454E-B908-E805E9BD4E28&amp;displaylang=en</a><br>\r\nWhat's the error you get?<br>\r\n",
+    "PostedDate": "2009-01-06T14:55:47.633-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "144885",
+    "ThreadId": "42241",
+    "Html": "ReedMe,<br>\r\n<br>\r\nThanks for your promptly reply.&nbsp; You are really so sharp and brilliant.&nbsp; Yes, where is exactly I downloaded from.&nbsp; Is there any problem with that?&nbsp; Thanks again!<br>\r\n<br>\r\nVen J. \r\n",
+    "PostedDate": "2009-01-06T15:05:36.39-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "144891",
+    "ThreadId": "42241",
+    "Html": "There's no problem with that link, TMK. I tested it and it worked from here... but I'm on the Microsoft corporate network. ;-) What error is it that you're getting?<br>\r\n<br>\r\nFor future reference, the SQL Express forum is over here: <a href=\"http://social.msdn.microsoft.com/forums/en-US/sqlexpress/threads/\">http://social.msdn.microsoft.com/forums/en-US/sqlexpress/threads/</a> We'll be moving the Samples forum over there soon.\r\n",
+    "PostedDate": "2009-01-06T15:18:09.123-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "145035",
+    "ThreadId": "42241",
+    "Html": "Thank you ReedMe!!&nbsp; The loading speed improve so much a lot!&nbsp; I will stop by the site to study.&nbsp; Thanks again!<br>\r\n<br>\r\nVen J.<br>\r\n",
+    "PostedDate": "2009-01-07T06:28:18.38-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "145055",
+    "ThreadId": "42241",
+    "Html": "Glad the download started working better for you.\r\n",
+    "PostedDate": "2009-01-07T07:51:17.343-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

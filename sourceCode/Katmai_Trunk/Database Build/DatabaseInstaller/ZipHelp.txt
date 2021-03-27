@@ -1,0 +1,1 @@
+This self-extracting zip file contains an automatically started installer application which will copy the scripts and data files to the directory you specify then optionally create the AdventureWorks 2008 SR4 sample databases. 

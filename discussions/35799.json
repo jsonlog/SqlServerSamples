@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "118964",
+    "ThreadId": "35799",
+    "Html": "Hi,<br>\r\n<br>\r\nBeen going around in circles trying to install sample DB's as a complete novice on SQL Server just to start the tutorials.<br>\r\nAfter a bit of messing I have managed to find the scripts and run them, however the DB's are empty, not sure if this is correct and get errors around objects.<br>\r\n<br>\r\nI have searched the forum tried the restore command with C: drive address but didn't seem to like that.<br>\r\n<br>\r\n<br>\r\nFound the other post about .BAK file doesn't seem to like that either.&nbsp; <br>\r\n&nbsp;- FROM DISK = 'C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Samples\\AdventureWorks2008.bak';<br>\r\n<blockquote>Msg 5133, Level 16, State 1, Line 1<br>\r\nDirectory lookup for the file &quot;C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLSERVER2008\\MSSQL\\DATA\\AdventureWorks2008_Data.mdf&quot; failed with the operating system error 3(The system cannot find the path specified.).<br>\r\nMsg 3156, Level 16, State 3, Line 1<br>\r\nFile 'AdventureWorks2008_Data' cannot be restored to 'C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLSERVER2008\\MSSQL\\DATA\\AdventureWorks2008_Data.mdf'. Use WITH MOVE to identify a valid location for the file.<br>\r\nMsg 5133, Level 16, State 1, Line 1<br>\r\nDirectory lookup for the file &quot;C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLSERVER2008\\MSSQL\\DATA\\AdventureWorks2008_Log.ldf&quot; failed with the operating system error 3(The system cannot find the path specified.).<br>\r\nMsg 3156, Level 16, State 3, Line 1<br>\r\nFile 'AdventureWorks2008_Log' cannot be restored to 'C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLSERVER2008\\MSSQL\\DATA\\AdventureWorks2008_Log.ldf'. Use WITH MOVE to identify a valid location for the file.<br>\r\nMsg 5121, Level 16, State 2, Line 1<br>\r\nThe path specified by &quot;C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLSERVER2008\\MSSQL\\DATA\\Documents&quot; is not in a valid directory.<br>\r\nMsg 3156, Level 16, State 3, Line 1<br>\r\nFile 'FileStreamDocuments' cannot be restored to 'C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLSERVER2008\\MSSQL\\DATA\\Documents'. Use WITH MOVE to identify a valid location for the file.<br>\r\nMsg 3119, Level 16, State 1, Line 1<br>\r\nProblems were identified while planning for the RESTORE statement. Previous messages provide details.<br>\r\nMsg 3013, Level 16, State 1, Line 1<br>\r\nRESTORE DATABASE is terminating abnormally.<br>\r\n</blockquote>Am I being really dumb and missing an instruction for importing data or something, havent really got into the &quot;Getting Started&quot; tutorial as I wanted to install the DB's first.<br>\r\n<br>\r\nSorry for asking for the 500th time or so but I have been around in circles and can't seem to see the wood for the trees at the minute and it doesn't help that I haven't got a clue what I am doing.<br>\r\n<br>\r\nThanks for any help, if not as least you had a laugh reading it.<br>\r\n",
+    "PostedDate": "2008-09-16T15:50:07.013-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "118977",
+    "ThreadId": "35799",
+    "Html": "<p>Howdy, samad. I'm going to shoot you a private message and since you're starting from zero, it might be easier to help you via a more&nbsp;interactive medium. If you're&nbsp;far out of the Pacific timezone, we'll still work something out.</p>\r\n<p>BTW, when you installed the MSI, is there a reason you didn't select the automatic restore feature?</p>\r\n",
+    "PostedDate": "2008-09-16T17:10:28.75-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "Moving this issue to the AdventureWorks project: http://www.codeplex.com/MSFTDBProdSamples/",
+    "ClosedDate": "2008-08-26T15:01:16.67-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "There's a problem with this package, I'll try to explain below.\n \nIf you directly install the database files and samples at the first time you start this setup package then no problem.\n \nHowever, the problem occurs of you repeat the following steps:\n- Run this installation file and install only Samples and Program Menu Shortcuts but no database files (Restore AdventureWorks DBs).\n- After finishing the above installation, rerun this setup then Change, repair, or remove installation window appears. Click Change button.\n- In the Custom Setup window, choose Restore AdventureWorks DBs and underneath to install then click Next button.\n- Database Setup window appears. The problem occurs just in this window. There is a combobox below to choose the SQL Server Instance to install this sample database files. However, SQL Server Instances are not listed in it! If you chose to install database files at the first time when we installed the Samples and Program Menu Shortcuts then we would see the installed SQL Server Instances in this combobox. But if you want to install database files another time by repeating the above steps, then you end up with an empty combobox.\n \nEkrem Önsoy",
+    "LastUpdatedDate": "2013-05-16T05:28:16.02-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2008-08-25T09:47:24.367-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Setup Problem (SQL2008.AdventureWorks_OLTP_DB_v2008.x86.msi)",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 7415
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "138483",
+    "ThreadId": "41719",
+    "Html": "Hi Guys,<br>\r\n<br>\r\nI downloaded the SQL Server 2000 Sample databases and now I want to install the SQL server version of the Northwind.mdf sample database by running this command in the command prompt, but unfortunately, I get the errot message that you see:<br>\r\n<br>\r\n<p>C:\\SQL Server 2000 Sample Databases&gt;osql -E -Q &quot;EXEC sp_attach_db N'Northwind',N'c:\\SQL Server 2000 Sample Databases\\northwind.mdf'&quot;<br>\r\n[SQL Server Native Client 10.0]Named Pipes Provider: Could not open a<br>\r\nconnection to SQL Server [2].<br>\r\n[SQL Server Native Client 10.0]Login timeout expired<br>\r\n[SQL Server Native Client 10.0]A network-related or instance-specific error<br>\r\nhas occurred while establishing a connection to SQL Server. Server is not<br>\r\nfound or not accessible. Check if instance name is correct and if SQL Server<br>\r\nis configured to allow remote connections. For more information see SQL Server<br>\r\nBooks Online.</p>\r\n<p>I am using SQL 2008 Express Edition. Please help. Thanks.<br>\r\n<br>\r\nI also posted this here: <a href=\"http://social.msdn.microsoft.com/Forums/en-US/ssdsgetstarted/thread/f81b81a3-119b-400a-ada8-40f3aaf96017\">http://social.msdn.microsoft.com/Forums/en-US/ssdsgetstarted/thread/f81b81a3-119b-400a-ada8-40f3aaf96017</a></p>\r\n",
+    "PostedDate": "2008-12-07T19:26:13.013-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "138489",
+    "ThreadId": "41719",
+    "Html": "OK, I got this one sorted!<br>\r\n<br>\r\nThe command <strong>&gt;osql -E -S .\\SQLEXPRESS -i instnwnd.sql</strong> worked after the umpteenth try.\r\n",
+    "PostedDate": "2008-12-07T20:38:28.517-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "139452",
+    "ThreadId": "41719",
+    "Html": "See <a href=\"http://www.codeplex.com/SqlServerSamples/Thread/View.aspx?ThreadId=41721\">http://www.codeplex.com/SqlServerSamples/Thread/View.aspx?ThreadId=41721</a>\r\n",
+    "PostedDate": "2008-12-10T13:20:38.397-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

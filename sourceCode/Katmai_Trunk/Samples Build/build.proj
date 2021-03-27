@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="BuildSelf" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!--
+  *** USAGE NOTES ***
+  * See the readme.docx for additional information.
+  *
+  * Execute the batch file for a production build:
+  *
+  *     build.cmd yes
+  *
+  *
+  * Execute the batch file for a single MSI/platform (primarily for rapid-turn testing), 
+  * shown here for an Itanium build of the AS samples. Assumes existing working export copy
+  * of the source files.
+  *
+  *     build.cmd no ia64 SqlServerSamplesAS_Files
+  *
+  *
+  * TODO Investigate: http://www.codeplex.com/CodePlex/Wiki/View.aspx?title=CodePlexAPI&referringTitle=CodePlex%20FAQ
+  * TODO Automate deployment internally and externally.
+  * TODO Split out extraction to only pull down the indivual project if building a subset.
+  *
+  *******************
+	-->
+
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+  <!-- Note: Requires our custom WixHelperTask to write the includes wxi files. -->
+  <UsingTask TaskName="CreateSDChangeList" AssemblyFile="MSBuildHelperTasks\bin\$(ReleaseConfiguration)\Microsoft.SqlServer.Samples.MSBuildHelperTasks.dll" />
+  <UsingTask TaskName="WixHelperTask" AssemblyFile="MSBuildHelperTasks\bin\$(ReleaseConfiguration)\Microsoft.SqlServer.Samples.MSBuildHelperTasks.dll" />
+
+  <Import Project="build.installers" />
+  <Import Project="build.properties" />
+
+  <Target Name="Initialize">
+    <Time Format="yyyyMMdd HH:mm:ss">
+      <Output TaskParameter="FormattedTime" PropertyName="StartTime" />
+    </Time>
+    <Time Format="$(BuildDateFormat)$(BuildDateSuffixEscaped)">
+      <!--yyyyMMddHHmmss-->
+      <Output TaskParameter="FormattedTime" PropertyName="BuildDate" />
+    </Time>
+    <CreateProperty Value="$(WorkingDirectory)$(BuildDate)\">
+      <Output TaskParameter="Value" PropertyName="BuildPath" />
+    </CreateProperty>
+    <Message Text="
+>>> Initializing Build...
+Start Time:              $(StartTime)
+MSBuildExtensionsPath:   $(MSBuildExtensionsPath)
+BuildPath:               $(BuildPath)
+DeploymentRootPath:      $(DeploymentRootPath)
+SvnExportPath:           $(SvnExportPath)
+BuildSourcePath:         $(BuildSourcePath)
+" />
+    <Error Text="DeploymentRootPath Does Not Exist: $(DeploymentRootPath)" Condition="!Exists($(DeploymentRootPath))" />
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="Initialize;">
+    <!-- Wix Up the AW files for each separate feature. -->
+    <!-- HACK This must be run in this process in order to load the custom task properly. -->
+    <!-- HACK It's not properly selective when building a single file. -->
+    <Message Text="Building WXI for each AdventureWorks flavor." />
+    <WixHelperTask
+			Files="@(%(Database_List.DatabaseName))"
+			WorkingDirectory="$(BuildSourcePath)"
+			TargetWxiFile="$(MsiBuildPath)%(Database_List.DatabaseName).wxi"
+			FeatureId="%(Database_List.FeatureName)"
+			Win64="%24%28var.PlatformIs64bit%29" />
+
+    <!-- Be careful with the implicit batching here. -->
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildMsiX"
+             Condition="$(InstallerTag) == '' Or $(InstallerTag) == 'All' Or $(InstallerTag) == %(InstallerTag)"
+             Properties="MsiInstallerName=%(Installer_List.InstallerName);MsiSetupName=%(InstallerDesc);MsiFilesCollectionName=%(InstallerTag);MsiFilesWorkingDir=$(BuildSourcePath);MsiProductId=%(InstallerProductId);MsiUpgradeCode=%(InstallerUpgradeCode);MsiBuildPath=$(BuildPath);MsiProductName=$(ProductName);MsiVersionName=$(VersionName);MsiRestoreDatabase=%(InstallerDatabase);" />
+  </Target>
+
+  <Target Name="Deploy" DependsOnTargets="Initialize;Build;">
+    <!-- HACK Should do a more thorough job verifying the deployed files. Too bad we have to IgnoreExitCode for robocopy to be useful. -->
+
+    <CreateProperty Value="$(DeploymentRootPath)$(BuildDate)\">
+      <Output TaskParameter="Value" PropertyName="DeploymentBuildDatePath" />
+    </CreateProperty>
+    <Message Text="Deploying MSIs, BAKs, ZIPs and logs to $(DeploymentBuildDatePath)" />
+    <Exec Command="rd /s /q %22$(DeploymentBuildDatePath)%22" Condition="Exists('$(DeploymentBuildDatePath)')" />
+    <Exec Command="robocopy %22$(BuildPath) %22 %22$(DeploymentBuildDatePath) %22 %22*.msi%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(BuildPath) %22 %22$(DeploymentBuildDatePath) %22 %22*.zip%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+
+    <Error Text="Failure to Deploy: $(DeploymentBuildDatePath)" Condition="!Exists($(DeploymentBuildDatePath))" />
+
+    <Time Format="yyyyMMdd HH:mm:ss">
+      <Output TaskParameter="FormattedTime" PropertyName="FinishTime" />
+    </Time>
+    <Message Text="
+Build Complete.
+   Start Time: $(StartTime)
+   Finish Time: $(FinishTime)
+" />
+  </Target>
+
+  <Target Name="BuildSelf" DependsOnTargets="CleanFirst;StructureSourceFiles;">
+    <!-- This nested execution is necessary to output the build log in the working directory instead of the source solution. -->
+    <Exec Command="%22$(WINDIR)\Microsoft.NET\Framework\v3.5\msbuild.exe%22 $(BuildPath)build.proj /property:SyncSourceYN=$(SyncSourceYN) /property:InstallerTag=$(InstallerTag) /property:InstallerPlatform=$(InstallerPlatform) /target:Deploy /verbosity:normal /filelogger2" WorkingDirectory="$(BuildPath)" />
+  </Target>
+
+  <Target Name="CleanFirst" DependsOnTargets="Initialize;StructureSourceFiles;">
+    <!--<Exec Command="Removing $(BuildPath) %26%26 rd /s /q %22$(BuildPath)%22" Condition="Exists('$(BuildPath)')" />-->
+
+    <Exec Command="ECHO Creating $(BuildPath) %26%26 md %22$(BuildPath)%22" Condition="!Exists('$(BuildPath)')" />
+
+    <Message Text="Setting up base MSI build files/folders and copy/compile custom tasks." />
+    <Exec Command="ECHO Creating $(BuildPath)obj\ %26%26 md %22$(BuildPath)obj\%22" Condition="!Exists('$(BuildPath)obj\')" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\MSBuildHelperTasks\ %22 %22$(BuildPath)MSBuildHelperTasks\ %22 %22*.*%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\MSBuildHelperTasks\Properties\ %22 %22$(BuildPath)MSBuildHelperTasks\Properties\ %22 %22*.*%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\WixSqlSamplesDTF\ %22 %22$(BuildPath)WixSqlSamplesDTF\ %22 %22*.*%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\WixSqlSamplesDTF\Properties\ %22 %22$(BuildPath)WixSqlSamplesDTF\Properties\ %22 %22*.*%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\ %22 %22$(BuildPath) %22 %22backup.*%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\ %22 %22$(BuildPath) %22 %22build.*%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\ %22 %22$(BuildPath) %22 %22*.sql%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\Samples Setup\ %22 %22$(BuildPath) %22 %22*.wx?%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\Samples Setup\ %22 %22$(BuildPath) %22 %22ASCMD.exe%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\Samples Setup\ %22 %22$(BuildPath) %22 %22CreateAdventureWorks*.cmd%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\Samples Setup\ %22 %22$(BuildPath) %22 %22DropAdventureWorks*.cmd%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\Samples Setup\Binary\ %22 %22$(BuildPath)Binary\ %22 /NJH /NJS /NP /Z /MIR" IgnoreExitCode="true" />
+
+    <Exec Command="ECHO Removing the read-only bit from build files. %26%26 attrib -R %22$(BuildPath)\*.*%22 /S /D" />
+
+    <!-- HACK The MSBuild task wouldn't build the csproj for some reason; check into the inputs-up-to-date message later. -->
+    <Exec Command="%22$(WINDIR)\Microsoft.NET\Framework\v3.5\msbuild.exe%22 %22$(BuildPath)MSBuildHelperTasks\MSBuildHelperTasks.csproj%22 /property:Configuration=$(ReleaseConfiguration) /verbosity:normal" WorkingDirectory="$(BuildPath)MSBuildHelperTasks\" />
+    <Exec Command="%22$(WINDIR)\Microsoft.NET\Framework\v3.5\msbuild.exe%22 %22$(BuildPath)WixSqlSamplesDTF\WixSqlSamplesDTF.csproj%22 /property:Configuration=$(ReleaseConfiguration) /verbosity:normal" WorkingDirectory="$(BuildPath)WixSqlSamplesDTF\" />
+    <!-- Copy out the x86-specific output. -->
+    <Exec Command="copy %22$(BuildPath)WixSqlSamplesDTF\bin\$(ReleaseConfiguration)\WixSqlSamplesDTF.CA.dll%22 %22$(BuildPath)WixSqlSamplesDTF\bin\$(ReleaseConfiguration)\WixSqlSamplesDTF.CA.x86.dll%22" />
+    <!-- Construct the x64-specific output. -->
+    <Exec Command="%22$(WIX)SDK\MakeSfxCA.exe%22 %22$(BuildPath)WixSqlSamplesDTF\bin\$(ReleaseConfiguration)\WixSqlSamplesDTF.CA.x64.dll%22 %22$(WIX)SDK\x64\SfxCA.dll%22 %22$(BuildPath)WixSqlSamplesDTF\bin\$(ReleaseConfiguration)\WixSqlSamplesDTF.dll%22 %22$(BuildPath)WixSqlSamplesDTF\CustomAction.config%22 %22$(WIX)SDK\Microsoft.Deployment.WindowsInstaller.dll%22" WorkingDirectory="$(BuildPath)WixSqlSamplesDTF\" />
+    <!-- HACK We're up a creek on ia64. No .NET or DTF for ia64. Bust. Guess we keep the VBS for ia64. Doh. -->
+  </Target>
+
+  <Target Name="StructureSourceFiles" DependsOnTargets="Initialize;">
+    <!--
+    WARNING
+    This is skippable, primarily for testing purposes due to the download time from CodePlex.
+    Bad Things™ can happen if you skip this without an existing source copy of structured source.
+    -->
+    <CallTarget Targets="ReexportSourceFiles" Condition="$(SyncSourceYN) == 'yes'" />
+  </Target>
+
+  <Target Name="ReexportSourceFiles" DependsOnTargets="Initialize;">
+
+    <Message Text="
+>>> ReexportSourceFiles
+Rebase all the files to unify the directory tree.
+Removing and recreating: $(BuildSourcePath)
+Adding license file, url file...
+Adding source files for AdventureWorks% and all samples.
+" />
+    <Exec Command="rd /s /q %22$(BuildSourcePath)%22" Condition="Exists('$(BuildSourcePath)')" />
+
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\Samples Setup\Binary\ %22 %22$(BuildSourcePath)Samples\ %22 %22GettingStartedWithSQLSamples.htm%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\Samples Setup\Binary\ %22 %22$(BuildSourcePath)Samples\ %22 %22*.rtf%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\Samples Setup\Binary\ %22 %22$(BuildSourcePath)Samples\ %22 %22*.url%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+    <Exec Command="robocopy %22$(MSBuildProjectDirectory)\Samples Setup\Binary\ %22 %22$(BuildSourcePath)Tools\Samples\ %22 %22SQLServerDatabasesAndSamplesOverview.htm%22 /NJH /NJS /NP /Z" IgnoreExitCode="true" />
+
+    <Message Text="Sync samples working copies from CodePlex TFS via the Subversion gateway. Iterate the list of installers/projects and export the current trunks directly to avoid making a copy later." />
+    <Message Text="HACK svn.exe doesn't accept quoted paths for export, so we have to juggle a bit here." />
+    <Exec
+      Command="ECHO Exporting %(Installer_List.CodePlex_Project_Name)%26%26ECHO %22$(SvnBinPath)svn.exe%22 export $(CodePlexProtocolStem)%(Installer_List.CodePlex_Project_Name)$(CodePlexUriStem) $(BuildSourcePath)%(SvnExportBaseDirStem) --quiet --force %26%26%22$(SvnBinPath)svn.exe%22 export $(CodePlexProtocolStem)%(Installer_List.CodePlex_Project_Name)$(CodePlexUriStem) $(BuildSourcePath)%(SvnExportBaseDirStem) --quiet --force"
+      Condition="%(SvnExportBaseDirStem) != ''"
+      />
+    <!--
+    WARNING
+    The MOVE command can't swallow trailing slashes in its arguments on Longhorn. Grrr.
+    Also, svn.exe may not release file locks immediately. Double grrr.
+    -->
+    <Sleep Seconds="90" />
+    <Message Text="ECHO Fixing up paths with spaces in them." />
+    <Exec
+      Command="ECHO move /Y %22$(BuildSourcePath)%(SvnExportBaseDirStem)%22 %22$(BuildSourcePath)%(SvnExportCleanUpStem)%22 %26%26move /Y %22$(BuildSourcePath)%(SvnExportBaseDirStem)%22 %22$(BuildSourcePath)%(SvnExportCleanUpStem)%22"
+      Condition="%(Installer_List.SvnExportBaseDirStem) != '' And %(SvnExportCleanUpStem) != ''"
+      />
+  </Target>
+
+  <Target Name="BuildMsiX">
+    <Time Format="yyyyMMdd HH:mm:ss">
+      <Output TaskParameter="FormattedTime" PropertyName="msistart" />
+    </Time>
+    <Message Text="
+>>> BuildMsiX
+MsiProductName:         $(MsiProductName)
+MsiInstallerName:       $(MsiInstallerName)
+MsiSetupName:           $(MsiSetupName)
+MsiFilesCollectionName: $(MsiFilesCollectionName)
+MsiFilesWorkingDir:     $(MsiFilesWorkingDir)
+MsiVersionName:         $(MsiVersionName)
+MsiProductId:           $(MsiProductId)
+MsiUpgradeCode:         $(MsiUpgradeCode)
+MsiBuildPath:           $(MsiBuildPath)
+MsiRestoreDatabase:     $(MsiRestoreDatabase)
+
+Start Time:             $(msistart)
+" />
+    <ItemGroup>
+      <ZipFiles Include="@($(MsiFilesCollectionName))" />
+      <!-- HACK Because the *.wxi includes cannot be fed into the ZipTask, we have to code in the files to be included here. -->
+      <ZipFiles Include="$(BuildSourcePath)Tools\Samples\AdventureWorks OLTP\**\*.*;" Condition="$(MsiRestoreDatabase) == 'All'" />
+      <ZipFiles Include="$(BuildSourcePath)Tools\Samples\AdventureWorks Data Warehouse\**\*.*;" Condition="$(MsiRestoreDatabase) == 'All'" />
+      <ZipFiles Include="$(BuildSourcePath)Tools\Samples\AdventureWorks LT\**\*.*;" Condition="$(MsiRestoreDatabase) == 'All'" />
+      <ZipFiles Include="$(BuildSourcePath)Tools\Samples\AdventureWorks Analysis Services Project\**\*.*;" Condition="$(MsiRestoreDatabase) == 'All'" />
+      <ZipFiles Include="$(BuildSourcePath)Tools\Samples\AdventureWorks 2008 OLTP\**\*.*;" Condition="$(MsiRestoreDatabase) == 'All'" />
+      <ZipFiles Include="$(BuildSourcePath)Tools\Samples\AdventureWorks 2008 Data Warehouse\**\*.*;" Condition="$(MsiRestoreDatabase) == 'All'" />
+      <ZipFiles Include="$(BuildSourcePath)Tools\Samples\AdventureWorks 2008 LT\**\*.*;" Condition="$(MsiRestoreDatabase) == 'All'" />
+      <ZipFiles Include="$(BuildSourcePath)Tools\Samples\AdventureWorks 2008 Analysis Services Project\**\*.*;" Condition="$(MsiRestoreDatabase) == 'All'" />
+      <ZipFiles Include="$(BuildSourcePath)Samples\License.rtf" />
+      <ZipFiles Include="$(BuildSourcePath)Samples\*.url" />
+    </ItemGroup>
+    <Zip
+			Files="@(ZipFiles)"
+			ZipFileName="$(MsiBuildPath)\$(MsiInstallerName).zip"
+			WorkingDirectory="$(MsiFilesWorkingDir)"
+			ZipLevel="9"
+            Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'zip'" />
+
+    <WixHelperTask
+			Files="@($(MsiFilesCollectionName))"
+			WorkingDirectory="$(MsiFilesWorkingDir)"
+			TargetWxiFile="$(MsiBuildPath)Files.wxi"
+			FeatureId="F_SampleFiles"
+			Win64="%24%28var.PlatformIs64bit%29" />
+
+    <!-- TODO Repair the ia64 build. -->
+    <!--<CreateProperty Value="$(MsiInstallerName).ia64" 
+            Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'ia64'">
+      <Output TaskParameter="Value" PropertyName="thisname" />
+    </CreateProperty>
+    <Message Text="Candling: $(thisname)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'ia64'" />
+    <Exec Command="%22$(WixBinPath)candle.exe%22 -nologo -dReleaseConfiguration=%22$(ReleaseConfiguration)%22 -dProductName=%22$(MsiProductName)%22 -dSetupName=%22$(MsiSetupName)%22 -darch=ia64 -dVersionName=%22$(MsiVersionName)%22 -dProductId=$(MsiProductId) -dUpgradeCode=$(MsiUpgradeCode) -dRestoreDatabase=$(MsiRestoreDatabase) -out %22$(MsiBuildPath)obj\$(thisname).wixobj%22 -arch ia64 -ext WixUIExtension -ext WixSqlExtension -ext WixUtilExtension -ext WiXNetFxExtension %22$(MsiBuildPath)Samples Setup.wxs%22" WorkingDirectory="$(MsiBuildPath)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'ia64'" />
+    <Message Text="Lighting: $(thisname)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'ia64'" />
+    <Exec Command="%22$(WixBinPath)Light.exe%22 -nologo -dReleaseConfiguration=%22$(ReleaseConfiguration)%22 -out %22$(MsiBuildPath)$(thisname).msi%22 -pdbout %22$(MsiBuildPath)obj\$(thisname).wixpdb%22 -sice:ICE69 -sice:ICE16 -sice:ICE03 -sice:ICE47 -sice:ICE17 -ext WixUIExtension -ext WixSqlExtension -ext WixUtilExtension -ext WiXNetFxExtension %22$(MsiBuildPath)obj\$(thisname).wixobj%22" WorkingDirectory="$(MsiBuildPath)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'ia64'" />-->
+
+    <CreateProperty Value="$(MsiInstallerName).x86"
+            Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x86'">
+      <Output TaskParameter="Value" PropertyName="thisname" />
+    </CreateProperty>
+    <Message Text="Candling: $(thisname)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x86'" />
+    <Exec Command="%22$(WixBinPath)candle.exe%22 -nologo -dReleaseConfiguration=%22$(ReleaseConfiguration)%22 -dProductName=%22$(MsiProductName)%22 -dSetupName=%22$(MsiSetupName)%22 -darch=x86 -dVersionName=%22$(MsiVersionName)%22 -dProductId=$(MsiProductId) -dUpgradeCode=$(MsiUpgradeCode) -dRestoreDatabase=$(MsiRestoreDatabase) -out %22$(MsiBuildPath)obj\$(thisname).wixobj%22 -arch x86 -ext WixUIExtension -ext WixSqlExtension -ext WixUtilExtension -ext WiXNetFxExtension %22$(MsiBuildPath)Samples Setup.wxs%22" WorkingDirectory="$(MsiBuildPath)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x86'" />
+    <Message Text="Lighting: $(thisname)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x86'" />
+    <Exec Command="%22$(WixBinPath)Light.exe%22 -nologo -dReleaseConfiguration=%22$(ReleaseConfiguration)%22 -out %22$(MsiBuildPath)$(thisname).msi%22 -pdbout %22$(MsiBuildPath)obj\$(thisname).wixpdb%22 -sice:ICE69 -sice:ICE16 -sice:ICE03 -sice:ICE47 -sice:ICE17 -ext WixUIExtension -ext WixSqlExtension -ext WixUtilExtension -ext WiXNetFxExtension %22$(MsiBuildPath)obj\$(thisname).wixobj%22" WorkingDirectory="$(MsiBuildPath)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x86'" />
+
+    <CreateProperty Value="$(MsiInstallerName).x64"
+            Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x64'">
+      <Output TaskParameter="Value" PropertyName="thisname" />
+    </CreateProperty>
+    <Message Text="Candling: $(thisname)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x64'" />
+    <Exec Command="%22$(WixBinPath)candle.exe%22 -nologo -dReleaseConfiguration=%22$(ReleaseConfiguration)%22 -dProductName=%22$(MsiProductName)%22 -dSetupName=%22$(MsiSetupName)%22 -darch=x64 -dVersionName=%22$(MsiVersionName)%22 -dProductId=$(MsiProductId) -dUpgradeCode=$(MsiUpgradeCode) -dRestoreDatabase=$(MsiRestoreDatabase) -out %22$(MsiBuildPath)obj\$(thisname).wixobj%22 -arch x64 -ext WixUIExtension -ext WixSqlExtension -ext WixUtilExtension -ext WiXNetFxExtension %22$(MsiBuildPath)Samples Setup.wxs%22" WorkingDirectory="$(MsiBuildPath)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x64'" />
+    <Message Text="Lighting: $(thisname)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x64'" />
+    <Exec Command="%22$(WixBinPath)Light.exe%22 -nologo -dReleaseConfiguration=%22$(ReleaseConfiguration)%22 -out %22$(MsiBuildPath)$(thisname).msi%22 -pdbout %22$(MsiBuildPath)obj\$(thisname).wixpdb%22 -sice:ICE69 -sice:ICE16 -sice:ICE03 -sice:ICE47 -sice:ICE17 -ext WixUIExtension -ext WixSqlExtension -ext WixUtilExtension -ext WiXNetFxExtension %22$(MsiBuildPath)obj\$(thisname).wixobj%22" WorkingDirectory="$(MsiBuildPath)" Condition="$(InstallerPlatform) == '' Or $(InstallerPlatform) == 'All' Or $(InstallerPlatform) == 'x64'" />
+
+    <Time Format="yyyyMMdd HH:mm:ss">
+      <Output TaskParameter="FormattedTime" PropertyName="msiend" />
+    </Time>
+    <Message Text="
+Start Time:             $(msistart)
+End Time:               $(msiend)
+" />
+  </Target>
+</Project>

@@ -1,0 +1,154 @@
+[
+  {
+    "Id": "0",
+    "Name": "Master Data Services in SQL Server 2012",
+    "DevelopmentStatus": "Beta",
+    "Description": "The SQL Server 2002 Master Data Services (MDS) samples are C# or console application samples that demonstrate how to customize the way that you and your users interact with Master Data Services.\n\nFor more information about the MDS API, see [url:Developer’s Guide (Master Data Services)|http://msdn.microsoft.com/en-us/library/hh230994(v=sql.110).aspx].",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2012-02-27T09:42:01.143-08:00",
+    "Files": [
+      {
+        "Id": "b6eccdaf-9dcc-4ed6-9f64-1753afb28046",
+        "FileName": "EntityBasedStaging.zip",
+        "Url": "./0/b6eccdaf-9dcc-4ed6-9f64-1753afb28046",
+        "Type": "Source Code",
+        "UploadDate": "2012-02-27T08:30:51.387-08:00"
+      },
+      {
+        "Id": "cf4fa807-a54e-4589-98a0-a09e5b223fde",
+        "FileName": "BusinessRules.zip",
+        "Url": "./0/cf4fa807-a54e-4589-98a0-a09e5b223fde",
+        "Type": "Source Code",
+        "UploadDate": "2012-02-27T08:31:54.48-08:00"
+      },
+      {
+        "Id": "673f9e32-0b64-4899-89b3-907060022926",
+        "FileName": "MasterData.zip",
+        "Url": "./0/673f9e32-0b64-4899-89b3-907060022926",
+        "Type": "Source Code",
+        "UploadDate": "2012-02-27T08:32:16.857-08:00"
+      },
+      {
+        "Id": "eaf59aca-9ea5-41d7-88b2-63a9c45866b7",
+        "FileName": "Metadata.zip",
+        "Url": "./0/eaf59aca-9ea5-41d7-88b2-63a9c45866b7",
+        "Type": "Source Code",
+        "UploadDate": "2012-02-27T08:32:38.63-08:00"
+      },
+      {
+        "Id": "9e41be7e-2f96-4fb7-84ad-2b2da4f37829",
+        "FileName": "ModelDUtil.zip",
+        "Url": "./0/9e41be7e-2f96-4fb7-84ad-2b2da4f37829",
+        "Type": "Application",
+        "UploadDate": "2012-02-27T08:33:24.98-08:00"
+      },
+      {
+        "Id": "56b34f82-ab25-4d95-87c5-f044d5e931b6",
+        "FileName": "Security.zip",
+        "Url": "./0/56b34f82-ab25-4d95-87c5-f044d5e931b6",
+        "Type": "Source Code",
+        "UploadDate": "2012-02-27T08:33:50.563-08:00"
+      },
+      {
+        "Id": "a176aafa-1e7a-4ecc-b230-bd570e0dd23d",
+        "FileName": "WorkflowIntegration.zip",
+        "Url": "./0/a176aafa-1e7a-4ecc-b230-bd570e0dd23d",
+        "Type": "Source Code",
+        "UploadDate": "2012-02-27T08:34:13.593-08:00"
+      }
+    ]
+  },
+  {
+    "Id": "1",
+    "Name": "Latest SQL Server 2008 Samples",
+    "DevelopmentStatus": "Stable",
+    "Description": "!! Latest Microsoft SQL Server 2008 Samples \nThis release contains the latest release (October 2009 Samples Refresh 3) of the sample code for SQL Server 2008.  \n\nFor many of these samples you will also need to download the [url:AdventureWorks family of databases|http://msftdbprodsamples.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=34032].\n\n!! SQL Server 2008 R2 November CTP\nSamples for SQL Server 2008 R2 are available [url:here|http://sqlserversamples.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=37014].\n",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2009-12-08T14:38:02.293-08:00",
+    "Files": [
+      {
+        "Id": "c849919d-7e76-43d6-8a63-ab6f98efcac6",
+        "FileName": "SQL2008.All_Product_Samples_Without_DBs.x86.msi",
+        "Url": "./1/c849919d-7e76-43d6-8a63-ab6f98efcac6",
+        "Type": "Application",
+        "UploadDate": "2009-10-06T14:02:56.897-07:00"
+      },
+      {
+        "Id": "bae32de1-f641-49f2-bc90-57ed6c7dc6f9",
+        "FileName": "SQL2008.All_Product_Samples_Without_DBs.x64.msi",
+        "Url": "./1/bae32de1-f641-49f2-bc90-57ed6c7dc6f9",
+        "Type": "Application",
+        "UploadDate": "2009-10-06T14:02:54.71-07:00"
+      },
+      {
+        "Id": "3faeceec-cdb0-442f-b66b-0585e463533e",
+        "FileName": "SQL2008.All_Product_Samples_Without_DBs.zip",
+        "Url": "./1/3faeceec-cdb0-442f-b66b-0585e463533e",
+        "Type": "Application",
+        "UploadDate": "2009-10-06T14:02:58.927-07:00"
+      }
+    ]
+  },
+  {
+    "Id": "2",
+    "Name": "SQL Server 2005 SP2a",
+    "DevelopmentStatus": "None",
+    "Description": " The complete set of SQL Server 2005 SP2 Product Samples for all technologies updated with the MS-PL license agreement.  There are installers for each technology area in the release section of each individual Product Sample project as well if you are just interested in samples for a particular area of SQL Server.\r\n",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2007-05-07T13:14:41.11-07:00",
+    "Files": [
+      {
+        "Id": "f4e763d2-4e75-44ea-b183-1052f3c89911",
+        "FileName": "SqlServerSamples.msi",
+        "Url": "./2/f4e763d2-4e75-44ea-b183-1052f3c89911",
+        "Type": "Source Code",
+        "UploadDate": "2007-05-07T13:14:41.127-07:00"
+      },
+      {
+        "Id": "afd42667-12cb-44e8-b150-6f66848157e0",
+        "FileName": "SqlServerSamples_x64.msi",
+        "Url": "./2/afd42667-12cb-44e8-b150-6f66848157e0",
+        "Type": "Source Code",
+        "UploadDate": "2007-05-07T13:14:42.61-07:00"
+      },
+      {
+        "Id": "0c6d7c77-e2d5-48da-ae50-5fd9baf4e394",
+        "FileName": "SqlServerSamples_IA64.msi",
+        "Url": "./2/0c6d7c77-e2d5-48da-ae50-5fd9baf4e394",
+        "Type": "Source Code",
+        "UploadDate": "2007-05-07T13:14:43.563-07:00"
+      }
+    ]
+  },
+  {
+    "Id": "3",
+    "Name": "Microsoft SQL Server 2008 R2 SR1",
+    "DevelopmentStatus": "Stable",
+    "Description": "!! Microsoft SQL Server 2008 R2 (SR1) \nThis release contains sample code for Microsoft SQL Server 2008 R2 for PCU1. \n\nFor many of these samples you will also need to download the [url:AdventureWorks family of databases|http://msftdbprodsamples.codeplex.com/Releases/].",
+    "ReleasedDatge": "0001-01-01T00:00:00",
+    "ModifiedDate": "2011-08-24T14:28:27.373-07:00",
+    "Files": [
+      {
+        "Id": "0e76e089-601c-490e-a29c-02e1754fdf0f",
+        "FileName": "SQL2008.All_Product_Samples_Without_DBs.x64.msi",
+        "Url": "./3/0e76e089-601c-490e-a29c-02e1754fdf0f",
+        "Type": "Source Code",
+        "UploadDate": "2011-08-24T14:28:22.34-07:00"
+      },
+      {
+        "Id": "39f74568-b703-45c0-8f0a-12dec9e623e6",
+        "FileName": "SQL2008.All_Product_Samples_Without_DBs.x86.msi",
+        "Url": "./3/39f74568-b703-45c0-8f0a-12dec9e623e6",
+        "Type": "Source Code",
+        "UploadDate": "2011-08-24T14:28:23.887-07:00"
+      },
+      {
+        "Id": "58ffcc6f-0262-4e15-990c-39303011e37e",
+        "FileName": "SQL2008.All_Product_Samples_Without_DBs.zip",
+        "Url": "./3/58ffcc6f-0262-4e15-990c-39303011e37e",
+        "Type": "Source Code",
+        "UploadDate": "2011-08-24T14:28:25.42-07:00"
+      }
+    ]
+  }
+]

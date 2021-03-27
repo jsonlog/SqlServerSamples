@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "120819",
+    "ThreadId": "36425",
+    "Html": "I know I may seem a little bit behind the times given the release of SQL Server 2008, but can anyone tell me where I can download the front-end application (either Windows-based or ASP.NET-based) to the SQL Server <span style=\"font-weight:bold\"><span style=\"text-decoration:underline\">2005</span></span> version of the AdventureWorks database (assuming a front-end application exists)?  Thanks in advance for any help.",
+    "PostedDate": "2008-09-24T19:19:06.243-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121007",
+    "ThreadId": "36425",
+    "Html": "When you say &quot;front-end&quot; do you mean store front?&nbsp;<a href=\"http://www.codeplex.com/MSFTEEProdSamples/Release/ProjectReleases.aspx?ReleaseId=4037\">http://www.codeplex.com/MSFTEEProdSamples/Release/ProjectReleases.aspx?ReleaseId=4037</a><br>\r\n<br>\r\nOr do you mean management utiltities? Like these:<br>\r\n<br>\r\n<a href=\"http://www.microsoft.com/downloads/details.aspx?FamilyId=C243A5AE-4BD1-4E3D-94B8-5A0F62BF7796&displaylang=en\">http://www.microsoft.com/downloads/details.aspx?FamilyId=C243A5AE-4BD1-4E3D-94B8-5A0F62BF7796&amp;displaylang=en</a><br>\r\n<br>\r\n<a href=\"http://www.codeplex.com/SQLWebQuery/\">http://www.codeplex.com/SQLWebQuery/</a><br>\r\n<br>\r\n<a href=\"http://www.codeplex.com/SQL2005SrvcMngr/\">http://www.codeplex.com/SQL2005SrvcMngr/</a><br>\r\n<br>\r\n<a href=\"http://www.codeplex.com/sqlhost/\">http://www.codeplex.com/sqlhost/</a>\r\n",
+    "PostedDate": "2008-09-25T09:51:54.503-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121024",
+    "ThreadId": "36425",
+    "Html": "Sorry for not being more clear.&nbsp; I meant store front (i.e., a turn-key application that utilizes the entire AdventureWorks database).&nbsp; Is that what your first link will give me?<br>\r\nThanks again.\r\n",
+    "PostedDate": "2008-09-25T10:52:04.02-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121038",
+    "ThreadId": "36425",
+    "Html": "There's a store front for SQL Server 2008 in the E2E samples: <a href=\"http://www.codeplex.com/MSFTEEProdSamples/Release/ProjectReleases.aspx?ReleaseId=4037\">http://www.codeplex.com/MSFTEEProdSamples/Release/ProjectReleases.aspx?ReleaseId=4037</a><br>\r\n<br>\r\nNote: It does not use the AdventureWorks2008 OLTP database; it uses the AdventureWorks OLTP database in&nbsp;<strong>SQL2008.AdventureWorks_OLTP_DB_v2005.x86.msi</strong> from&nbsp;<a href=\"http://www.codeplex.com/MSFTDBProdSamples/Release/ProjectReleases.aspx?ReleaseId=16040\">http://www.codeplex.com/MSFTDBProdSamples/Release/ProjectReleases.aspx?ReleaseId=16040</a>.<br>\r\n",
+    "PostedDate": "2008-09-25T12:16:12.387-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121077",
+    "ThreadId": "36425",
+    "Html": "Thanks for the two links.&nbsp; I really appreciate it.<br>\r\n<br>\r\nSo it appears that I need to purchase and install SQL Server <strong><span style=\"text-decoration:underline\">2008</span></strong> in order to obtain the &quot;store front&quot; application for AdventureWorks (i.e., your first link).&nbsp; Is that correct?<br>\r\n<br>\r\nI'm also a little confused with respect to your second link.&nbsp; Do I need to download <strong>SQL2008.AdventureWorks_OLTP_DB_v2005.x86.msi</strong>, too, or is it included as part of your first link?<br>\r\n<br>\r\nCould you please clarify?&nbsp; Thanks again.\r\n",
+    "PostedDate": "2008-09-25T17:12:21.403-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121664",
+    "ThreadId": "36425",
+    "Html": "<span id=UniqueID1222709899734>Sorry for the confusion, I got my threads mixed up. The samples in&nbsp;<a href=\"http://www.codeplex.com/MSFTEEProdSamples/Release/ProjectReleases.aspx?ReleaseId=4037\">http://www.codeplex.com/MSFTEEProdSamples/Release/ProjectReleases.aspx?ReleaseId=4037</a>&nbsp;will work with SQL Server 2005.</span>\r\n",
+    "PostedDate": "2008-09-29T10:39:29.297-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121676",
+    "ThreadId": "36425",
+    "Html": "Thanks for the clarification, and thanks again for all your help.\r\n",
+    "PostedDate": "2008-09-29T11:49:24-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

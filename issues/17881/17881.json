@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "New to datawarehousing...and want to know how the Adventurework and AdventureworkDW has been developed..\nhow the OLTP data has been extracted to AdventureworksDW..datawarehouse system and need some design documents....what to know how the DIM tables are created...and everything",
+    "LastUpdatedDate": "2013-02-21T18:37:34.623-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2012-04-19T04:57:15.973-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "New to datawarehousing...and want to know how the Adventurework and AdventureworkDW has been developed",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 17881
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

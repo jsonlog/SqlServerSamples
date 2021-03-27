@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Hi Guys,\n\nlove the work you're doing here, but can we expect SQL2014 based samples any time soon or should we be just using the olders ones? E.g. SQL2012.\n\nThanks\nCraig",
+    "LastUpdatedDate": "2014-06-29T22:25:46.273-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2014-06-29T22:25:46.273-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Will there be SQL2014 Samples soon?",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 21112
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

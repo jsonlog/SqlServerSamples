@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "64890",
+    "ThreadId": "19607",
+    "Html": "\r\nHello,<br /><br />need help pls ....<br /><br />I can not find the directory \"C:\\Program Files\\Microsoft SQL Server\\90\\Samples\" for the reporting services samples as stated in the help.<br /><br />I installed (AdventureWorksDB.msi) &amp; attached the adventure works db.<br />In addition to that I ran the AdventureWorksBI.msi, which added the Analysis BI solution in the directory C:\\Program Files\\Microsoft SQL Server\\90\\Tools\\Samples\\AdventureWorks Analysis Services Project\\, but not the reporting services samples.<br /><br />Any idea where to find the reporting services samples?<br /><br />thks,<br />iulmer<br />",
+    "PostedDate": "2007-12-25T04:18:21.203-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "66757",
+    "ThreadId": "19607",
+    "Html": "\r\nI'v got the same problem . I installed VS 2005 Professional Edition , and then i installed Microsoft SQL Server 2005 Standard Edition . While installing , samples &amp; books online are completely finished . But  I only found Tutorials .<br />I can't find the folder \"Samples\" in \"C:\\Program Files\\Microsoft SQL Server\\90\\\"  <br />In C:\\Program Files\\Microsoft SQL Server\\90 \" , <br />1. COM<br />2. DTS<br />3. EULA<br />4.NotificationServices<br />5.SDK<br />6.Setup Bootstrap<br />7.Shared<br />8.Tools<br /> Moreover , in \"C:\\Program Files\\Microsoft SQL Server\\90\\Tools \", there is no \"SAMPLE\" folder . <br />There are <br />1.Bin<br />2.Binn<br />3.Books<br />4.Profiler<br />5.Reporting Services<br />6.Templates <br />folders .<br />After I installed AdverntureWorks.msi , <br /> \"AdventureWorks<i>Data.mdf \" &amp; \"AdventureWorks</i>Log.ldf\" are  stored in C:\\Program Files\\Microsoft SQL Server\\MSSQL.1\\MSSQL\\Data<br /><br />Not in samples .... <br />I wanna know where is the SAMPLE folder . <br /><br />thanks in advance <br />khine<br /><br /><br /><br />",
+    "PostedDate": "2008-01-08T10:23:52.12-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "76904",
+    "ThreadId": "19607",
+    "Html": "\r\nYou can find reporting services samples <a href=\"http://www.codeplex.com/MSFTRSProdSamples/\" class=\"externalLink\">here<span class=\"externalLinkIcon\" style=\"font-family:Consolas, Courier New, Courier, Monospace;\"></span></a>.  You can find all the samples on our portal page at <a href=\"http://CodePlex.com/SqlServerSamples\" class=\"externalLink\">http://CodePlex.com/SqlServerSamples<span class=\"externalLinkIcon\" style=\"font-family:Consolas, Courier New, Courier, Monospace;\"></span></a>.<br />",
+    "PostedDate": "2008-02-27T15:40:33.43-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

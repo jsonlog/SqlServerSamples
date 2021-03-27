@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Hi, \n\n I need your advice, how to troubleshoot this issue.\n\nI try to create link server to DB2 (now call Universe or U2).\n\nWhen I created link server using ODBC connection on SQL server 2016, It hang. I have to kill SSMS 2016.\n\nI also try \"test connection\" feature and it's also hang.\n\nNote:\n\n1). I do not have problem with the ODBC setup on SQL 2012. The connection is working fine on the same machine. \n\n2). I am using DB2 ODBC driver\n\nPlease let help! How can I find what is the problem? Is there any setting to find this problem\n\nI look at [SQL server](https://mindmajix.com/sql-server-training) error log and could not find any error.\n\nThanks\nNatasha Mary",
+    "LastUpdatedDate": "2017-10-02T23:35:52.75-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2017-10-02T23:35:52.75-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "SQL Server 2016 Link Server Issue to DB2",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 22552
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

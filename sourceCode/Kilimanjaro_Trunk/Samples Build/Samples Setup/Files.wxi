@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--xmlns="http://schemas.microsoft.com/wix/2006/wi"-->
+<Include>
+	<Component Id="C_Files" Feature="F_SampleFiles" Guid="{E204347E-F652-4348-85A4-9BF711BC499A}" Win64="$(var.PlatformIs64bit)">
+		<!-- These are here for testing purposes only. -->
+		<File Id="F_Placeholder_txt" Name="Placeholder.txt" Source="Binary\Placeholder.txt" DiskId="1" Vital="yes" />
+	</Component>
+</Include>

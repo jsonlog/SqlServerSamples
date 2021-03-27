@@ -1,0 +1,1 @@
+xsd DatabaseManifestSchema.xsd /c /l:CS /n:Microsoft.SqlServer.DatabaseInstaller

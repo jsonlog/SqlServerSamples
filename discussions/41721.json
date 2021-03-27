@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "138490",
+    "ThreadId": "41721",
+    "Html": "Why is that? Has anyone else come across this? The other tables contain data except this one. Please help. The database is a little less useful withou that.\r\n",
+    "PostedDate": "2008-12-07T20:40:35.137-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "139450",
+    "ThreadId": "41721",
+    "Html": "Howdy, Geoffrey. Northwind isn't part of our official sample databases anymore, so I'm not sure where you snagged your copy. Was it from <a href=\"http://code.msdn.microsoft.com/northwind\">http://code.msdn.microsoft.com/northwind</a>? From the original 2000 installation media? Somewhere else? <br>\r\n<br>\r\nThat Code Gallery resource page is where we put the scripts that were used to build the Shiloh version of Northwind and pubs.\r\n",
+    "PostedDate": "2008-12-10T13:19:39.397-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

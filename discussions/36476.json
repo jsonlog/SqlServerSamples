@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "120986",
+    "ThreadId": "36476",
+    "Html": "instaled named instance of sql server 2008 express<br>\r\nstarting&nbsp;SQL2008.AdventureWorks_OLTP_DB_v2008.x86.msi<br>\r\n1. only two options in install sheeld marked - instal db and menu shrtcuts<br>\r\n&nbsp;&nbsp;&nbsp; after instaling have&nbsp;files in&nbsp;C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Samples directory <br>\r\n&nbsp;&nbsp;&nbsp; but restoring is not working neither of two ways described on&nbsp;blog:<br>\r\n&nbsp;&nbsp;&nbsp; <a href=\"http://blog.sqlauthority.com:80/2008/08/10/sql-server-2008-download-and-install-samples-database-adventureworks-2005-detail-tutorial/\">http://blog.sqlauthority.com:80/2008/08/10/sql-server-2008-download-and-install-samples-database-adventureworks-2005-detail-tutorial/</a><br>\r\n2. If I mark to restore db in installer the installer is working biu only till starting to execute sql scripts whn <br>\r\n&nbsp;&nbsp;&nbsp; my PC freezees <br>\r\n<br>\r\nwhat I am doing wrong<br>\r\npls, any help\r\n",
+    "PostedDate": "2008-09-25T08:30:32.57-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121001",
+    "ThreadId": "36476",
+    "Html": "mariolo, when your PC &quot;freezes&quot; does the entire machine become unresponsive? On typical hardware, it should take ~90 seconds to restore one of the databases, but it's relatively i/o intensive, which will briefly put a strain on 5,400rpm notebook drives.<br>\r\n<br>\r\nIf you installed the samples successfully without the automatic restore, the backups (BAK file) are placed in Tools\\Samples\\ in the SQL Server directory in Program Files (by default) for you to restore them manually. There is a SQL script there for restoring the database; all you have to do is edit it to point to the directory where you placed the backups before you run it. Instructions for editing the script are in the script itself.<br>\r\n<br>\r\nIf you installed the Express with Tools&nbsp;version, you&nbsp;can&nbsp;use Management Studio&nbsp;to either run the SQL script in Tools\\Samples\\ (after you edit it)&nbsp;to restore the backup&nbsp;or to manually restore the backup with the GUI.<br>\r\n<br>\r\nIf you installed only the basic Express version, you can use SQLCMD to run the script in Tools\\Samples\\ to restore the backup after you edit it.\r\n",
+    "PostedDate": "2008-09-25T09:40:41.007-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121068",
+    "ThreadId": "36476",
+    "Html": "yes pc becomes completly unresponsive (more han 5 min &amp;&nbsp; unable to start task manager)<br>\r\n<br>\r\nalso when succesfully instaled db without automatic restore, call sql script nter the path where bak file is and run it<br>\r\nit starts but after &gt; 5 min of runing restore is on 0% and again pc is completly unresponsive<br>\r\n<br>\r\nI do some research<br>\r\non page:<br>\r\n<a href=\"http://www.codeplex.com/SqlServerSamples/Wiki/View.aspx?title=SQLServerDatabasesandSamplesOverview&referringTitle=Home\">http://www.codeplex.com/SqlServerSamples/Wiki/View.aspx?title=SQLServerDatabasesandSamplesOverview&amp;referringTitle=Home</a><br>\r\n<br>\r\n---is note:<br>\r\nNote: For Microsoft Windows 2003 and Microsoft Windows XP operating systems <br>\r\nyou must have a default instance of the server installed in order to <br>\r\nsuccessfully install sample databases to a named instance for SQL Server 2008. <br>\r\n<br>\r\nand as i can not install defaulta instance of&nbsp;SQLEXPRADV_x86_ENU.exe<br>\r\ndoes it mean I can not nstall&nbsp;SQL2008.AdventureWorks_OLTP_DB_v2008.x86.msi<br>\r\non win xp sp3 pc with ms sql server 2008 express<br>\r\n<br>\r\nanything I try instaling it - definitely freezees my pc <br>\r\n",
+    "PostedDate": "2008-09-25T15:24:48.81-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121069",
+    "ThreadId": "36476",
+    "Html": "I'm not sure that note about the default instance&nbsp;is accurate for the current version of our installers, and it's not true at all for restoring a backup manually.<br>\r\n<br>\r\nThere's no reason that I can think of for the box to hang.<br>\r\n<br>\r\nSomething else is going on with your PC. Can you share some hardware specs beyond XPsp3? Is it a desktop machine? 2GB or more&nbsp;of RAM?&nbsp;7,200-rpm or faster hard drive formatted with NTFS? Are there any warnings or errors in the event logs after you reboot? Are there any errors in the SQL Server log?&nbsp;What services and other applications are running in the background (antivirus, etc) which might interfere?\r\n",
+    "PostedDate": "2008-09-25T15:32:36.073-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

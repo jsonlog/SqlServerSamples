@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "97468",
+    "ThreadId": "29246",
+    "Html": "Are the samples for the February CTP the appropriate ones to use with the RC0 release or are some new samples on the way specifically for RC0?<br>\r\n<br>\r\nThanks in advance,<br>\r\n<br>\r\nDoug\r\n",
+    "PostedDate": "2008-06-07T21:33:47.583-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "97964",
+    "ThreadId": "29246",
+    "Html": "Doug , they worked fin for me (AW DB and BI stuff), however watch it on 64 bit machines as the AW DB install goes to program files(x86)&nbsp;, bizarrely the BI was Ok with this.&nbsp; The samples will only be updated again at RTM. (afryer@microsoft.com)&nbsp;\r\n",
+    "PostedDate": "2008-06-10T09:53:49.703-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "99617",
+    "ThreadId": "29246",
+    "Html": "Actually, the RC0 samples were&nbsp;delivered here the same day (Pacific time)&nbsp;as RC0 was added to Connect. There are incompatibilities between some CTP6 samples and RC0, and vice versa.\r\n",
+    "PostedDate": "2008-06-18T13:51:38.993-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "101970",
+    "ThreadId": "29246",
+    "Html": "<br>\r\n<div style=\"border-right:medium none;padding-right:0.2em;border-top:#aaa 0.1em dotted;padding-left:0.2em;padding-bottom:0.2em;margin:1em 0em 2.5em 3em;border-left:medium none;padding-top:0.2em;border-bottom:#aaa 0.1em dotted;font-style:italic\"><br>\r\nReedMe wrote:<br>\r\nActually, the RC0 samples were&nbsp;delivered here the same day (Pacific time)&nbsp;as RC0 was added to Connect. There are incompatibilities between some CTP6 samples and RC0, and vice versa. <br>\r\n<br>\r\n</div>\r\n<br>\r\nThe samples that were posted (Reporting Services Sample Reports) however do not seem to work with the AdventureWorks2008 database. These sample reports are looking for columns that existed in the AdventureWorks database but not the AdventureWorks2008 database.<br>\r\n<br>\r\nWhen we get to RTM will these sample reports be updated? It might make more sense not to post these as an RC0 release since they are for the older version and this leads to a great deal of confusion.\r\n",
+    "PostedDate": "2008-07-01T12:32:52.93-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

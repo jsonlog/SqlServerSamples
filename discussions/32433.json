@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "107568",
+    "ThreadId": "32433",
+    "Html": "Downloaded and installed the samples for SQL 2005.&nbsp; It doesn't seem to contain the AW database.... <br>\r\n<br>\r\nIs there a seperate download?<br>\r\n<br>\r\nAlso, if I may suggest, adding some type of master index to the root of the Samples directory would really make it easier to navigate.\r\n",
+    "PostedDate": "2008-07-28T14:24:52.713-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "107659",
+    "ThreadId": "32433",
+    "Html": "<p>Same to me. I tried to install AdventureWorksDB.msi and also SqlServerSamples.msi <br>\r\n(source code, 25433K, uploaded May 7 2007) none seem to contain AdventuraWorks 2005 database.<br>\r\nI don't know if it makes any difference, but I am installing on Vista Business.</p>\r\n<p>Any clue?</p>\r\n<p>Thanks</p>\r\n",
+    "PostedDate": "2008-07-29T01:56:51.36-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "107662",
+    "ThreadId": "32433",
+    "Html": "Ok, I was assuming that the msi instalation would attach the database automatically. Even though, the only installation that contains AW database is the&nbsp;AdventureWorksDB.msi and not&nbsp;SqlServerSamples.msi. I installed it again and follow the steps to attach the database:<br>\r\n<br>\r\n<a href=\"http://msdn.microsoft.com/en-us/library/aa992075(VS.80).aspx\">http://msdn.microsoft.com/en-us/library/aa992075(VS.80).aspx</a><br>\r\n<br>\r\nThanks anyway.<br>\r\n<br>\r\nLeonardo.\r\n",
+    "PostedDate": "2008-07-29T02:29:29.603-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

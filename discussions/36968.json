@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "122647",
+    "ThreadId": "36968",
+    "Html": "Can someone kindly provide me with the URL where I can find the&nbsp;AdventureWorks<strong><span style=\"text-decoration:underline\">2008</span></strong> OLTP Schema Diagram?<br>\r\n<br>\r\nI found the one for <strong><span style=\"text-decoration:underline\">2005</span></strong> (<a href=\"http://www.microsoft.com/downloads/details.aspx?familyid=0f6e0bcf-a1b5-4760-8d79-67970f93d5ff&displaylang=en\">http://www.microsoft.com/downloads/details.aspx?familyid=0f6e0bcf-a1b5-4760-8d79-67970f93d5ff&amp;displaylang=en</a>), but not for <strong><span style=\"text-decoration:underline\">2008</span></strong>.<br>\r\n<br>\r\nThanks.\r\n",
+    "PostedDate": "2008-10-03T06:07:32.24-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "122721",
+    "ThreadId": "36968",
+    "Html": "The most recently checked-in copies of the schema diagrams are here:&nbsp;<a href=\"http://www.codeplex.com/MSFTDBProdSamples/SourceControl/DirectoryView.aspx?SourcePath=$/MSFTDBProdSamples/Katmai_August2008_RTM/Schema Diagrams&changeSetId=17006\">http://www.codeplex.com/MSFTDBProdSamples/SourceControl/DirectoryView.aspx?SourcePath=%24%2fMSFTDBProdSamples%2fKatmai_August2008_RTM%2fSchema%20Diagrams&amp;changeSetId=17006</a><br>\r\n<br>\r\nThanks for pointing out that we need to link 'em up from the wiki.\r\n",
+    "PostedDate": "2008-10-03T11:03:13.703-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "122733",
+    "ThreadId": "36968",
+    "Html": "Thanks for the URL.&nbsp;&nbsp;When I went to the site, however, I noticed that the Visio (.vsd) versions were not available.&nbsp; Is there another URL I can go to in order to view/download them?\r\n<p>Thanks again.</p>\r\n",
+    "PostedDate": "2008-10-03T11:47:41.283-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "122734",
+    "ThreadId": "36968",
+    "Html": "For some reason CodePlex blocks the download of Office file types.<br>\r\n<br>\r\nHowever, all of the diagrams are included in the AdventureWorks installers and ZIP files.\r\n",
+    "PostedDate": "2008-10-03T11:49:30.32-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "122812",
+    "ThreadId": "36968",
+    "Html": "I have downloaded:<br>\r\n<br>\r\n<ul>\r\n    <li>SQL2008.AdventureWorks_OLTP_DB_v2008.x86.msi</li>\r\n    <li>SQL2008.All_Product_Samples_Without_DBs.x86.msi</li>\r\n    <li>SQL2008.AdventureWorks_OLTP_DB_v2008.zip</li>\r\n</ul>\r\n<p>and have been unable to find any of the schema diagrams.<br>\r\n<br>\r\nIs there another file that I need to download from CodePlex in order to obtain all of the diagrams (including the Visio versions)?</p>\r\n<p>Thanks.</p>\r\n",
+    "PostedDate": "2008-10-03T18:01:36.227-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "123254",
+    "ThreadId": "36968",
+    "Html": "Doh! I've posted the current versions of the VSDs&nbsp;as attachments to the schema diagrams page for now.<br>\r\n<br>\r\n<a href=\"http://www.codeplex.com/MSFTDBProdSamples/Wiki/Info.aspx?title=AWSchemaDiag&action=Info\">http://www.codeplex.com/MSFTDBProdSamples/Wiki/Info.aspx?title=AWSchemaDiag&amp;action=Info</a><br>\r\n<br>\r\nWill make sure that they do get included in the MSIs and ZIPs&nbsp;for the Halloween samples refresh. Thanks for the info, emerald77.\r\n",
+    "PostedDate": "2008-10-06T12:11:43.703-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "123281",
+    "ThreadId": "36968",
+    "Html": "Thanks!\r\n",
+    "PostedDate": "2008-10-06T13:15:07.463-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

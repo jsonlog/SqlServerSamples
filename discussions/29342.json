@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "97780",
+    "ThreadId": "29342",
+    "Html": "<span style=\"font-size:13px;font-family:microsoft sans serif\">Hello,<br>\r\n<br>\r\nTask     : To setup SQL Server 2005 or 2005 Express Synchronization.<br>\r\n<br>\r\nDetails : I need to implement a solution for a Medical Centers, they have 2 centers with individual SQL Server.<br>\r\n <br>\r\n                 I need to provide a solution to Synchronize the updates to both database on daily basis.<br>\r\n <br>\r\n                Can I setup SQL Server to do it Automatically? I need to perform this task over Internet (No VPN).<br>\r\n<br>\r\n                What are the best possible ways I can implement this?<br>\r\n<br>\r\n               Really looking forward to get help from you guys...<br>\r\n<br>\r\n              Thanks,<br>\r\n <br>\r\n <br>\r\nNik<br>\r\n<a href=\"mailto:namhatre@gmail.com\">namhatre@gmail.com</a> </span>\r\n",
+    "PostedDate": "2008-06-09T13:22:46.343-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

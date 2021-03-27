@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "When installing Toad 6.8 I checked the box that integrated Toad into [SQL Server](https://mindmajix.com/ssis-training) Management Studio. When I launched management studio it gave me an error (something about unable to load the add-in). Now, whenever I right-click on any node in management studio I get this pop-up:\n\nXamlObjectWriterException\nCannot set unknown Member\n'{clr-namespace;Quest.Toad.SSMSAddin.Menus;assembly=Dell.ToadSSMSAddinCore, Version 7.0.10.0, Culture=Neutral, PublicKeyToken=....}ToadCommandMenuItem.CommandId\n\nAt this point I just want SQL Server management studio back to how it was so I can right-click on nodes.\n\nI've completely uninstalled Toad 6.8 but the issue remains.\n\nPlease help\nNatasha Mary",
+    "LastUpdatedDate": "2017-11-08T23:11:13.13-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2017-11-08T23:11:13.13-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Unable to remove Toad Integration from SQL Server 2014 Management Studio",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 22557
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

@@ -1,0 +1,60 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "Some VS samples apparently use an older version of the schema or do not provide the additional DDL required to change the base sample database.",
+    "ClosedDate": "2008-08-12T12:16:57.723-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I have installed some sample VB.NET Windows Forms code from this Microsoft site:\nhttp://msdn2.microsoft.com/en-us/vbasic/ms789075.aspx  (scroll to bottom)\n \nThe readme that came with those files specifies the following reqirements, which I have fully met.\n \nThis sample requires the following to be installed: \n-  Microsoft Visual Studio 2005 \n-  Microsoft SQL Server 2005 Express \n-  AdventureWorks database installed at the default location \n \nI downloaded the 27+ MB \"AdventureWorksDB.msi\" from this CodePlex site, and then ran the query commands in SQL Studio to properly attach the resulting data files.\nI worked through initial issues of having the wrong connection string, and have verified my project now correctly connects to my SQL Server 2005 Express AdventureWorks database...\nconnectionString=\"Server=MYWORKSTATION\\SQLEXPRESS;Database=AdventureWorks;Trusted_Connection=True;\"\n \nIf I open up the sample \"UsingBindingSource\" project in Visual Studio 2005 and further open up the QueryBuilder, in order to preview the data for the \"AdventureWords_DataDataSet.xsd\", it tells me the following columns are invalid:\n \nShiftID\nEmergencyContactID\nAddressID\nBaseRate\nPayFrequency\n \nThis is the full query that is trying to execute, but is failing:\nSELECT     EmployeeID, NationalIDNumber, ContactID, LoginID, DepartmentID, ManagerID, ShiftID, Title, EmergencyContactID, AddressID, BirthDate, \n                      MaritalStatus, Gender, HireDate, SalariedFlag, BaseRate, PayFrequency, VacationHours, SickLeaveHours, CurrentFlag, rowguid, ModifiedDate\nFROM         HumanResources.Employee\n \n \nP.S - the \"UsingBindingSource\" example has a README at the following location, which is I'm referring to, specifically:\nMy Documents\\MSDN\\101 Samples\\Windows Forms\\VB\\UsingBindingSource\\UsingBindingSource\\README.htm\n \nHow did I arrive at the wrong AdventureWorks (2005) data schema? How many are there?",
+    "LastUpdatedDate": "2013-05-16T05:28:16.607-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2008-03-19T07:05:42.113-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Missing columns in AdventureWorks tables",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 5793
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "For what it's worth, I've modified the base query for the VB sample code that was supplied, and the example seems to work fine now. \r\n\r\nEvidentally, the sample did not necessarily need the additional columns to function. \r\n\r\nI simply removed these from the SELECT statement that was used to build the dataset...\r\nShiftID\r\nEmergencyContactID\r\nAddressID\r\nBaseRate\r\nPayFrequency",
+      "PostedDate": "2008-03-19T08:48:30.94-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2008-08-12T12:16:57.723-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T18:37:39.763-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T05:28:16.607-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

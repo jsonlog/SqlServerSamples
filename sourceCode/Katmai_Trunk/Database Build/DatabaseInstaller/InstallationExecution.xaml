@@ -1,0 +1,46 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="Microsoft.SqlServer.DatabaseInstaller.InstallationExecutionWindow"
+	x:Name="Window"
+	Title="Installation Execution"
+	Background="{DynamicResource SplashImageBrush}"
+	Height="595" Width="731" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+	<Grid x:Name="LayoutRoot">
+	    	<TextBlock x:Name="InstallerTitleTextBlock" VerticalAlignment="Top"
+                       Text="" TextWrapping="NoWrap" 
+                       Margin="44,120,51,0" 
+                       Height="26.96"
+                       Style="{StaticResource TitleTextStyle}" />
+	    	<ProgressBar x:Name="InstallProgressBar" Margin="180.54,192.96,19,0" VerticalAlignment="Top" Height="19"
+                         IsIndeterminate="False" />
+	    	<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Install" Margin="111.763,188.96,0,0"/>
+	    	<Label x:Name="DatabaseLabel" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                   Content="Database" Margin="111.763,218.92,0,0" Visibility="Hidden"/>
+	    	<TextBlock x:Name="MajorStepTextBlock" VerticalAlignment="Top" 
+			Text="" TextWrapping="Wrap" Margin="119.763,156,19,0" Height="28.96"/>
+	    	<ProgressBar x:Name="DatabaseProgressBar" Margin="180.54,222.4,19,0" VerticalAlignment="Top" Height="19"
+                         Visibility="Hidden" IsIndeterminate="false"/>
+        <StackPanel Orientation="Vertical" RenderTransformOrigin="1.35,1.05" Margin="21,324,19,5">
+        <ScrollViewer  
+			x:Name="DetailsScrollViewer" Background="#88FFFFFF" Visibility="Collapsed" Height="200">
+            <TextBox Text="" TextWrapping="Wrap" x:Name="DetailsTextBox" IsReadOnly="True"/>
+        </ScrollViewer>
+        <TextBlock x:Name="SingleMessageTextBlock" Text="TextBlock" 
+			TextWrapping="NoWrap" Visibility="Visible" Height="20"/>
+            <Grid>
+                <Button x:Name="FinishButton" HorizontalAlignment="Right"  
+                VerticalAlignment="Bottom" Content="Finish" Margin="0,5,60,0"
+                IsEnabled="False" Click="FinishButton_Click"/>
+                <Button x:Name="CancelButton" HorizontalAlignment="Right"  
+                VerticalAlignment="Bottom" Content="Cancel"
+                IsEnabled="True" Click="CancelButton_Click" Margin="0,5,0,0"/>
+            </Grid>
+            </StackPanel>
+		<Button x:Name="ShowDetailsButton" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Show Details" 
+                Margin="21,275,0,0" Width="89.623" Click="ShowDetailsButton_Click" />
+
+	</Grid>
+</Window>

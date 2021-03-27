@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "The AW2008 OLTP schema has changed significantly since AW2005.  It would be good if some of the end-to-end samples were updated to use the new schema.",
+    "LastUpdatedDate": "2013-02-21T18:37:36.913-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2009-06-29T17:11:34.773-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Need new samples which use AW2008 OLTP schema",
+    "Type": {
+      "Name": "Feature",
+      "Id": 1
+    },
+    "VoteCount": 2,
+    "Id": 10213
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

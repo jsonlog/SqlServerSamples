@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I have the sample files, so I don't need those.\nbut for the life of me I cannot find the AdventureWorksDW.mdf for the SSIS tutorial.\nit's referenced in the SQL Server 2005 install, I believe, but I don't have 2005.\nI can't find it anywhere or any instructions on how to install it from somewhere.\nCodePlex links keep taking me to 2012 or in some cases 2016 pages, which are incorrect.\nHelp.\n\nThank you.",
+    "LastUpdatedDate": "2016-08-01T01:20:23.29-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2016-08-01T01:20:23.29-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Sample database for 2008R2 SSIS",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 22319
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

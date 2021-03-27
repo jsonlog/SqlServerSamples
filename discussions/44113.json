@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "146770",
+    "ThreadId": "44113",
+    "Html": "i have got a report that has a date entry which loooks like<br>\r\n<br>\r\n                     date                                          duration<br>\r\n            2008/10/1 04:33:53                           00:02:33<br>\r\n            2008/10/1 12:44:33                           00:01:23<br>\r\n<br>\r\nso i need to split the date entry into date date and time and i also need to sum up the durations<br>\r\n<br>\r\nlike<br>\r\n<br>\r\n                   date                               time                  durations<br>\r\n              2008/10/1                         04:33:53            00:02:33<br>\r\n              2008/10/1                         12:44:33            00:01:23<br>\r\n                                                                            total = 00: 03:56<br>\r\n<br>\r\nthnx for ideas...    \r\n",
+    "PostedDate": "2009-01-13T11:24:20.657-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "146771",
+    "ThreadId": "44113",
+    "Html": "This is a great question for the T-SQL forum. <a href=\"http://social.msdn.microsoft.com/forums/en-US/transactsql/threads/\">http://social.msdn.microsoft.com/forums/en-US/transactsql/threads/</a><br>\r\n<br>\r\nCheck out DATEPART and CAST/CONVERT in Books Online for ideas about how to query the same column multiple times with different formats.\r\n",
+    "PostedDate": "2009-01-13T11:35:03.433-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

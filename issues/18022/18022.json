@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "The AdventureWorks 2008R2 SR1 Installer has been removed or is no longer available here:\n  http://msftdbprodsamples.codeplex.com/releases/view/55926\n \nThis appears to be the only place to download the AdventureWorks BIDS project.  Can someone add the project to the downloads?",
+    "LastUpdatedDate": "2013-02-21T18:37:34.47-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2012-05-09T14:31:26.65-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Looking for SSAS 2008R2 Enterprise AdventureWorks OLAP Project Download",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 18022
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

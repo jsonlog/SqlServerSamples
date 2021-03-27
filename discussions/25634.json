@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "85868",
+    "ThreadId": "25634",
+    "Html": "\r\nI'm working with 2 tutorial sample SSIS packages located in<br /><br />C:\\Program Files\\Microsoft SQL Server\\90\\Samples\\Integration Services\\Tutorial\\Deploying Packages\\Completed Packages\\<br /><br />(The \"90\" in the directory path means it's 2005 version, right?)<br /><br />These packages require two target tables in AdventureWorks which do not exist in my version of AdventureWorks database. These tables are dbo.HighIncomeCustomers and dbo.OrderDatesByCountryRegion.<br /><br />When I was downloading the sample database and the sample codes, I made sure I was downloading from SQL Server 2005 SP2a. What am I doing wrong?<br />",
+    "PostedDate": "2008-04-09T10:05:40.17-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "89051",
+    "ThreadId": "25634",
+    "Html": "\r\nI thought the same as you did only to discover that you, we, have done nothing incorrect.  Look at the first task in the control flow for each dtsx.  Specifically at \"Create or truncate table.\"  In the properties window for each task find SqlStatmentSource.  You will discover that the tables we thought did not exist are being created or truncated.<br />",
+    "PostedDate": "2008-04-25T10:01:32.597-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "111838",
+    "ThreadId": "33751",
+    "Html": "I can't seem to find Management Studio Express for SQL Server Express 2008.&nbsp; The tutorial from MS certainly implies (strongly) that it exists.&nbsp; Nevertheless, I can only find Management Studio Express for SQL Server Express 2005.&nbsp; I won't work with my 2008 download. <br>\r\n<br>\r\nI must prep for a class.&nbsp; Can anyone point me to a link for Management Studio Express for SQL Server Express 2008?&nbsp; If not, can anyone say definitively that I should give up hope and uninstall 2008/install 2005?<br>\r\n<br>\r\n",
+    "PostedDate": "2008-08-18T11:22:09.903-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "113944",
+    "ThreadId": "33751",
+    "Html": "Howdy, dragginfly. The SQL Server 2008 Express with Tools just went live on Friday along with Express with Advanced Services.<br>\r\n<br>\r\nSQL Server 2008 Express with Advanced Services (ENU): <a href=\"http://www.microsoft.com/downloads/details.aspx?FamilyId=B5D1B8C3-FDA5-4508-B0D0-1311D670E336&displaylang=en\">http://www.microsoft.com/downloads/details.aspx?FamilyId=B5D1B8C3-FDA5-4508-B0D0-1311D670E336&amp;displaylang=en</a><br>\r\n<br>\r\nSQL Server 2008 Express with Tools (ENU): <a href=\"http://www.microsoft.com/downloads/details.aspx?FamilyId=7522A683-4CB2-454E-B908-E805E9BD4E28&displaylang=en\">http://www.microsoft.com/downloads/details.aspx?FamilyId=7522A683-4CB2-454E-B908-E805E9BD4E28&amp;displaylang=en</a><br>\r\n<br>\r\nYou should be able to use the Enterprise evaluation, too, if you'd rather have the full experience instead of using Express.<br>\r\n<br>\r\nDoes that help?\r\n",
+    "PostedDate": "2008-08-26T14:38:23.45-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121718",
+    "ThreadId": "33751",
+    "Html": "Thanks for the informative reply.&nbsp; My issue may be similar.&nbsp; Attempting to install SQL Server 2008 Express with Advanced Services to Vista SP1.&nbsp; Passes all tests and installs engine but fails to install&nbsp;SSMS (mgmt studio)&nbsp;or BIDS (BI studio).&nbsp; After install, unable to connect to engine locally even though it is running.<br>\r\n<br>\r\nBelow is from the SSMS log file, BIDS error is similar.&nbsp; Any thoughts greatly appreciated.&nbsp; Also, please feel free to instruct as to protocol if&nbsp;I should have created a new discussion.<br>\r\n<br>\r\nMSI (s) (2C:88) [11:32:13:809]: Executing op: SetTargetFolder(Folder=C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\VSShell\\Common7\\Tools\\VDT\\1033\\)<br>\r\nMSI (s) (2C:88) [11:32:13:809]: Executing op: SetSourceFolder(Folder=1\\PFiles\\SqlServr\\100\\Tools\\Binn\\VS80.NET\\Common7\\Tools\\VDT\\1033\\|Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\Microsoft Visual Studio 8\\Common7\\Tools\\VDT\\1033\\)<br>\r\nMSI (s) (2C:88) [11:32:13:809]: Executing op: ChangeMedia(MediaVolumeLabel=SQLServer,MediaPrompt=Please insert the disk: Please insert next disk,MediaCabinet=Sql.cab,BytesPerTick=32768,CopierType=2,ModuleFileName=1\\sqlrun_tools.msi,,,,,IsFirstPhysicalMedia=1)<br>\r\nMSI (s) (2C:88) [11:32:13:809]: Executing op: RegisterSharedComponentProvider(,,File=FL_vdt70ui_dll_ENU_X86.3643236F_FC70_11D3_A536_0090278A1BB8,Component={44238375-CC37-4B54-B3D2-3911023348A0},ComponentVersion=8.0.50727.42,ProductCode={433054F5-3929-426F-AE87-13666694365C},ProductVersion=10.0.1075,PatchSize=0,PatchAttributes=0,PatchSequence=0,SharedComponent=0,IsFullFile=0)<br>\r\nMSI (s) (2C:88) [11:32:13:817]: Executing op: FileCopy(SourceName=vdt80ui.dll|vdt80ui.dll,SourceCabKey=FL_vdt70ui_dll_ENU_X86.3643236F_FC70_11D3_A536_0090278A1BB8,DestName=vdt80ui.dll,Attributes=1024,FileSize=180224,PerTick=32768,,VerifyMedia=1,,,,,CheckCRC=0,Version=8.0.50727.42,Language=1033,InstallMode=58982400,,,,,,,)<br>\r\nMSI (s) (2C:88) [11:32:13:817]: File: C:\\Program Files\\Microsoft SQL Server\\100\\Tools\\Binn\\VSShell\\Common7\\Tools\\VDT\\1033\\vdt80ui.dll;&nbsp;To be installed;&nbsp;Won't patch;&nbsp;No existing file<br>\r\nMSI (s) (2C:88) [11:32:13:817]: Resolving source.<br>\r\nMSI (s) (2C:88) [11:32:13:817]: Resolving source to launched-from source.<br>\r\nMSI (s) (2C:88) [11:32:13:817]: Setting launched-from source as last-used.<br>\r\nMSI (s) (2C:88) [11:32:13:818]: PROPERTY CHANGE: Adding SourceDir property. Its value is 'C:\\Windows\\Installer\\'.<br>\r\nMSI (s) (2C:88) [11:32:13:818]: PROPERTY CHANGE: Adding SOURCEDIR property. Its value is 'C:\\Windows\\Installer\\'.<br>\r\nMSI (s) (2C:88) [11:32:13:818]: PROPERTY CHANGE: Adding SourcedirProduct property. Its value is '{433054F5-3929-426F-AE87-13666694365C}'.<br>\r\nMSI (s) (2C:88) [11:32:13:818]: SOURCEDIR ==&gt; C:\\Windows\\Installer\\<br>\r\nMSI (s) (2C:88) [11:32:13:818]: SOURCEDIR product ==&gt; {433054F5-3929-426F-AE87-13666694365C}<br>\r\nMSI (s) (2C:88) [11:32:13:818]: Determining source type<br>\r\nMSI (s) (2C:88) [11:32:13:818]: Note: 1: 2203 2: C:\\Windows\\Installer\\sqlrun_tools.msi 3: -2147287038 <br>\r\nMSI (s) (2C:88) [11:32:13:818]: Note: 1: 1316 2: C:\\Windows\\Installer\\sqlrun_tools.msi <br>\r\nMSI (s) (2C:88) [11:33:05:372]: Product: Microsoft SQL Server 2008 Tools -- Error 1316. A network error occurred while attempting to read from the file: C:\\Windows\\Installer\\sqlrun_tools.msi\r\n",
+    "PostedDate": "2008-09-29T14:14:44.673-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121721",
+    "ThreadId": "33751",
+    "Html": "Howdy, MacroChaotic. The setup problem will probably be more quickly answered in one of the TechNet forums:<br>\r\n<br>\r\n<p>SQL Server Katmai Express<br>\r\n<a href=\"http://forums.microsoft.com/TechNet/ShowForum.aspx?ForumID=1621&SiteID=17\">http://forums.microsoft.com/TechNet/ShowForum.aspx?ForumID=1621&amp;SiteID=17</a></p>\r\n<p>SQL Server Katmai Setup and Upgrade<br>\r\n<a href=\"http://forums.microsoft.com/TechNet/ShowForum.aspx?ForumID=1627&SiteID=17\">http://forums.microsoft.com/TechNet/ShowForum.aspx?ForumID=1627&amp;SiteID=17</a><br>\r\n<br>\r\nThe log reads as if part of the package is missing. You might uninstall everything and try again from zero, but perhaps someone on the forums have a better answer.</p>\r\n",
+    "PostedDate": "2008-09-29T14:24:47.91-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121729",
+    "ThreadId": "33751",
+    "Html": "Thanks kindly.&nbsp; Will do.&nbsp; Appreciate your help.\r\n",
+    "PostedDate": "2008-09-29T14:46:46.32-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "The FAQ pate on this site is practically useless to someone who is trying to learn about SQL Server Samples. It is mostly useless to me and I develop SQL Server and ASP.Net applications. A single page that gives basic information about SQL Server and the downloads that newbies can understand would be immensely helpful. If you already have such a page, why is it so hard to find? I don't have the time to go to all of the links listed to find out what I need to know. \nWhy are you not listening to the users? This quote from the FAQ page is telling:\n\"I think the CodePlex UI is hard to use! \nIt is true that it takes some getting used to, but we think the extra power and flexibility compared to the download center is worth it. If you have specific suggestions for how the CodePlex team could improve the user experience, we encourage you to click on the CodePlex project and file your suggestion using the Issue Tracker tab. If enough people in the community vote in favor of your suggestion it will be noticed by the team which maintains and improves CodePlex.com. \"\n \n\"If enough people in the community vote in favor of your suggestion \"\nYou would have more people in the community if you listened to them! This is why I hate to have to use CodePlex, which is so sad because I think it can be so great but it is so frustrating.",
+    "LastUpdatedDate": "2013-02-21T18:37:37.88-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2008-12-03T18:58:07.903-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Need a real faq page",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 2,
+    "Id": 8402
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

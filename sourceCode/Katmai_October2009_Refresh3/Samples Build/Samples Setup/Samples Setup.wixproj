@@ -1,0 +1,153 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProductVersion>3.0</ProductVersion>
+    <ProjectGuid>{951295f7-bd8a-4de7-9490-19acc4dc9813}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>Samples_Setup</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.0\Wix.targets</WixTargetsPath>
+    <WixToolPath>$(ProgramFiles)\Windows Installer XML v3\bin\</WixToolPath>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\Debug\</IntermediateOutputPath>
+    <DefineConstants>Debug;RestoreDatabase=All</DefineConstants>
+    <Cultures>
+    </Cultures>
+    <LeaveTemporaryFiles>False</LeaveTemporaryFiles>
+    <LibBindFiles>False</LibBindFiles>
+    <SuppressPdbOutput>False</SuppressPdbOutput>
+    <SuppressSpecificWarnings>
+    </SuppressSpecificWarnings>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <VerboseOutput>False</VerboseOutput>
+    <WixVariables>
+    </WixVariables>
+    <SuppressAllWarnings>False</SuppressAllWarnings>
+    <Pedantic>False</Pedantic>
+    <SuppressIces>ICE69;</SuppressIces>
+    <SuppressValidation>False</SuppressValidation>
+    <CompilerAdditionalOptions>-ext WixSqlExtension</CompilerAdditionalOptions>
+    <LinkerAdditionalOptions>-ext WixUIExtension -ext WixSqlExtension</LinkerAdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <SuppressIces>ICE69;ICE16;ICE17;</SuppressIces>
+    <DefineConstants>Debug;RestoreDatabase=All;arch=x86;</DefineConstants>
+    <LinkerAdditionalOptions>
+    </LinkerAdditionalOptions>
+    <CompilerAdditionalOptions>
+    </CompilerAdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <SuppressIces>ICE69;ICE16;ICE17;</SuppressIces>
+    <DefineConstants>Debug;RestoreDatabase=All;arch=x64;</DefineConstants>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+  <ItemGroup>
+    <Compile Include="Samples Setup.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdventureWorks2008_Files.wxi" />
+    <Content Include="AdventureWorksDW2008_Files.wxi" />
+    <Content Include="AdventureWorksDW_Files.wxi" />
+    <Content Include="AdventureWorksLT2008_Files.wxi" />
+    <Content Include="AdventureWorksLT_Files.wxi" />
+    <Content Include="AdventureWorksOLAP2008_Files.wxi" />
+    <Content Include="AdventureWorksOLAP_Files.wxi" />
+    <Content Include="AdventureWorks_Files.wxi" />
+    <Content Include="Ascmd.exe" />
+    <Content Include="Binary\ArpIcon.ico" />
+    <Content Include="Binary\ArpIcon.xcf" />
+    <Content Include="Binary\CustomActions.vbs" />
+    <Content Include="Binary\DatabaseIcon.ico" />
+    <Content Include="Binary\DatabaseIcon.xcf" />
+    <Content Include="Binary\folderopen.ico" />
+    <Content Include="Binary\GettingStartedWithSQLSamples.htm" />
+    <Content Include="Binary\License.rtf" />
+    <Content Include="Binary\ListProcesses.vbs" />
+    <Content Include="Binary\Microsoft SQL Server 2008 Community &amp; Samples.url" />
+    <Content Include="Binary\NoKatmaiWarning.rtf" />
+    <Content Include="Binary\Placeholder.txt" />
+    <Content Include="Binary\Placeholder2.txt" />
+    <Content Include="Binary\ReadCarefully.rtf" />
+    <Content Include="Binary\Server Icon.xcf" />
+    <Content Include="Binary\Server IconSmall.xcf" />
+    <Content Include="Binary\ServerIcon.ico" />
+    <Content Include="Binary\SQLServerDatabasesAndSamplesOverview.htm" />
+    <Content Include="Binary\TextFile.ico" />
+    <Content Include="Binary\web.ico" />
+    <Content Include="Binary\WixUIBannerBmp.bmp" />
+    <Content Include="Binary\WixUIBannerBmp.xcf" />
+    <Content Include="Binary\WixUIDialogBmp.bmp" />
+    <Content Include="Binary\WixUIDialogBmp.xcf" />
+    <Content Include="CreateAdventureWorks.cmd" />
+    <Content Include="CreateAdventureWorks2008.cmd" />
+    <Content Include="CreateAdventureWorksDW.cmd" />
+    <Content Include="CreateAdventureWorksDW2008.cmd" />
+    <Content Include="CreateAdventureWorksLT.cmd" />
+    <Content Include="CreateAdventureWorksLT2008.cmd" />
+    <Content Include="CreateAdventureWorksOLAP.cmd" />
+    <Content Include="CreateAdventureWorksOLAP2008.cmd" />
+    <Content Include="DropAdventureWorks.cmd" />
+    <Content Include="DropAdventureWorks2008.cmd" />
+    <Content Include="DropAdventureWorksDW.cmd" />
+    <Content Include="DropAdventureWorksDW2008.cmd" />
+    <Content Include="DropAdventureWorksLT.cmd" />
+    <Content Include="DropAdventureWorksLT2008.cmd" />
+    <Content Include="DropAdventureWorksOLAP.cmd" />
+    <Content Include="DropAdventureWorksOLAP2008.cmd" />
+    <Content Include="Empty.wxi" />
+    <Content Include="Files.wxi" />
+    <Content Include="Template.wxi" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Binary" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+    </WixExtension>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+    </WixExtension>
+    <WixExtension Include="WixSqlExtension">
+      <HintPath>$(WixExtDir)\WixSqlExtension.dll</HintPath>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WixSqlSamplesDTF\WixSqlSamplesDTF.csproj">
+      <Name>WixSqlSamplesDTF</Name>
+      <Project>{9608b9db-ae56-415e-a8e9-735141ab47c9}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

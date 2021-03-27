@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "81999",
+    "ThreadId": "24444",
+    "Html": "\r\nPlease make or point to c# code that generate CRUD for a table in SQL Server<br /><br />0) Required: Create, Retrieve, Update and Delete script/sp for table xyz<br />1) Optional: Parameterized query or stored procedure<br />2) Optional: Support for identity int column SCOPE_IDENTITY()<br />3) Optional: User selection of key column(s)<br />4) Optional: File or clipboard output<br />5) Optional: Configurable code style, naming conventions<br />6) Optional: Mapping or user definable parameters<br />7) Optional: Output parameters instead of rowset<br />8) Optional: Refresh (return inserted/updated row)<br />9) Optional: Test Fixtures<br />n) ... add you own requirements here...<br /><br />If anyone want to work with me on this, let me know.<br />",
+    "PostedDate": "2008-03-20T19:34:29.497-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "82279",
+    "ThreadId": "24444",
+    "Html": "\r\nSorry to be picky, but what are you asking for? Are you planning to create a new Database API? Or a new data model API like Microsoft ADO or Apple CoreData?<br />",
+    "PostedDate": "2008-03-23T07:40:25.573-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

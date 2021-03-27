@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "94482",
+    "ThreadId": "28320",
+    "Html": "<p align=left>Hey, <br>\r\n<br>\r\nIn a ASP application, which used Access and is now being migrated to SQL 2005, I have  a medium-sized query with many inner joins. I optimized the tables, with indexes, etc, and if I run the query on the SSMS it returns me like 55 lines in less then a second. On the other hand, when the ASP page passes the query to the SQL 2005, it takes 10 sec. to get the data. Using the Profiler I found that the sp_fetch is being executed a lot of times. It looks like the query is decomposed in smaller pieces and the rows as selected one by one. I'm using OleDb.<br>\r\n<br>\r\nHow to make the ADO (the culprit in my opinion) to execute that query at once?<br>\r\n<br>\r\nThank you.</p>\r\n",
+    "PostedDate": "2008-05-23T14:11:24.197-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

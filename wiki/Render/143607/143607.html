@@ -1,0 +1,35 @@
+<div class="wikidoc"><h2>How do I use CodePlex to download samples and sample databases?</h2>
+<ul><li>To download the entire set of SQL Server product samples, click on the releases tab for this portal project, then click on the appropriate installer for your computer.</li>
+<li>To focus on samples for a particular technology on the appropriate <b>Product</b> or <b>Community</b> link in the sample table on the home portal page.  After clicking on that link you can:
+<ul><li>Download all the samples for that particular technology area by clicking on the <b>Releases</b> tab, then clicking on the desired release in the upper right hand &quot;Releases&quot; box if you want a different release than the one selected by default, then clicking on the appropriate installer for your computer.</li>
+<li>Browse the source code without downloading by clicking on the <b>Source Code</b>, then keep clicking on the appropriate folder icons in the Browse column until you find the particular sample source code you wish.</li>
+<li>File a bug or check the status of a bug by clicking on the <b>Issue Tracker</b> tab.</li></ul></li>
+<li>To view forum posts or create a new thread of forum posts about samples in either this portal project or a particular Product or Community project click on the <b>Discussions</b> tab in that project.</li></ul>
+<br />For more information about CodePlex, see <a href="http://www.codeplex.com/CodePlex/Wiki/View.aspx?title=CodePlex%20Documentation&amp;referringTitle=Home">CodePlex Documentation</a><br />
+<h2>I can&#39;t find the sample database installers.  Where are they?</h2>You can find them in the <a href="http://www.codeplex.com/MSFTDBProdSamples">AdventureWorks Sample Databases project</a>.<br />
+<h2>When I start the installer (MSI), I get: &quot;The installer has encountered an unexpected error installing this package. This may indicate a problem with this package. The error code is 2738.&quot;</h2>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=SqlServerSamples&DownloadId=59650" alt="Error&#32;Code&#32;2738&#32;Large.png" title="Error&#32;Code&#32;2738&#32;Large.png" /><br />
+<ul><li>This is a usually a sign that VB Script has been disabled in your o/s; it can usually be fixed by re-registering VB Script as follows:</li></ul>
+
+<ol><li>Open command window (CMD) as Administrator.</li>
+<li>cd %windir%\System32</li>
+<li>regsvr32 vbscript.dll</li></ol>
+
+<h2>When I install the sample databases I get an error: &quot;Error 1721. There is a problem with this Windows Installer package.&quot; Help!</h2>
+<ul><li>This is typically caused by trying to use the SQL Server <b>2008</b> installers on a SQL Server <b>2005</b> instance.  Be sure to download the correct installers for the version of SQL Server you are using.  Try executing <b>SELECT @@VERSION</b> using SQL Server Management Studio or SQLCMD if you aren&#39;t sure.  The SQL Server <b>2005</b> installers are available.  See the directions above for how to use the Releases tab for every project (including the sample database project) to find the right version.  By default SQL Server <b>2008</b> installers are shown, but you can select SQL Server <b>2005</b> installers if you wish.  Alternatively, you can just find them <a href="http://www.codeplex.com/MSFTDBProdSamples/Release/ProjectReleases.aspx?ReleaseId=4004">here</a>.</li></ul>
+
+<h2>When I try to install CLR samples or the Storefront Sample I get an error: &quot;Msg 15208, Level 16, State 1, Line 1  The certificate, asymmetric key, or private key file does not exist or has invalid format.&quot; Help!</h2><ul><li>Make sure you&#39;ve created the sample key files.  See the readme file for the sample you are trying to install for directions on where and how to create the sample key files.</li>
+<li>Make sure the DLLs you compile are configured to be signed with the appropriate sample keys.</li>
+<li>On Vista and newer OSes this is typically caused by a permissions issue.  The service account SQL Server is running under does not have permission to access the DLLs.  For SQL Server 2005 you can use the following procedure:</li>
+<li>Use windows explorer and locate the folder <b>c:\Microsoft SQL Server\90\Samples</b> (or where ever you&#39;ve installed the samples if you changed that location).</li>
+<li>Click right on that folder.</li>
+<li>Click on the security tab.</li>
+<li>Click on the edit button.</li>
+<li>Click on the add button.</li>
+<li>In the “Object name to select” text box enter the <i>MachineName</i><b>\SQLServer2005MSSQLUser$</b><i>MachineName</i>$<i>InstanceName</i> group.  For example, if my machine was named AdventureWorksServer with SQL Express installed the default way, the group would be named <b>SQLServer2005MSSQLUser$AdventureWorksServer$SQLEXPRESS</b>.</li>
+<li>Click OK until all the dialogs are gone.</li></ul>
+
+<h2>I think the CodePlex UI is hard to use!</h2><ul><li>It is true that it takes some getting used to, but we think the extra power and flexibility compared to the download center is worth it.  If you have specific suggestions for how the CodePlex team could improve the user experience, we encourage you to click on <a href="http://CodePlex.Com/CodePlex">the CodePlex project</a> and file your suggestion using the Issue Tracker tab.  If enough people in the community vote in favor of your suggestion it will be noticed by the team which maintains and improves CodePlex.com.</li></ul>
+
+<h2>Where are the Notification Services samples?</h2><ul><li>Notification Services samples are not located in a technology specific project as Notification Services is deprecated in SQL Server 2005 and does not ship in SQL Server 2008 (some scenarios may be included in Reporting Services in a future release).  However if you download all the SQL Server 2005 samples from <a href="http://www.codeplex.com/SqlServerSamples/Release/ProjectReleases.aspx?ReleaseId=4000">here</a> the Notification Services samples are included.</li></ul>
+</div><div class="ClearBoth"></div>

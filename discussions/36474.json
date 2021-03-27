@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "120982",
+    "ThreadId": "36474",
+    "Html": "winxp sp3<br>\r\nall previous versions uninstalled<br>\r\ntrying to install default server sql server 2008 express but after marking default server and next I can se (on back button) that named instance sqlexpress is instaling<br>\r\nis it impossible to install default instance?<br>\r\nany help&nbsp;&nbsp;???\r\n",
+    "PostedDate": "2008-09-25T08:20:49.047-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121003",
+    "ThreadId": "36474",
+    "Html": "This is a great question for our SQL forums on MSDN:&nbsp;<a href=\"http://msdn.microsoft.com/en-us/sqlserver/bb671079.aspx\">http://msdn.microsoft.com/en-us/sqlserver/bb671079.aspx</a><br>\r\n<br>\r\nIt's also been reported as community feedback @&nbsp;<a href=\"https://connect.microsoft.com/SQLServer/feedback/ViewFeedback.aspx?FeedbackID=361809&wa=wsignin1.0\">https://connect.microsoft.com/SQLServer/feedback/ViewFeedback.aspx?FeedbackID=361809&amp;wa=wsignin1.0</a>, if you want to vote on the reported issue.<br>\r\n<br>\r\nFYI, Express edition is not intended to run as a &quot;default&quot; instance, and it's my opinion that it shouldn't be.\r\n",
+    "PostedDate": "2008-09-25T09:45:36.453-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "121064",
+    "ThreadId": "36474",
+    "Html": "tks for reply<br>\r\n<br>\r\nok, but<br>\r\n<br>\r\non page:<br>\r\n<a href=\"http://www.codeplex.com/SqlServerSamples/Wiki/View.aspx?title=SQLServerDatabasesandSamplesOverview&referringTitle=Home\">http://www.codeplex.com/SqlServerSamples/Wiki/View.aspx?title=SQLServerDatabasesandSamplesOverview&amp;referringTitle=Home</a><br>\r\n<br>\r\n---is note:<br>\r\nNote: For Microsoft Windows 2003 and Microsoft Windows XP operating systems <br>\r\nyou must have a default instance of the server installed in order to <br>\r\nsuccessfully install sample databases to a named instance for SQL Server 2008. <br>\r\n<br>\r\nso does it mean I can not nstall&nbsp;SQL2008.AdventureWorks_OLTP_DB_v2008.x86.msi<br>\r\non win xp sp3 pc with ms sql server 2008 express<br>\r\n<br>\r\nanything I try instaling it - definitely freezees my pc <br>\r\n<br>\r\n<br>\r\n",
+    "PostedDate": "2008-09-25T15:02:27.627-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "The database schema for the AdventureWorks2008 (SQL Server 2008) is noticeably different from the schema for AdventureWorks (SQL Server 2005).  There are 9 new tables in AdventureWorks2008 (BusinessEntity, BusinessEntityAddress, BusinessEntityContact, EmailAddress, Password, Person, PersonPhone, PhoneNumberType, and PersonCreditCard), and 6 tables have been eliminated (EmployeeAddress, VendorAddress, VendorContact, CustomerAddress, Individual, and StoreContact).\n \nWhile a data dictionary exists for AdventureWorks, Microsoft has indicated that there are currently no plans to update it for AdventureWorks2008.\n \nGiven the significance of the changes between AdventureWorks and AdventureWorks2008, I would greatly appreciate having Microsoft update the data dictionary for AdventureWorks2008 (especially for us database novices).  Thank you.",
+    "LastUpdatedDate": "2013-02-21T18:37:38.67-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2008-10-31T09:44:41.3-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Need Data Dictionary for AdventureWorks2008",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 5,
+    "Id": 7934
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Definitely something we're trying to find time to do!",
+      "PostedDate": "2009-01-15T15:00:20.92-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2009-01-25T11:55:34.03-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2009-06-26T15:23:08.597-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2010-01-29T11:25:18.23-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "The data dictionary is diffinantly needed.  We are using the AdventureWorks 2008 for a class I am taking at the U of W and without the data dictionary it is making it difficult to do our assignments.",
+      "PostedDate": "2010-01-29T11:27:14.26-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T18:37:38.67-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

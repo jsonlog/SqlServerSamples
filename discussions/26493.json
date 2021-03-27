@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "88607",
+    "ThreadId": "26493",
+    "Html": "\r\nGet an error \"A connection cannot be made to the database. Set and check the connection string.\" from BIDS Report Wizard when selecting a Data Source. The Connection string looks like the following: Data Source=.\\SQLEXPRESS;Initial Catalog=AdventureWorks. Test Connection returns success. <br />",
+    "PostedDate": "2008-04-23T13:49:34.233-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

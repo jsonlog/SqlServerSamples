@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Wix
+  xmlns="http://schemas.microsoft.com/wix/2006/wi"
+  xmlns:sql="http://schemas.microsoft.com/wix/SqlExtension"
+  xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension"
+  xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <?ifndef ProductName ?>
+  <!-- Default to generic setup name unless otherwise specified. -->
+  <?define ProductName = "Microsoft SQL Server 2008" ?>
+  <?endif?>
+
+  <?ifndef ReleaseConfiguration ?>
+  <?define ReleaseConfiguration = "Debug" ?>
+  <?endif?>
+  
+  <?ifndef SetupName ?>
+  <!-- Default to generic setup name unless otherwise specified. Foex, "Analysis Services" or "Reporting Services" -->
+  <?define SetupName = "AdventureWorks OLTP Database (v2008)" ?>
+  <?endif?>
+
+  <?ifndef VersionName ?>
+  <!-- Default to generic setup name unless otherwise specified. ??? -->
+  <?define VersionName = "RTM" ?>
+  <?endif?>
+
+  <?ifndef ProductId ?>
+  <?define ProductId = "{875A8A93-4FC3-47F2-9185-61F0F409321D}" ?>
+  <?endif?>
+
+  <?ifndef UpgradeCode ?>
+  <?define UpgradeCode = "{BE5BA23A-2B12-4549-B351-56E320512A89}" ?>
+  <?endif?>
+
+  <!-- NOTE: The preprocessor variables will result in schema validation warnings for invalid values in Package/@arch, Component/@Win64, et cetera. These warnings may be safely ignored. -->
+  <?ifndef arch ?>
+  <!-- ??? Default to x86 if not otherwise specified. -->
+  <?define arch = "x86" ?>
+  <?endif?>
+  <?define PlatformIs64bit = "no" ?>
+  <?define PlatformTargetFolder = "ProgramFilesFolder" ?>
+  <?if $(var.arch) = "x64" Or $(var.arch) = "ia64" ?>
+  <!-- Grrr. New v3 logic now breaks if a variable is redefined. -->
+  <?undef PlatformIs64bit ?>
+  <?undef PlatformTargetFolder ?>
+  <?define PlatformIs64bit = "yes" ?>
+  <?define PlatformTargetFolder = "ProgramFiles64Folder" ?>
+  <?endif ?>
+  <?define PlatformLabel = "x86" ?>
+  <?if $(var.arch) = "x64" ?>
+  <?undef PlatformLabel ?>
+  <?define PlatformLabel = "x64" ?>
+  <?endif ?>
+  <?if $(var.arch) = "ia64" ?>
+  <?undef PlatformLabel ?>
+  <?define PlatformLabel = "ia64" ?>
+  <?endif ?>
+
+  <!-- RestoreDatabase will be passed in as All or a specific database name. -->
+  <?ifndef RestoreDatabase ?>
+  <?define RestoreDatabase = "None" ?>
+  <?endif?>
+  <?define CreateDatabaseFeatureLevel = "0" ?>
+  <?if $(var.RestoreDatabase) ~= "All" ?>
+  <?undef CreateDatabaseFeatureLevel ?>
+  <?define CreateDatabaseFeatureLevel = "1" ?>
+  <?endif?>
+
+  <Product
+		Name="$(var.ProductName) $(var.SetupName) $(var.VersionName) Samples ($(var.PlatformLabel))"
+		Id="$(var.ProductId)"
+		Language="1033"
+		Codepage="1252"
+		Version="1.0.0"
+		Manufacturer="Microsoft Corporation"
+		UpgradeCode="$(var.UpgradeCode)">
+
+    <Package
+			Keywords="$(var.ProductName) $(var.SetupName) $(var.VersionName) Samples ($(var.PlatformLabel)) Installer"
+			Description="$(var.ProductName)'s $(var.SetupName) $(var.VersionName) Samples ($(var.PlatformLabel)) Installer"
+			Comments="Microsoft and SQL Server are registered trademarks of Microsoft Corporation."
+			Manufacturer="Microsoft Corporation"
+			InstallerVersion="200"
+			Languages="1033"
+			Compressed="yes"
+			SummaryCodepage="1252"
+			Platform="$(var.arch)"
+			InstallPrivileges="elevated"
+			/>
+
+    <PropertyRef Id="NETFRAMEWORK20"/>
+
+    <?if $(var.arch) = "x86" ?>
+    <Condition Message="This setup may only be run on an x86 platform.">VersionNT64 = ""</Condition>
+    <?endif?>
+    <?if $(var.arch) = "x64" ?>
+    <Condition Message="This setup may only be run on an x64 platform.">VersionNT64 &lt;&gt; "" AND Msix64 &lt;&gt; ""</Condition>
+    <?endif?>
+    <?if $(var.arch) = "ia64" ?>
+    <Condition Message="This setup may only be run on an ia64 platform.">VersionNT64 &lt;&gt; "" AND Intel64 &lt;&gt; ""</Condition>
+    <?endif?>
+    <Condition Message="This application requires .NET Framework 2.0. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK20]]>
+    </Condition>
+
+    <Media Id="1" Cabinet="Samples.cab" EmbedCab="yes" />
+
+    <!-- TODO Repair the ia64 build by putting the VBS CAs back in only for ia64. -->
+    <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+    <!-- Installation. -->
+    <EnsureTable Id="ComboBox" />
+    <CustomAction Id="CA_ListKatmaiInstances4Installation" BinaryKey="WixSqlSamplesDTF_CA_dll" DllEntry="ListKatmaiInstances" Impersonate="yes" />
+    <CustomAction Id="CA_SetDatabaseInstanceName4Installation" BinaryKey="WixSqlSamplesDTF_CA_dll" DllEntry="SetDatabaseInstanceName" Impersonate="yes" />
+
+    <CustomAction Id="CA_MakeInstanceReady4Installation_CommandLine" Return="check" Property="CA_MakeInstanceReady4Installation" Value="[DATABASESERVICENAME]|[ARE_FILESTREAM_FTS_REQUIRED]|No" />
+    <CustomAction Id="CA_MakeInstanceReady4Installation" BinaryKey="WixSqlSamplesDTF_CA_dll" DllEntry="MakeInstanceReady" Impersonate="no" Execute="deferred" Return="check" />
+
+
+    <!-- Custom actions to create the databases. -->
+    <CustomAction Id="CA_CreateAdventureWorks_CommandLine" Property="CA_CreateAdventureWorks"
+                  Value="&quot;[#F_CreateAdventureWorks_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot; &quot;[SQLSAMPLESDATABASEPATH]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_CreateAdventureWorks" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_CreateAdventureWorksDW_CommandLine" Property="CA_CreateAdventureWorksDW"
+                  Value="&quot;[#F_CreateAdventureWorksDW_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot; &quot;[SQLSAMPLESDATABASEPATH]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_CreateAdventureWorksDW" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_CreateAdventureWorksLT_CommandLine" Property="CA_CreateAdventureWorksLT"
+                  Value="&quot;[#F_CreateAdventureWorksLT_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot; &quot;[SQLSAMPLESDATABASEPATH]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_CreateAdventureWorksLT" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_CreateAdventureWorksOLAP_CommandLine" Property="CA_CreateAdventureWorksOLAP"
+                  Value="&quot;[#F_CreateAdventureWorksOLAP_cmd]&quot; &quot;[OLAPINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot; &quot;[DATABASESERVICEIDENTITY]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_CreateAdventureWorksOLAP" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_CreateAdventureWorks2008_CommandLine" Property="CA_CreateAdventureWorks2008"
+                  Value="&quot;[#F_CreateAdventureWorks2008_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot; &quot;[SQLSAMPLESDATABASEPATH]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_CreateAdventureWorks2008" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_CreateAdventureWorksDW2008_CommandLine" Property="CA_CreateAdventureWorksDW2008"
+                  Value="&quot;[#F_CreateAdventureWorksDW2008_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot; &quot;[SQLSAMPLESDATABASEPATH]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_CreateAdventureWorksDW2008" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_CreateAdventureWorksLT2008_CommandLine" Property="CA_CreateAdventureWorksLT2008"
+                  Value="&quot;[#F_CreateAdventureWorksLT2008_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot; &quot;[SQLSAMPLESDATABASEPATH]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_CreateAdventureWorksLT2008" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_CreateAdventureWorksOLAP2008_CommandLine" Property="CA_CreateAdventureWorksOLAP2008"
+                  Value="&quot;[#F_CreateAdventureWorksOLAP2008_cmd]&quot; &quot;[OLAPINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot; &quot;[DATABASESERVICEIDENTITY]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_CreateAdventureWorksOLAP2008" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <!-- Removal. -->
+    <CustomAction Id="CA_MakeInstanceReady4Removal_CommandLine" Property="CA_MakeInstanceReady4Removal" Value="[DATABASESERVICENAME]|[ARE_FILESTREAM_FTS_REQUIRED]|Yes" />
+    <CustomAction Id="CA_MakeInstanceReady4Removal" BinaryKey="WixSqlSamplesDTF_CA_dll" DllEntry="MakeInstanceReady" Impersonate="no" Execute="deferred" Return="ignore" />
+
+    <!-- Custom actions to drop the databases. -->
+    <CustomAction Id="CA_DropAdventureWorks_CommandLine" Property="CA_DropAdventureWorks"
+                  Value="&quot;[#F_DropAdventureWorks_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_DropAdventureWorks" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_DropAdventureWorksDW_CommandLine" Property="CA_DropAdventureWorksDW"
+                  Value="&quot;[#F_DropAdventureWorksDW_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_DropAdventureWorksDW" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_DropAdventureWorksLT_CommandLine" Property="CA_DropAdventureWorksLT"
+                  Value="&quot;[#F_DropAdventureWorksLT_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_DropAdventureWorksLT" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_DropAdventureWorksOLAP_CommandLine" Property="CA_DropAdventureWorksOLAP"
+                  Value="&quot;[#F_DropAdventureWorksOLAP_cmd]&quot; &quot;[OLAPINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_DropAdventureWorksOLAP" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_DropAdventureWorks2008_CommandLine" Property="CA_DropAdventureWorks2008"
+                  Value="&quot;[#F_DropAdventureWorks2008_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_DropAdventureWorks2008" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_DropAdventureWorksDW2008_CommandLine" Property="CA_DropAdventureWorksDW2008"
+                  Value="&quot;[#F_DropAdventureWorksDW2008_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_DropAdventureWorksDW2008" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_DropAdventureWorksLT2008_CommandLine" Property="CA_DropAdventureWorksLT2008"
+                  Value="&quot;[#F_DropAdventureWorksLT2008_cmd]&quot; &quot;[DATABASEINSTANCENAME]&quot;"
+                  Execute="immediate" />
+    <CustomAction Id="CA_DropAdventureWorksLT2008" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+
+    <CustomAction Id="CA_DropAdventureWorksOLAP2008_CommandLine" Property="CA_DropAdventureWorksOLAP2008"
+              Value="&quot;[#F_DropAdventureWorksOLAP2008_cmd]&quot; &quot;[OLAPINSTANCENAME]&quot; &quot;[INSTALLDIR]Tools\Samples\&quot;"
+              Execute="immediate" />
+    <CustomAction Id="CA_DropAdventureWorksOLAP2008" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Return="ignore" Impersonate="no" />
+    <?endif?>
+
+    <!-- WixUI lib customizations. -->
+    <WixVariable Id="WixUILicenseRtf" Value="Binary\License.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="Binary\WixUIBannerBmp.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Binary\WixUIDialogBmp.bmp" />
+
+    <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+    <!-- These properties/registry keys are used to control [un]installation of AdventureWorks% databases in T-SQL script. -->
+    <Property Id="DATABASEINSTANCENAME" Secure="yes">
+      <RegistrySearch Id="RS_DatabaseInstanceName" Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\100\Samples" Name="DatabaseInstanceName" Type="raw" Win64="$(var.PlatformIs64bit)" />
+    </Property>
+    <Property Id="DATABASESERVICENAME" Secure="yes">
+      <RegistrySearch Id="RS_DatabaseServiceName" Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\100\Samples" Name="DatabaseServiceName" Type="raw" Win64="$(var.PlatformIs64bit)" />
+    </Property>
+    <Property Id="DATABASESERVICEIDENTITY" Secure="yes">
+      <RegistrySearch Id="RS_DatabaseServiceIdentity" Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\100\Samples" Name="DatabaseServiceIdentity" Type="raw" Win64="$(var.PlatformIs64bit)" />
+    </Property>
+    <Property Id="ARE_FILESTREAM_FTS_REQUIRED" Secure="yes">
+      <RegistrySearch Id="RS_AreFileStreamFTSRequired" Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\100\Samples" Name="AreFileStreamFTSRequired" Type="raw" Win64="$(var.PlatformIs64bit)" />
+    </Property>
+    <Property Id="OLAPINSTANCENAME" Secure="yes">
+      <RegistrySearch Id="RS_OlapInstanceName" Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\100\Samples" Name="OlapInstanceName" Type="raw" Win64="$(var.PlatformIs64bit)" />
+    </Property>
+    <Property Id="OLAPSERVICENAME" Secure="yes">
+      <RegistrySearch Id="RS_OlapServiceName" Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\100\Samples" Name="OlapServiceName" Type="raw" Win64="$(var.PlatformIs64bit)" />
+    </Property>
+    <?endif?>
+
+    <Property Id="ALLUSERS" Value="1" />
+    <Property Id="ARPNOMODIFY" Value="1" />
+    <Property Id="ARPNOREPAIR" Value="1" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <Icon Id="arpicon.ico" SourceFile="Binary\arpicon.ico" />
+    <Icon Id="folderopen.ico" SourceFile="Binary\folderopen.ico" />
+    <Icon Id="textfile.ico" SourceFile="Binary\textfile.ico" />
+    <Icon Id="web.ico" SourceFile="Binary\web.ico" />
+    <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+    <Binary Id="WixSqlSamplesDTF_CA_dll" SourceFile="..\WixSqlSamplesDTF\bin\$(var.ReleaseConfiguration)\WixSqlSamplesDTF.CA.$(var.PlatformLabel).dll" />
+    <?endif?>
+    <Property Id="ARPPRODUCTICON" Value="arpicon.ico" />
+    <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+    <Property Id="DATABASE_RESTORE_TARGET" Value="$(var.RestoreDatabase)" />
+    <Property Id="DATABASE_FEATURE_LEVEL" Value="$(var.CreateDatabaseFeatureLevel)" />
+    <?endif?>
+    <UIRef Id="WixUI_Common" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+    <Feature Id="F_SampleFiles" Title="Sample Files" Level="1" TypicalDefault="install" Description="All of the official product sample files for $(var.ProductName) $(var.SetupName)." Absent="disallow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" />
+    <Feature Id="F_ProgramMenuShortcuts" Title="Program Menu Shortcuts" Level="1" TypicalDefault="install" Description="Program menu shortcuts for the samples folder, samples portal on the web and the license file." AllowAdvertise="no" />
+    <Feature Id="F_DesktopShortcuts" Title="Desktop Shortcuts" Level="2" Description="Desktop shortcuts for the samples folder, samples portal on the web and the license file." AllowAdvertise="no" />
+
+    <!-- Only include these files in the database installer. -->
+    <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+    <Feature Id="F_ScriptFiles4AdventureWorksDatabases" Title="Install Database Scripts" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Install the script files for the Adventureworks family of datbases on the instance to be specified later." Level="$(var.CreateDatabaseFeatureLevel)">
+      <Feature Id="F_ScriptFiles4AdventureWorks" Title="AdventureWorks" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Install the script files for the AdventureWorks database." Level="$(var.CreateDatabaseFeatureLevel)">
+        <Condition Level="0">DATABASE_FEATURE_LEVEL = 0</Condition>
+        <Feature Id="F_CreateAdventureWorks" Title="Create AdventureWorks" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Automatically create the AdventureWorks database using the script files on the instance to be specified later." Level="$(var.CreateDatabaseFeatureLevel)">
+          <Condition Level="0">KATMAI_READY_ENGINE_INSTANCES = 0</Condition>
+        </Feature>
+      </Feature>
+      <Feature Id="F_ScriptFiles4AdventureWorksDW" Title="AdventureWorksDW" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Install the script files for the AdventureWorksDW database." Level="$(var.CreateDatabaseFeatureLevel)">
+        <Condition Level="0">DATABASE_FEATURE_LEVEL = 0</Condition>
+        <Feature Id="F_CreateAdventureWorksDW" Title="Create AdventureWorksDW" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Automatically create the AdventureWorksDW database using the script files on the instance to be specified later." Level="$(var.CreateDatabaseFeatureLevel)">
+          <Condition Level="0">KATMAI_READY_ENGINE_INSTANCES = 0</Condition>
+          <Feature Id="F_ScriptFiles4AdventureWorksOLAP" Title="AdventureWorks Cubes" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Install the script files for the AdventureWorks OLAP cubes." Level="$(var.CreateDatabaseFeatureLevel)">
+            <Condition Level="0">DATABASE_FEATURE_LEVEL = 0</Condition>
+            <Feature Id="F_CreateAdventureWorksOLAP" Title="Create AdventureWorks Cubes" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Automatically create the AdventureWorks OLAP cubes using the script files on the instance to be specified later." Level="$(var.CreateDatabaseFeatureLevel)">
+              <Condition Level="0">KATMAI_READY_OLAP_INSTANCES = 0</Condition>
+            </Feature>
+          </Feature>
+        </Feature>
+      </Feature>
+      <Feature Id="F_ScriptFiles4AdventureWorksLT" Title="AdventureWorksLT" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Install the script files for the AdventureWorksLT database." Level="$(var.CreateDatabaseFeatureLevel)">
+        <Condition Level="0">DATABASE_FEATURE_LEVEL = 0</Condition>
+        <Feature Id="F_CreateAdventureWorksLT" Title="Create AdventureWorksLT" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Automatically create the AdventureWorksLT database using the script files on the instance to be specified later." Level="$(var.CreateDatabaseFeatureLevel)">
+          <Condition Level="0">KATMAI_READY_ENGINE_INSTANCES = 0</Condition>
+        </Feature>
+      </Feature>
+      <Feature Id="F_ScriptFiles4AdventureWorks2008" Title="AdventureWorks2008" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Install the script files for the AdventureWorks2008 database." Level="$(var.CreateDatabaseFeatureLevel)">
+        <Condition Level="0">DATABASE_FEATURE_LEVEL = 0</Condition>
+        <Feature Id="F_CreateAdventureWorks2008" Title="Create AdventureWorks2008" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Automatically create the AdventureWorks2008 database using the script files on the instance to be specified later." Level="$(var.CreateDatabaseFeatureLevel)">
+          <Condition Level="0">KATMAI_READY_ENGINE_INSTANCES = 0</Condition>
+        </Feature>
+      </Feature>
+      <Feature Id="F_ScriptFiles4AdventureWorksDW2008" Title="AdventureWorksDW2008" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Install the script files for the AdventureWorksDW2008 database." Level="$(var.CreateDatabaseFeatureLevel)">
+        <Condition Level="0">DATABASE_FEATURE_LEVEL = 0</Condition>
+        <Feature Id="F_CreateAdventureWorksDW2008" Title="Create AdventureWorksDW2008" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Automatically create the AdventureWorksDW2008 database using the script files on the instance to be specified later." Level="$(var.CreateDatabaseFeatureLevel)">
+          <Condition Level="0">KATMAI_READY_ENGINE_INSTANCES = 0</Condition>
+          <Feature Id="F_ScriptFiles4AdventureWorksOLAP2008" Title="AdventureWorks2008 Cubes" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Install the script files for the AdventureWorks2008 OLAP cubes." Level="$(var.CreateDatabaseFeatureLevel)">
+            <Condition Level="0">DATABASE_FEATURE_LEVEL = 0</Condition>
+            <Feature Id="F_CreateAdventureWorksOLAP2008" Title="Create AdventureWorks2008 Cubes" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Automatically create the AdventureWorks2008 OLAP cubes using the script files on the instance to be specified later." Level="$(var.CreateDatabaseFeatureLevel)">
+              <Condition Level="0">KATMAI_READY_OLAP_INSTANCES = 0</Condition>
+            </Feature>
+          </Feature>
+        </Feature>
+      </Feature>
+      <Feature Id="F_ScriptFiles4AdventureWorksLT2008" Title="AdventureWorksLT2008" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Install the script files for the AdventureWorksLT2008 database." Level="$(var.CreateDatabaseFeatureLevel)">
+        <Condition Level="0">DATABASE_FEATURE_LEVEL = 0</Condition>
+        <Feature Id="F_CreateAdventureWorksLT2008" Title="Create AdventureWorksLT2008" Absent="allow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR" Description="Automatically create the AdventureWorksLT2008 database using the script files on the instance to be specified later." Level="$(var.CreateDatabaseFeatureLevel)">
+          <Condition Level="0">KATMAI_READY_ENGINE_INSTANCES = 0</Condition>
+        </Feature>
+      </Feature>
+    </Feature>
+    <?endif?>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformTargetFolder)" Name="PFiles">
+        <Directory Id="MicrosoftSQLServer" Name="Microsoft SQL Server">
+          <Directory Id="INSTALLDIR" Name="100">
+            <!-- Only include these files in the database installer. -->
+            <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+            <Component Id="C_CreateDatabases" Feature="F_ScriptFiles4AdventureWorksDatabases" Guid="{4296686F-0572-4CE8-9D41-C6749C9460BB}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+              <Environment Id="E_SqlSamplesSourceDataPath" Action="set" Name="SqlSamplesSourceDataPath" System="yes" Permanent="no" Value="[INSTALLDIR]Tools\Samples\" />
+              <Environment Id="E_SqlSamplesDatabasePath" Action="set" Name="SqlSamplesDatabasePath" System="yes" Permanent="no" Value="[SQLSAMPLESDATABASEPATH]" />
+              <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\100\Samples">
+                <RegistryValue Name="DatabaseInstanceName" Value="[DATABASEINSTANCENAME]" Type="string" />
+                <RegistryValue Name="DatabaseServiceName" Value="[DATABASESERVICENAME]" Type="string" />
+                <RegistryValue Name="DatabaseServiceIdentity" Value="[DATABASESERVICEIDENTITY]" Type="string" />
+                <RegistryValue Name="OlapInstanceName" Value="[OLAPINSTANCENAME]" Type="string" />
+                <RegistryValue Name="OlapServiceName" Value="[OLAPSERVICENAME]" Type="string" />
+                <RegistryValue Name="AreFileStreamFTSRequired" Value="[ARE_FILESTREAM_FTS_REQUIRED]" Type="string" />
+              </RegistryKey>
+            </Component>
+
+            <Directory Id="Tools" Name="Tools">
+              <Directory Id="Tools_Samples" Name="Samples">
+                <Component Id="C_ASCMD" Feature="F_ScriptFiles4AdventureWorksDatabases" Guid="{DE3E5D86-62DB-45F7-B87E-635942FF32EE}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <File Id="F_ASCMD_exe" Name="ASCMD.exe" Source="ASCMD.exe" DiskId="1" Vital="yes" />
+                </Component>
+
+                <Component Id="C_ScriptFiles4AdventureWorks" Feature="F_ScriptFiles4AdventureWorks" Guid="{220F1E40-134B-4950-A96E-3141B26E9ACC}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksDatabaseScriptFiles" RunFromSource="115286016" RunLocal="115286016" />
+                </Component>
+                <Component Id="C_DataFiles4AdventureWorks" Feature="F_CreateAdventureWorks" Guid="{F7FB1C93-FD5C-434F-916B-DD014C58F9A6}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksDatabaseDataFiles" RunFromSource="180355072" RunLocal="180355072" />
+                  <File Id="F_CreateAdventureWorks_cmd" Name="CreateAdventureWorks.cmd" Source="CreateAdventureWorks.cmd" DiskId="1" Vital="yes" />
+                  <File Id="F_DropAdventureWorks_cmd" Name="DropAdventureWorks.cmd" Source="DropAdventureWorks.cmd" DiskId="1" Vital="yes" />
+                </Component>
+
+                <Component Id="C_ScriptFiles4AdventureWorksDW" Feature="F_ScriptFiles4AdventureWorksDW" Guid="{121D1AD3-5FA6-4D42-8A54-C79E87330F3B}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksDWDatabaseScriptFiles" RunFromSource="47460352" RunLocal="47460352" />
+                </Component>
+                <Component Id="C_DataFiles4AdventureWorksDW" Feature="F_CreateAdventureWorksDW" Guid="{986A8728-88DB-4B17-9FC7-66F6555049F9}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksDWDatabaseDataFiles" RunFromSource="89194496" RunLocal="89194496" />
+                  <File Id="F_CreateAdventureWorksDW_cmd" Name="CreateAdventureWorksDW.cmd" Source="CreateAdventureWorksDW.cmd" DiskId="1" Vital="yes" />
+                  <File Id="F_DropAdventureWorksDW_cmd" Name="DropAdventureWorksDW.cmd" Source="DropAdventureWorksDW.cmd" DiskId="1" Vital="yes" />
+                </Component>
+
+                <Component Id="C_ScriptFiles4AdventureWorksLT" Feature="F_ScriptFiles4AdventureWorksLT" Guid="{1F987FF0-4800-4E72-96FA-EE4DCF9133AF}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksLTDatabaseScriptFiles" RunFromSource="2723840" RunLocal="2723840" />
+                </Component>
+                <Component Id="C_DataFiles4AdventureWorksLT" Feature="F_CreateAdventureWorksLT" Guid="{6DCC9A1E-C999-44E1-BFF8-4A20DFF70EDC}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksLTDatabaseDataFiles" RunFromSource="7602176" RunLocal="7602176" />
+                  <File Id="F_CreateAdventureWorksLT_cmd" Name="CreateAdventureWorksLT.cmd" Source="CreateAdventureWorksLT.cmd" DiskId="1" Vital="yes" />
+                  <File Id="F_DropAdventureWorksLT_cmd" Name="DropAdventureWorksLT.cmd" Source="DropAdventureWorksLT.cmd" DiskId="1" Vital="yes" />
+                </Component>
+
+                <Component Id="C_ScriptFiles4AdventureWorksOLAP" Feature="F_ScriptFiles4AdventureWorksOLAP" Guid="{8590C268-50C4-45B7-BB9A-D30626D51529}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksOLAPScriptFiles" RunFromSource="7520256" RunLocal="7520256" />
+                </Component>
+                <Component Id="C_DataFiles4AdventureWorksOLAP" Feature="F_CreateAdventureWorksOLAP" Guid="{96DC284B-3744-4158-8F33-A4DB45DCB75A}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksOLAPDataFiles" RunFromSource="147849216" RunLocal="147849216" />
+                  <File Id="F_CreateAdventureWorksOLAP_cmd" Name="CreateAdventureWorksOLAP.cmd" Source="CreateAdventureWorksOLAP.cmd" DiskId="1" Vital="yes" />
+                  <File Id="F_DropAdventureWorksOLAP_cmd" Name="DropAdventureWorksOLAP.cmd" Source="DropAdventureWorksOLAP.cmd" DiskId="1" Vital="yes" />
+
+                  <util:XmlFile
+                    Id="XF_AdventureWorksOLAP_Enterprise_XMLA"
+                    Action="setValue"
+                    ElementPath="//Batch/Alter/ObjectDefinition/Database/DataSources/DataSource/ConnectionString"
+                    File="[INSTALLDIR]Tools\Samples\AdventureWorks Analysis Services Project\enterprise\Adventure Works DW Script.xmla" 
+                    Permanent="no" 
+                    SelectionLanguage="XSLPattern" 
+                    Value="Provider=SQLNCLI10.1;Data Source=[DATABASEINSTANCENAME];Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AdventureWorksDW;" />
+                  <util:XmlFile
+                    Id="XF_AdventureWorksOLAP_Standard_XMLA"
+                    Action="setValue"
+                    ElementPath="//Batch/Alter/ObjectDefinition/Database/DataSources/DataSource/ConnectionString"
+                    File="[INSTALLDIR]Tools\Samples\AdventureWorks Analysis Services Project\standard\Adventure Works DW Standard Edition Script.xmla"
+                    Permanent="no"
+                    SelectionLanguage="XSLPattern"
+                    Value="Provider=SQLNCLI10.1;Data Source=[DATABASEINSTANCENAME];Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AdventureWorksDW;" />
+                </Component>
+
+                <Component Id="C_ScriptFiles4AdventureWorks2008" Feature="F_ScriptFiles4AdventureWorks2008" Guid="{F9176600-D1EE-4085-9648-26A68AE8EF4C}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorks2008DatabaseScriptFiles" RunFromSource="129568768" RunLocal="129568768" />
+                </Component>
+                <Component Id="C_DataFiles4AdventureWorks2008" Feature="F_CreateAdventureWorks2008" Guid="{9BC93FC6-5548-4ABE-8CB0-5F6054628600}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorks2008DatabaseDataFiles" RunFromSource="191168512" RunLocal="191168512" />
+                  <File Id="F_CreateAdventureWorks2008_cmd" Name="CreateAdventureWorks2008.cmd" Source="CreateAdventureWorks2008.cmd" DiskId="1" Vital="yes" />
+                  <File Id="F_DropAdventureWorks2008_cmd" Name="DropAdventureWorks2008.cmd" Source="DropAdventureWorks2008.cmd" DiskId="1" Vital="yes" />
+                </Component>
+
+                <Component Id="C_ScriptFiles4AdventureWorksDW2008" Feature="F_ScriptFiles4AdventureWorksDW2008" Guid="{6B246630-AD86-432D-A32C-F383989BF885}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksDW2008DatabaseScriptFiles" RunFromSource="49295360" RunLocal="49295360" />
+                </Component>
+                <Component Id="C_DataFiles4AdventureWorksDW2008" Feature="F_CreateAdventureWorksDW2008" Guid="{F5DFFED2-08EC-402E-A806-E691D07411DB}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksDW2008DatabaseDataFiles" RunFromSource="91422720" RunLocal="91422720" />
+                  <File Id="F_CreateAdventureWorksDW2008_cmd" Name="CreateAdventureWorksDW2008.cmd" Source="CreateAdventureWorksDW2008.cmd" DiskId="1" Vital="yes" />
+                  <File Id="F_DropAdventureWorksDW2008_cmd" Name="DropAdventureWorksDW2008.cmd" Source="DropAdventureWorksDW2008.cmd" DiskId="1" Vital="yes" />
+                </Component>
+
+                <Component Id="C_ScriptFiles4AdventureWorksLT2008" Feature="F_ScriptFiles4AdventureWorksLT2008" Guid="{EF6D2F30-1A3F-499C-AD2F-758DC9FE1768}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksLT2008DatabaseScriptFiles" RunFromSource="2723840" RunLocal="2723840" />
+                </Component>
+                <Component Id="C_DataFiles4AdventureWorksLT2008" Feature="F_CreateAdventureWorksLT2008" Guid="{A1199ACA-295B-42BC-9AF1-E116D2DB58B8}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksLT2008DatabaseDataFiles" RunFromSource="7602176" RunLocal="7602176" />
+                  <File Id="F_CreateAdventureWorksLT2008_cmd" Name="CreateAdventureWorksLT2008.cmd" Source="CreateAdventureWorksLT2008.cmd" DiskId="1" Vital="yes" />
+                  <File Id="F_DropAdventureWorksLT2008_cmd" Name="DropAdventureWorksLT2008.cmd" Source="DropAdventureWorksLT2008.cmd" DiskId="1" Vital="yes" />
+                </Component>
+
+                <Component Id="C_ScriptFiles4AdventureWorksOLAP2008" Feature="F_ScriptFiles4AdventureWorksOLAP2008" Guid="{1EDB8C30-79E7-45AE-ABBC-413ABF4A8389}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksOLAP2008ScriptFiles" RunFromSource="7815168" RunLocal="7815168" />
+                </Component>
+                <Component Id="C_DataFiles4AdventureWorksOLAP2008" Feature="F_CreateAdventureWorksOLAP2008" Guid="{66387CFB-A3C0-46A7-AF66-FA134998BF64}" Win64="$(var.PlatformIs64bit)" KeyPath="yes">
+                  <ReserveCost Id="RC_AdventureWorksOLAP2008DataFiles" RunFromSource="156237824" RunLocal="156237824" />
+                  <File Id="F_CreateAdventureWorksOLAP2008_cmd" Name="CreateAdventureWorksOLAP2008.cmd" Source="CreateAdventureWorksOLAP2008.cmd" DiskId="1" Vital="yes" />
+                  <File Id="F_DropAdventureWorksOLAP2008_cmd" Name="DropAdventureWorksOLAP2008.cmd" Source="DropAdventureWorksOLAP2008.cmd" DiskId="1" Vital="yes" />
+
+                  <util:XmlFile
+                    Id="XF_AdventureWorksOLAP2008_Enterprise_XMLA"
+                    Action="setValue"
+                    ElementPath="//Batch/Alter/ObjectDefinition/Database/DataSources/DataSource/ConnectionString"
+                    File="[INSTALLDIR]Tools\Samples\AdventureWorks 2008 Analysis Services Project\enterprise\Adventure Works DW 2008 Script.xmla"
+                    Permanent="no"
+                    SelectionLanguage="XSLPattern"
+                    Value="Provider=SQLNCLI10.1;Data Source=[DATABASEINSTANCENAME];Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AdventureWorksDW2008;" />
+                  <util:XmlFile
+                    Id="XF_AdventureWorksOLAP2008_Standard_XMLA"
+                    Action="setValue"
+                    ElementPath="//Batch/Alter/ObjectDefinition/Database/DataSources/DataSource/ConnectionString"
+                    File="[INSTALLDIR]Tools\Samples\AdventureWorks 2008 Analysis Services Project\standard\Adventure Works DW 2008 SE Script.xmla"
+                    Permanent="no"
+                    SelectionLanguage="XSLPattern"
+                    Value="Provider=SQLNCLI10.1;Data Source=[DATABASEINSTANCENAME];Persist Security Info=False;Integrated Security=SSPI;Initial Catalog=AdventureWorksDW2008;" />
+                </Component>
+              </Directory>
+            </Directory>
+
+            <?include AdventureWorks_Files.wxi ?>
+            <?include AdventureWorksDW_Files.wxi ?>
+            <?include AdventureWorksLT_Files.wxi ?>
+            <?include AdventureWorksOLAP_Files.wxi ?>
+            <?include AdventureWorks2008_Files.wxi ?>
+            <?include AdventureWorksDW2008_Files.wxi ?>
+            <?include AdventureWorksLT2008_Files.wxi ?>
+            <?include AdventureWorksOLAP2008_Files.wxi ?>
+            <?endif?>
+
+            <Directory Id="Samples" Name="Samples">
+              <Component Id="C_Links" Feature="F_SampleFiles" Guid="{C6831962-D7E0-4267-B35B-F415CD8E49C3}" Win64="$(var.PlatformIs64bit)">
+                <RemoveFolder Id="DeleteProgramMenuDir" Directory="ProgramMenuDir" On="uninstall" />
+                <File Id="F_License_rtf" Name="License.rtf" Source="Binary\License.rtf" DiskId="1" Vital="yes" />
+                <File Id="F_FWLink_url" Name="Microsoft SQL Server 2008R2 Community &amp; Samples.url" Source="Binary\Microsoft SQL Server 2008R2 Community &amp; Samples.url" DiskId="1" Vital="yes" />
+              </Component>
+            </Directory>
+            <?include Files.wxi ?>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="$(var.ProductName) Community &amp; Samples">
+          <Component Id="C_ProgramMenuShortcuts" Feature="F_ProgramMenuShortcuts" Guid="{BC9189D0-EAB5-4A9A-BFDF-4E87952A7B65}" Win64="$(var.PlatformIs64bit)">
+            <RegistryKey Root="HKCU" Key="SOFTWARE\Microsoft\Microsoft SQL Server\100\Samples">
+              <RegistryValue Name="$(var.SetupName)" Value="1" Type="integer" KeyPath="yes" />
+            </RegistryKey>
+            <!-- Note: These shortcuts will generate ICE69 warnings which must be ignored (see project properties). -->
+            <Shortcut Id="SC_ProgramMenu_License_rtf" Name="$(var.ProductName) Community &amp; Samples License" WorkingDirectory="INSTALLDIR" Icon="textfile.ico" IconIndex="0" Target="[#F_License_rtf]" />
+            <Shortcut Id="SC_ProgramMenu_FWLink_url" Name="$(var.ProductName) Community &amp; Samples Portal" WorkingDirectory="INSTALLDIR" Icon="web.ico" IconIndex="0" Target="[#F_FWLink_url]" />
+            <Shortcut Id="SC_ProgramMenu_InstallDir" Name="$(var.ProductName) Community &amp; Samples Code" WorkingDirectory="INSTALLDIR" Icon="folderopen.ico" IconIndex="0" Target="[INSTALLDIR]" />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop">
+        <Component Id="C_DesktopShortcuts" Feature="F_DesktopShortcuts" Guid="{8576B85F-175E-45E7-B6B5-28F2D2098E0D}" Win64="$(var.PlatformIs64bit)">
+          <RegistryKey Root="HKCU" Key="SOFTWARE\Microsoft\Microsoft SQL Server\100\Samples">
+            <RegistryValue Name="$(var.SetupName)" Value="1" Type="integer" KeyPath="yes" />
+          </RegistryKey>
+          <!-- Note: These shortcuts will generate ICE69 warnings which must be ignored (see project properties). -->
+          <Shortcut Id="SC_Desktop_License_rtf" Name="$(var.ProductName) Community &amp; Samples License" WorkingDirectory="INSTALLDIR" Icon="textfile.ico" IconIndex="0" Target="[#F_License_rtf]" />
+          <Shortcut Id="SC_Desktop_FWLink_url" Name="$(var.ProductName) Community &amp; Samples Portal" WorkingDirectory="INSTALLDIR" Icon="web.ico" IconIndex="0" Target="[#F_FWLink_url]" />
+          <Shortcut Id="SC_Desktop_InstallDir" Name="$(var.ProductName) Community &amp; Samples Code" WorkingDirectory="INSTALLDIR" Icon="folderopen.ico" IconIndex="0" Target="[INSTALLDIR]" />
+        </Component>
+      </Directory>
+    </Directory>
+
+    <UI Id="Custom_UI_FeatureTree">
+      <!-- All this is clipped from WixUI_FeatureTree just so that WixUI_Font_Bigger can be adjusted. Grrr. -->
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="11" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+      <TextStyle Id="WixUI_Font_Bold" FaceName="Tahoma" Size="9" Bold="yes" />
+      <TextStyle Id="WixUI_Font_Warning" FaceName="Tahoma" Size="9" Bold="yes" Red="255" Blue="0" Green="0" />
+
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+      <Property Id="WixUI_Mode" Value="FeatureTree" />
+
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="UserExit" />
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
+
+      <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+      <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="CustomizeDlg">LicenseAccepted = "1"</Publish>
+
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="1">Installed</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg" Order="2">NOT Installed</Publish>
+
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "0" ?>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <?endif?>
+
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="DatabaseDlg" Order="3">
+        &amp;F_CreateAdventureWorks &gt; 0 
+        OR &amp;F_CreateAdventureWorksDW &gt; 0 
+        OR &amp;F_CreateAdventureWorksLT &gt; 0
+        OR &amp;F_CreateAdventureWorksOLAP &gt; 0
+        OR  &amp;F_CreateAdventureWorks2008 &gt; 0 
+        OR &amp;F_CreateAdventureWorksDW2008 &gt; 0 
+        OR &amp;F_CreateAdventureWorksLT2008 &gt; 0
+        OR &amp;F_CreateAdventureWorksOLAP2008 &gt; 0
+      </Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="NoServerDlg" Order="4">
+        KATMAI_READY_ENGINE_INSTANCES = 0
+      </Publish>
+      <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="5">
+        NOT
+        (
+          &amp;F_CreateAdventureWorks &gt; 0
+          OR &amp;F_CreateAdventureWorksDW &gt; 0
+          OR &amp;F_CreateAdventureWorksLT &gt; 0
+          OR &amp;F_CreateAdventureWorksOLAP &gt; 0
+          OR  &amp;F_CreateAdventureWorks2008 &gt; 0
+          OR &amp;F_CreateAdventureWorksDW2008 &gt; 0
+          OR &amp;F_CreateAdventureWorksLT2008 &gt; 0
+          OR &amp;F_CreateAdventureWorksOLAP2008 &gt; 0
+        )
+      </Publish>
+
+      <Publish Dialog="NoServerDlg" Control="Back" Event="NewDialog" Value="CustomizeDlg" Order="1" />
+      <Publish Dialog="NoServerDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="1" />
+
+      <!-- If the features aren't selected, skip this dialog. -->
+      <Publish Dialog="DatabaseDlg" Control="Back" Event="NewDialog" Value="CustomizeDlg" Order="2">&amp;F_CreateAdventureWorks &gt; 0 OR &amp;F_CreateAdventureWorksDW &gt; 0 OR &amp;F_CreateAdventureWorksLT &gt; 0 OR  &amp;F_CreateAdventureWorks2008 &gt; 0 OR &amp;F_CreateAdventureWorksDW2008 &gt; 0 OR &amp;F_CreateAdventureWorksLT2008 &gt; 0</Publish>
+      <Publish Dialog="DatabaseDlg" Control="Next" Event="DoAction" Value="CA_SetDatabaseInstanceName4Installation" Order="2">&amp;F_CreateAdventureWorks &gt; 0 OR &amp;F_CreateAdventureWorksDW &gt; 0 OR &amp;F_CreateAdventureWorksLT &gt; 0 OR  &amp;F_CreateAdventureWorks2008 &gt; 0 OR &amp;F_CreateAdventureWorksDW2008 &gt; 0 OR &amp;F_CreateAdventureWorksLT2008 &gt; 0</Publish>
+      <Publish Dialog="DatabaseDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="3">SHOW_WARNING_DIALOG = "No"</Publish>
+      <Publish Dialog="DatabaseDlg" Control="Next" Event="NewDialog" Value="WarningDlg" Order="3">SHOW_WARNING_DIALOG = "Yes"</Publish>
+      <?endif?>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="CustomizeDlg" Order="1">NOT Installed OR WixUI_InstallMode = "Change"</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">Installed</Publish>
+
+      <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <Publish Dialog="MaintenanceTypeDlg" Control="ChangeButton" Event="NewDialog" Value="CustomizeDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WarningDlg" Order="3">
+        (NOT Installed OR WixUI_InstallMode = "Change") AND SHOW_WARNING_DIALOG = "Yes"
+      </Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="DatabaseDlg" Order="3">
+        (NOT Installed OR WixUI_InstallMode = "Change") AND SHOW_WARNING_DIALOG = "No"
+      </Publish>
+
+      <Publish Dialog="WarningDlg" Control="Back" Event="NewDialog" Value="DatabaseDlg" Order="2">1</Publish>
+      <Publish Dialog="WarningDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="2">1</Publish>
+
+      <Dialog Id="NoServerDlg" Width="370" Height="270" Title="[ProductName] Setup">
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)" />
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+        <Control Id="NoServerLabel_NotRunning" Type="Text" X="15" Y="55" Height="45" Width="340" Transparent="yes" NoPrefix="yes">
+          <Text>{\WixUI_Font_Warning}SQL Server 2008R2 is not currently installed.</Text>
+        </Control>
+        <Control Id="WarningLabel_Continue" Type="Text" X="15" Y="75" Height="90" Width="340" Transparent="yes" NoPrefix="yes">
+          <Text>{\WixUI_Font_Bold}The sample files that you select will be installed if you choose to continue; however, the databases will not be created automatically. It's recommended that you click Cancel to exit setup, install SQL Server 2008R2 and then restart setup.</Text>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.CustomizeDlgBannerBitmap)" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+        <!-- HACK: Should really localize this, just for the sake of completeness and future-proofing. -->
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="Read carefully." />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="210" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}Warning" />
+      </Dialog>
+
+      <Dialog Id="WarningDlg" Width="370" Height="270" Title="[ProductName] Setup">
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)" />
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+        <Control Id="WarningLabel_NotRunning" Type="Text" X="15" Y="52" Height="45" Width="340" Transparent="yes" NoPrefix="yes" Hidden="yes">
+          <Text>{\WixUI_Font_Warning}The instance of SQL Server that you selected is not running.</Text>
+          <Condition Action="show">IS_ENGINE_INSTANCE_RUNNING = "No"</Condition>
+        </Control>
+        <Control Id="WarningLabel_NoFTS" Type="Text" X="15" Y="71" Height="90" Width="340" Transparent="yes" NoPrefix="yes" Hidden="yes">
+          <Text>{\WixUI_Font_Warning}AdventureWorks2008 OLTP requires Full-Text Search which is not available for the instance you selected. The "SQL Full-text Daemon Launcher" service for this instance must be running.</Text>
+          <Condition Action="show">ARE_FILESTREAM_FTS_REQUIRED = "Yes" AND IS_FTS_AVAILABLE = "No"</Condition>
+        </Control>
+        <Control Id="WarningLabel_NoFilestream" Type="Text" X="15" Y="110" Height="90" Width="340" Transparent="yes" NoPrefix="yes" Hidden="yes">
+          <Text>{\WixUI_Font_Warning}AdventureWorks2008 OLTP requires FILESTREAM which is not enabled for the instance you selected. FILESTREAM must be enabled BOTH via the Sql Server Configuration Manager and via Management Studio for this instance.</Text>
+          <Condition Action="show">ARE_FILESTREAM_FTS_REQUIRED = "Yes" AND IS_FILESTREAM_AVAILABLE = "No"</Condition>
+        </Control>
+
+        <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        <Control Id="WarningLabel_NoOlap" Type="Text" X="15" Y="158" Height="90" Width="340" Transparent="yes" NoPrefix="yes" Hidden="yes">
+            <Text>{\WixUI_Font_Warning}The instance of Analysis Services that you selected is not running.</Text>
+            <Condition Action="show">IS_OLAP_INSTANCE_RUNNING = "No" AND (&amp;F_CreateAdventureWorksOLAP &gt; 0 OR &amp;F_CreateAdventureWorksOLAP2008 &gt; 0)</Condition>
+          </Control>
+        <?endif?>
+
+        <Control Id="WarningLabel_Continue" Type="Text" X="15" Y="177" Height="90" Width="340" Transparent="yes" NoPrefix="yes">
+          <Text>{\WixUI_Font_Bold}The sample files that you selected will be installed and setup will attempt to correct the problems listed above if you choose to continue; however, in the event that setup cannot resolve these problems, the affected databases will not be created automatically. It's recommended that you click Back, correct the problem(s) and click then Next to try again.</Text>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.CustomizeDlgBannerBitmap)" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+        <!-- HACK: Should really localize this, just for the sake of completeness and future-proofing. -->
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="Read carefully." />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="210" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}Warning" />
+      </Dialog>
+
+      <Dialog Id="DatabaseDlg" Width="370" Height="270" Title="[ProductName] Setup">
+        <Control Id="InstanceNameLabelEngine" Type="Text" Hidden="yes" X="15" Y="155" Height="15" Width="340" Text="&amp;Select Local Database Instance for AdventureWorks:">
+          <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+          <Condition Action="show">
+            &amp;F_CreateAdventureWorks &gt; 0
+            OR &amp;F_CreateAdventureWorks2008 &gt; 0
+            OR &amp;F_CreateAdventureWorksDW &gt; 0
+            OR &amp;F_CreateAdventureWorksDW2008 &gt; 0
+            OR &amp;F_CreateAdventureWorksLT &gt; 0
+            OR &amp;F_CreateAdventureWorksLT2008 &gt; 0
+          </Condition>
+        <?endif?>
+        </Control>
+        <Control Id="InstanceNameEngine" Type="ComboBox" Hidden="yes" Sorted="yes" ComboList="yes" Property="KATMAI_ENGINE_INSTANCE_LIST" X="15" Y="170" Height="15" Width="200" TabSkip="no">
+          <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+          <Condition Action="show">
+            &amp;F_CreateAdventureWorks &gt; 0
+            OR &amp;F_CreateAdventureWorks2008 &gt; 0
+            OR &amp;F_CreateAdventureWorksDW &gt; 0
+            OR &amp;F_CreateAdventureWorksDW2008 &gt; 0
+            OR &amp;F_CreateAdventureWorksLT &gt; 0
+            OR &amp;F_CreateAdventureWorksLT2008 &gt; 0
+          </Condition>
+         <?endif?>
+       </Control>
+
+        <Control Id="InstanceNameLabelAS" Type="Text" Hidden="yes" X="15" Y="195" Height="15" Width="340" Text="&amp;Select Local OLAP Instance for AdventureWorks:">
+          <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+          <Condition Action="show">
+            &amp;F_CreateAdventureWorksOLAP &gt; 0 
+            OR &amp;F_CreateAdventureWorksOLAP2008 &gt; 0
+          </Condition>
+         <?endif?>
+        </Control>
+        <Control Id="InstanceNameAS" Type="ComboBox" Hidden="yes" Sorted="yes" ComboList="yes" Property="KATMAI_OLAP_INSTANCE_LIST" X="15" Y="210" Height="15" Width="200" TabSkip="no">
+          <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+          <Condition Action="show">
+            &amp;F_CreateAdventureWorksOLAP &gt; 0 
+            OR &amp;F_CreateAdventureWorksOLAP2008 &gt; 0
+          </Condition>
+         <?endif?>
+        </Control>
+
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Text="!(loc.WixUINext)" Default="yes">
+          <!-- TODO Handle the feature not selected cases. OLAP dependencies on Engine? -->
+          <Condition Action="disable">KATMAI_ENGINE_INSTANCE_LIST = "" AND KATMAI_OLAP_INSTANCE_LIST = ""</Condition>
+          <Condition Action="enable">KATMAI_ENGINE_INSTANCE_LIST &lt;&gt; "" AND KATMAI_OLAP_INSTANCE_LIST &lt;&gt; ""</Condition>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+
+        <Control Id="InstructionsLabel" Type="Text" X="15" Y="50" Height="15" Width="340" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Bigger}Read Carefully" />
+        <Control Id="Instructions" Type="ScrollableText" X="15" Y="65" Height="80" Width="340" Sunken="yes">
+          <Text SourceFile="Binary\ReadCarefully.rtf" />
+        </Control>
+
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.CustomizeDlgBannerBitmap)" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+        <!-- HACK: Should really localize this, just for the sake of completeness and future-proofing. -->
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="Select the database instance to restore to, if desired." />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="210" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}Database Setup" />
+      </Dialog>
+    </UI>
+
+    <InstallUISequence>
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+      <Custom Action="CA_ListKatmaiInstances4Installation" Before="CostInitialize">NOT Installed AND DATABASE_FEATURE_LEVEL &gt; 0</Custom>
+      <?endif?>
+    </InstallUISequence>
+
+      <!-- http://msdn.microsoft.com/en-us/library/aa372023(VS.85).aspx -->
+    <InstallExecuteSequence>
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+      <!-- Installation. -->
+      <!-- TODO Change make ready scripts for OLAP. -->
+      <Custom Action="CA_MakeInstanceReady4Installation_CommandLine" Before="CA_MakeInstanceReady4Installation" />
+      <Custom Action="CA_MakeInstanceReady4Installation" After="SchedXmlFile"><!--InstallFiles-->
+        NOT Installed
+        AND (KATMAI_READY_ENGINE_INSTANCES &gt; 0 OR KATMAI_READY_OLAP_INSTANCES &gt; 0)
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND
+        (
+          &amp;F_CreateAdventureWorks &gt; 0
+          OR &amp;F_CreateAdventureWorksDW &gt; 0
+          OR &amp;F_CreateAdventureWorksLT &gt; 0
+          OR &amp;F_CreateAdventureWorksOLAP &gt; 0
+          OR &amp;F_CreateAdventureWorks2008 &gt; 0
+          OR &amp;F_CreateAdventureWorksDW2008 &gt; 0
+          OR &amp;F_CreateAdventureWorksLT2008 &gt; 0
+          OR &amp;F_CreateAdventureWorksOLAP2008 &gt; 0
+        )
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_CreateAdventureWorks_CommandLine" Before="CA_CreateAdventureWorks" />
+      <Custom Action="CA_CreateAdventureWorks" After="CA_MakeInstanceReady4Installation">
+        NOT Installed
+        AND KATMAI_READY_ENGINE_INSTANCES &gt; 0
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorks &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_CreateAdventureWorksDW_CommandLine" Before="CA_CreateAdventureWorksDW" />
+      <Custom Action="CA_CreateAdventureWorksDW" After="CA_MakeInstanceReady4Installation">
+        NOT Installed
+        AND KATMAI_READY_ENGINE_INSTANCES &gt; 0
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksDW &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_CreateAdventureWorksLT_CommandLine" Before="CA_CreateAdventureWorksLT" />
+      <Custom Action="CA_CreateAdventureWorksLT" After="CA_MakeInstanceReady4Installation">
+        NOT Installed
+        AND KATMAI_READY_ENGINE_INSTANCES &gt; 0
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksLT &gt; 0
+      <?endif?>
+     </Custom>
+
+      <Custom Action="CA_CreateAdventureWorksOLAP_CommandLine" Before="CA_CreateAdventureWorksOLAP" />
+ 
+      <Custom Action="CA_CreateAdventureWorksOLAP" After="CA_MakeInstanceReady4Installation">
+        NOT Installed
+        AND KATMAI_READY_OLAP_INSTANCES &gt; 0
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksOLAP &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_CreateAdventureWorks2008_CommandLine" Before="CA_CreateAdventureWorks2008" />
+      <Custom Action="CA_CreateAdventureWorks2008" After="CA_MakeInstanceReady4Installation">
+        NOT Installed
+        AND KATMAI_READY_ENGINE_INSTANCES &gt; 0
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorks2008 &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_CreateAdventureWorksDW2008_CommandLine" Before="CA_CreateAdventureWorksDW2008" />
+      <Custom Action="CA_CreateAdventureWorksDW2008" After="CA_MakeInstanceReady4Installation">
+        NOT Installed
+        AND KATMAI_READY_ENGINE_INSTANCES &gt; 0
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksDW2008 &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_CreateAdventureWorksLT2008_CommandLine" Before="CA_CreateAdventureWorksLT2008" />
+      <Custom Action="CA_CreateAdventureWorksLT2008" After="CA_MakeInstanceReady4Installation">
+        NOT Installed
+        AND KATMAI_READY_ENGINE_INSTANCES &gt; 0
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksLT2008 &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_CreateAdventureWorksOLAP2008_CommandLine" Before="CA_CreateAdventureWorksOLAP2008" />
+      <Custom Action="CA_CreateAdventureWorksOLAP2008" After="CA_MakeInstanceReady4Installation">
+        NOT Installed
+        AND KATMAI_READY_OLAP_INSTANCES &gt; 0
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksOLAP2008 &gt; 0
+      <?endif?>
+      </Custom>
+
+      <!-- Removal. -->
+      <Custom Action="CA_MakeInstanceReady4Removal_CommandLine" Before="CA_MakeInstanceReady4Removal" />
+      <Custom Action="CA_MakeInstanceReady4Removal" Before="CA_DropAdventureWorks_CommandLine">
+        Installed
+      </Custom>
+
+      <Custom Action="CA_DropAdventureWorks_CommandLine" Before="CA_DropAdventureWorks" />
+      <Custom Action="CA_DropAdventureWorks" Before="UnpublishFeatures">
+        Installed
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorks &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_DropAdventureWorksDW_CommandLine" Before="CA_DropAdventureWorksDW" />
+      <Custom Action="CA_DropAdventureWorksDW" Before="UnpublishFeatures">
+        Installed
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksDW &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_DropAdventureWorksLT_CommandLine" Before="CA_DropAdventureWorksLT" />
+      <Custom Action="CA_DropAdventureWorksLT" Before="UnpublishFeatures">
+        Installed
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksLT &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_DropAdventureWorksOLAP_CommandLine" Before="CA_DropAdventureWorksOLAP" />
+      <Custom Action="CA_DropAdventureWorksOLAP" Before="UnpublishFeatures">
+        Installed
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksOLAP &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_DropAdventureWorks2008_CommandLine" Before="CA_DropAdventureWorks2008" />
+      <Custom Action="CA_DropAdventureWorks2008" Before="UnpublishFeatures">
+        Installed
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorks2008 &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_DropAdventureWorksDW2008_CommandLine" Before="CA_DropAdventureWorksDW2008" />
+      <Custom Action="CA_DropAdventureWorksDW2008" Before="UnpublishFeatures">
+        Installed
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksDW2008 &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_DropAdventureWorksLT2008_CommandLine" Before="CA_DropAdventureWorksLT2008" />
+      <Custom Action="CA_DropAdventureWorksLT2008" Before="UnpublishFeatures">
+        Installed
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksLT2008 &gt; 0
+      <?endif?>
+      </Custom>
+
+      <Custom Action="CA_DropAdventureWorksOLAP2008_CommandLine" Before="CA_DropAdventureWorksOLAP2008" />
+      <Custom Action="CA_DropAdventureWorksOLAP2008" Before="UnpublishFeatures">
+        Installed
+      <?if $(var.CreateDatabaseFeatureLevel) ~= "1" ?>
+        AND &amp;F_CreateAdventureWorksOLAP2008 &gt; 0
+      <?endif?>
+      </Custom>
+      <?endif?>
+    </InstallExecuteSequence>
+
+  </Product>
+</Wix>

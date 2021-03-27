@@ -1,0 +1,479 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+	
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="GettingStartedWithSQLSamples_files/filelist.xml">
+<title>SQL Server Samples</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="City"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="PlaceName"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="PlaceType"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="place"/>
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>96</w:Zoom>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:1627421319 -2147483648 8 0 66047 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:536871559 0 0 0 415 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:23.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-weight:bold;
+	font-style:italic;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:13.0pt;
+	font-family:Arial;
+	font-weight:bold;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.MsoCommentReference
+	{mso-style-noshow:yes;
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:8.5pt;
+	font-family:Verdana;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Arial;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-margin-top-alt:auto;
+	margin-right:0in;
+	margin-bottom:.1in;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{mso-style-noshow:yes;
+	mso-style-parent:"Comment Text";
+	mso-style-next:"Comment Text";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";}
+span.HTML
+	{mso-style-name:HTML;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	color:black;
+	display:none;
+	mso-hide:all;
+	background:#DDFFDD;
+	mso-shading:windowtext;
+	mso-pattern:gray-25 lime;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="23554"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+	
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<h1><span style='font-size:16.0pt;font-family:Verdana;color:black'>Ten Things
+You Need To Know To Get Started with SQL Server Samples<o:p></o:p></span></h1>
+
+<h1><a name="_Ten_Biggest_Things_To_Know_To_Get_S"></a><span style='font-size:
+8.5pt;mso-bidi-font-size:16.0pt;font-family:Verdana;mso-font-kerning:0pt;
+font-weight:normal'>Updated<span style='color:gray'>: </span></span><span
+style='font-size:8.5pt;mso-bidi-font-size:16.0pt;font-family:Verdana;
+color:gray;mso-font-kerning:0pt;mso-bidi-font-weight:normal'>February 2007<o:p></o:p></span></h1>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>1</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – The Microsoft SQL Samples MSI installs
+over 100 samples in 6 major categories: Analysis Services, Engine (includes
+Administration, Data Access, Full Text Search, Common Language Runtime
+Integration, Server Management Objects, Service Broker, and XML), Integration
+Services, Notification Services, Replication, and Reporting Services.&nbsp; There
+is also a directory “Integrated Samples” for the two multiple feature samples,
+HRResume and Storefront.&nbsp; Each individual sample has its own readme file,
+which is also included in the Microsoft SQL Server Books Online.&nbsp;
+Most samples contain a directory structure similar to the following, with the
+C# files in a CS folder, the Transact-SQL files in a Scripts folder, and the
+Visual Basic files in a VB folder:<o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:3.0pt;margin-left:0in'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SampleName (usually includes the readme only)<o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:3.0pt;margin-left:0in'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CS (includes the solution file)<o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:3.0pt;margin-left:0in'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ProjectFolder1<o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:3.0pt;margin-left:0in'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ProjectFolderN<o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:3.0pt;margin-left:0in'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Scripts<o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:3.0pt;margin-left:0in'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+VB (includes the solution file)<o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:3.0pt;margin-left:0in'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ProjectFolder1<o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:3.0pt;margin-left:0in'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ProjectFolderN<o:p></o:p></span></p>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>2</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – Make sure you read the readme file in the
+sample directory.&nbsp; It will tell you the prerequisites for the sample as
+well as the steps to build and run the sample.<o:p></o:p></span></p>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>3</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – To install the samples and sample databases
+from the SQL Server Setup, you need to click the <b style='mso-bidi-font-weight:
+normal'>Advanced</b> button on the Components to Install page, then expand
+Books Online and Samples and select Samples.&nbsp; This only installs the
+Samples MSI on your machine.&nbsp; To complete the installation, you need to
+run the Samples MSI.&nbsp; You can do this from the Start menu: click All
+Programs, click Microsoft SQL Server, click Documentation and Tutorials,
+click Samples, and then click Microsoft SQL Server Samples.<o:p></o:p></span></p>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>4</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – Most samples assume that you installed them
+in the default location (drive:\Program Files\Microsoft SQL
+Server\100\Samples).&nbsp; If you choose a different location, you’ll likely
+have to change the code in order for a sample to work.<o:p></o:p></span></p>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>5</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – Many samples require the AdventureWorks
+sample databases.&nbsp; You can install these during SQL Setup, or you can
+download them from the <st1:place w:st="on"><st1:PlaceName w:st="on">SQL</st1:PlaceName>
+ <st1:PlaceName w:st="on">Server</st1:PlaceName> <st1:PlaceName w:st="on">Developer</st1:PlaceName>
+ <st1:PlaceType w:st="on">Center</st1:PlaceType></st1:place> at </span><span
+style='font-size:8.5pt;mso-bidi-font-size:10.0pt;font-family:Verdana;
+mso-bidi-font-family:Arial;color:black'><a
+href="http://msdn.microsoft.com/sql/downloads/samples/">http://msdn.microsoft.com/sql/downloads/samples/</a></span><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'><o:p></o:p></span></p>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>6</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – Many samples require .NET Framework
+2.0.&nbsp; If you don’t have Visual Studio 2005, you can download the .NET
+Framework SDK 2.0 at <a href="http://msdn.microsoft.com/netframework/downloads/">http://msdn.microsoft.com/netframework/downloads/</a><o:p></o:p></span></p>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>7</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – Some samples use the CLR integration
+feature, which is off by default.&nbsp; Use the SQL Surface Area Configuration
+tool to enable CLR integration.&nbsp; This can be found in the Start menu:
+click All Programs, click Microsoft SQL Server, click Configuration Tools,
+and then click SQL Server Surface Area Configuration.<o:p></o:p></span></p>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>8</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – Some samples will not work in the SQL
+Express edition because certain product features, including Analysis Services
+and Integration Services, are not available.&nbsp; You will need to purchase
+the Standard or <st1:City w:st="on"><st1:place w:st="on">Enterprise</st1:place>
+ </st1:City>editions to run these samples.<o:p></o:p></span></p>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>9</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – Many samples require you to create a sample
+key file before they can be successfully compiled.&nbsp; See the sample’s
+readme file for exact instructions.&nbsp; For most samples in the RTM release,
+you will need to do the following: <o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+.25in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;a. Open a Microsoft Visual Studio 2005 command prompt. Click
+<b style='mso-bidi-font-weight:normal'>Start</b>, point to <b style='mso-bidi-font-weight:
+normal'>All Programs</b>, point to <b style='mso-bidi-font-weight:normal'>Microsoft
+Visual Studio 2005</b>, point to <b style='mso-bidi-font-weight:normal'>Visual
+Studio Tools</b>, and then click <b style='mso-bidi-font-weight:normal'>Visual
+Studio 2005 Command Prompt</b>.<o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+0in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- or -- <o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+.25in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>Open a Microsoft .NET Framework command prompt. Click <b
+style='mso-bidi-font-weight:normal'>Start</b>, point to <b style='mso-bidi-font-weight:
+normal'>All&nbsp;Programs</b>, point to <b style='mso-bidi-font-weight:normal'>Microsoft
+.NET Framework SDK 2.0</b>, and then click <b style='mso-bidi-font-weight:normal'>SDK
+Command Prompt</b>.<o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+.25in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>b. Use the change directory (CD) command to change the current
+directory of the command prompt window to the sample folder, such as </span><span
+style='font-size:8.5pt;mso-bidi-font-size:13.5pt;font-family:Verdana;
+color:black'>&lt;<i style='mso-bidi-font-style:normal'>system_drive</i>&gt;</span><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>:\Program Files\Microsoft SQL
+Server\100\Samples\Engine\Programmability\CLR\HelloWorld<o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+.25in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>c. At the command prompt, run the following command to generate
+the key file:<o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+0in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;
+font-family:"Courier New";mso-bidi-font-family:"Times New Roman"'>sn –k
+keypair.snk<o:p></o:p></span></b></p>
+
+<p style='margin-bottom:3.0pt'><span style='font-size:8.5pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana;color:black'>For samples updated after RTM, most of
+the samples use the same key file. To generate a strong name key file:<o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+.25in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;a. Open a Microsoft Visual Studio 2005 command prompt. Click
+<b style='mso-bidi-font-weight:normal'>Start</b>, point to <b style='mso-bidi-font-weight:
+normal'>All Programs</b>, point to <b style='mso-bidi-font-weight:normal'>Microsoft
+Visual Studio 2005</b>, point to <b style='mso-bidi-font-weight:normal'>Visual
+Studio Tools</b>, and then click <b style='mso-bidi-font-weight:normal'>Visual
+Studio 2005 Command Prompt</b>.<o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+0in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- or -- <o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+.25in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>Open a Microsoft .NET Framework command prompt. Click <b
+style='mso-bidi-font-weight:normal'>Start</b>, point to <b style='mso-bidi-font-weight:
+normal'>All&nbsp;Programs</b>, point to <b style='mso-bidi-font-weight:normal'>Microsoft
+.NET Framework SDK 2.0</b>, and then click <b style='mso-bidi-font-weight:normal'>SDK
+Command Prompt</b>.<o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+.25in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>b. Use the change directory (CD) command to change the current
+directory of the command prompt window to the folder where the samples are
+installed.<o:p></o:p></span></p>
+
+<p style='margin-top:5.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+.5in'><b style='mso-bidi-font-weight:normal'><span style='font-size:8.5pt;
+mso-bidi-font-size:12.0pt;font-family:Verdana;color:black'>Note:</span></b><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'> </span><span style='font-size:8.5pt;mso-bidi-font-size:13.5pt;
+font-family:Verdana;color:black'>To determine the folder where samples are
+located, click the <b>Start </b>button, point to <b>All Programs</b>, point to <b>Microsoft
+SQL Server</b>, point to <b>Documentation and Tutorials</b>, and then
+click <b>Samples Directory</b>. If the default installation location was used,
+the samples are located in &lt;<i style='mso-bidi-font-style:normal'>system_drive</i>&gt;:\Program
+Files\Microsoft SQL Server\100\Samples.</span><span style='font-size:8.5pt;
+mso-bidi-font-size:12.0pt;font-family:Verdana;color:black'><o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+0in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c. At the
+command prompt, run the following command to generate the key file:<o:p></o:p></span></p>
+
+<p style='margin-top:6.0pt;margin-right:0in;margin-bottom:3.0pt;margin-left:
+0in'><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b style='mso-bidi-font-weight:normal'><span style='font-size:8.0pt;
+font-family:"Courier New";mso-bidi-font-family:"Times New Roman"'>sn –k
+SampleKey.snk<o:p></o:p></span></b></p>
+
+<p style='margin-bottom:3.0pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:8.5pt;mso-bidi-font-size:12.0pt;font-family:Verdana;
+color:black'>10</span></b><span style='font-size:8.5pt;mso-bidi-font-size:12.0pt;
+font-family:Verdana;color:black'> – Samples are not intended to be used in a
+production environment; however, you are free to re-use sample code in your
+applications.<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

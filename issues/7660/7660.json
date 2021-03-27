@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "This would be a good question to pose in the SQL Server TechNet forums: http://technet.microsoft.com/en-us/sqlserver/bb671077.aspx\n\nBut it's not a bug in a sample.",
+    "ClosedDate": "2008-09-24T08:43:21.31-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Regarding visual web developer 2008 express and MS SQL server 2008 express:\n \nHi! I am a novice. I cannot access a datafile I made with the import/export data tool because i get an error saying that I  do not have the rights to access the file\n \nHow do I unlock the mdf (datafile),, Windows Authentication? or SQL Server Authentication?,,, with login or password.. what would these be?\n \nI do not remember ever creating a windows login or password\nI am the administrator as I am the only user of my HP Vista computer.\n \nCan you help me ?\n \nThank you.",
+    "LastUpdatedDate": "2013-05-16T05:28:15.887-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2008-09-23T18:43:35.497-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "MS SQL server 2008 express",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 7660
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

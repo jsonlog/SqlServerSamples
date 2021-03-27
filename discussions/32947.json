@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "109178",
+    "ThreadId": "32947",
+    "Html": "Hi,<br>\r\n<br>\r\nI'm trying to create my first database snapshot. But I'm getting the following messages:<br>\r\n<br>\r\n<strong>Msg 1823, Level 16, State 2, Line 1<br>\r\nA database snapshot cannot be created because it failed to start.<br>\r\nMsg 5123, Level 16, State 1, Line 1<br>\r\nCREATE FILE encountered operating system error 5(Acess denied.) while attempting to open or create the physical file 'D:\\Adv.mdf'.<br>\r\n</strong>Bellow all details about the sql server version:<br>\r\n<br>\r\nMicrosoft SQL Server 2008 (CTP) - 10.0.1442.32 (Intel X86) <br>\r\n&nbsp;&nbsp;&nbsp; May 30 2008 00:02:15 <br>\r\n&nbsp;&nbsp;&nbsp; Copyright (c) 1988-2007 Microsoft Corporation<br>\r\n&nbsp;&nbsp;&nbsp; Enterprise Evaluation Edition on Windows NT 5.1 &lt;X86&gt; (Build 2600: Service Pack 2)<br>\r\n<br>\r\nI'm working as windows administrator on windows xp professional with sp 2 and &quot;sa&quot; of my sql server 2008. Any idea how can I solve this problem?<br>\r\n<br>\r\nThanks,<br>\r\n<br>\r\nSergio<br>\r\n<br>\r\n<br>\r\n<br>\r\n",
+    "PostedDate": "2008-08-05T12:27:07.557-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "109213",
+    "ThreadId": "32947",
+    "Html": "I'm presuming that you're using AdventureWorks2008, but you've renamed the MDF files for some reason and put them in the root of D: for some other reason. Is this correct? Perhaps if you give us the steps you used to get from 0 to where you are now, which database you're using, etc, we can help.<br>\r\n<br>\r\nAlso, the sample databases project is over in&nbsp;<a href=\"http://www.codeplex.com/MSFTDBProdSamples/\">http://www.codeplex.com/MSFTDBProdSamples/</a>.\r\n",
+    "PostedDate": "2008-08-05T14:51:28.797-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "109327",
+    "ThreadId": "32947",
+    "Html": "<div dir=ltr>Hi,<br><br>Thanks for your answer.<br><br>I tried to create using another database, but befor few minutes ago I tried again using the AdventureWorks example but I got the same result. I just changed the correct path of my AdventureWorks database as bellow:<br>\r\n<br>CREATE DATABASE AdventureWorks_dbss1800 ON<br>( NAME = AdventureWorks_Data, FILENAME = <br>'D:\\Arquivos de programas\\Microsoft SQL Server\\MSSQL10.SQL2008\\MSSQL\\DATA\\AdventureWorks_data_1800.ss')<br>AS SNAPSHOT OF AdventureWorks;<br>\r\nGO<br><br>and got the follow:<br><br>Msg 1823, Level 16, State 2, Line 1<br>A database snapshot cannot be created because it failed to start.<br>Msg 5119, Level 16, State 1, Line 1<br>Cannot make the file &quot;D:\\Arquivos de programas\\Microsoft SQL Server\\MSSQL10.SQL2008\\MSSQL\\DATA\\AdventureWorks_data_1800.ss&quot; a sparse file. Make sure the file system supports sparse files.<br>\r\n<br>So, can you help to undertand and solve this problem?<br><br>Thanks,<br><br>Sergio<br><br><div>2008/8/5 ReedMe <span dir=ltr>&lt;<a href=\"mailto:notifications@codeplex.com\">notifications@codeplex.com</a>&gt;</span><br>\r\n<blockquote style=\"margin:0pt 0pt 0pt 0.8ex;padding-left:1ex\">   <div> <p>From: ReedMe</p> <div>I'm presuming that you're using AdventureWorks2008, but you've renamed the MDF files for some reason and put them in the root of D: for some other reason. Is this correct? Perhaps if you give us the steps you used to get from 0 to where you are now, which database you're using, etc, we can help.<br>\r\n\r\n<br>\r\nAlso, the sample databases project is over in <a href=\"http://www.codeplex.com/MSFTDBProdSamples/\">http://www.codeplex.com/MSFTDBProdSamples/</a>.\r\n</div><div> <div> <p>Read the <a href=\"http://www.codeplex.com/SqlServerSamples/Thread/View.aspx?ThreadId=32947&ANCHOR#Post109213\">full discussion online</a>.</p> <p>To add a post to this discussion, reply to this email (<a href=\"mailto:SqlServerSamples@discussions.codeplex.com?subject=[SqlServerSamples:32947]\">SqlServerSamples@discussions.codeplex.com</a>)</p>\r\n <p>To start a new discussion for this project, email <a href=\"mailto:SqlServerSamples@discussions.codeplex.com\">SqlServerSamples@discussions.codeplex.com</a></p> <p>You are receiving this email because you subscribed to this discussion on CodePlex. You can <a href=\"http://www.codeplex.com/site/discussions/thread/unsubscribe/32947\">unsubscribe</a> on codePlex.com.</p>\r\n <p>Please note: Images and attachments will be removed from emails. Any posts to this discussion will also be available online at <a href=\"http://codeplex.com\">codeplex.com</a></p> </div> </div></div> </blockquote>\r\n</div><br></div>",
+    "PostedDate": "2008-08-06T05:20:48.27-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "109398",
+    "ThreadId": "32947",
+    "Html": "It smells like your D: partition is FAT16 or FAT32... Database snapshots create sparse files which MUST be created (can only be created) on NTFS partitions. Check your volume properties for D: and convert to NTFS if it's not already.\r\n",
+    "PostedDate": "2008-08-06T09:55:56.123-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "109624",
+    "ThreadId": "32947",
+    "Html": "<div dir=ltr>Hi,<br><br>Thanks for your answer.<br><br>The drive D is NTFS. I'm sure. I'm running the SQL Server on Windows XP Professional edition with sp 2.<br>I'm installing the SQL Server 2008 on one Windows Server 2003 to check this issue again. Did you know about restriction on Windows XP?<br>\r\n<br>Thanks again,<br><br>Sergio<br><br><div>2008/8/6 ReedMe <span dir=ltr>&lt;<a href=\"mailto:notifications@codeplex.com\">notifications@codeplex.com</a>&gt;</span><br><blockquote style=\"margin:0pt 0pt 0pt 0.8ex;padding-left:1ex\">\r\n   <div> <p>From: ReedMe</p> <div>It smells like your D: partition is FAT16 or FAT32... Database snapshots create sparse files which MUST be created (can only be created) on NTFS partitions. Check your volume properties for D: and convert to NTFS if it's not already.\r\n</div><div> <div> <p>Read the <a href=\"http://www.codeplex.com/SqlServerSamples/Thread/View.aspx?ThreadId=32947&ANCHOR#Post109398\">full discussion online</a>.</p> <p>To add a post to this discussion, reply to this email (<a href=\"mailto:SqlServerSamples@discussions.codeplex.com?subject=[SqlServerSamples:32947]\">SqlServerSamples@discussions.codeplex.com</a>)</p>\r\n <p>To start a new discussion for this project, email <a href=\"mailto:SqlServerSamples@discussions.codeplex.com\">SqlServerSamples@discussions.codeplex.com</a></p> <p>You are receiving this email because you subscribed to this discussion on CodePlex. You can <a href=\"http://www.codeplex.com/site/discussions/thread/unsubscribe/32947\">unsubscribe</a> on codePlex.com.</p>\r\n <p>Please note: Images and attachments will be removed from emails. Any posts to this discussion will also be available online at <a href=\"http://codeplex.com\">codeplex.com</a></p> </div> </div></div> </blockquote>\r\n</div><br></div>",
+    "PostedDate": "2008-08-07T04:44:47.81-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "109807",
+    "ThreadId": "32947",
+    "Html": "I'm not specifically aware of any limitations on Windows XP related to sparse files. I have an installer bug on XP that I need to troubleshoot next week, so I'll try out snapshots, too, when I get ahold of an XP machine. (They're getting hard to find here in Redmond. ;-)<br>\r\n<br>\r\nAre both Windows and SQL Server the same localization on your XP machine? Just wondering if there might be a language mismatch bug.<br>\r\n<br>\r\nI would like to know what happens when you test on 2003.\r\n",
+    "PostedDate": "2008-08-07T14:07:12.657-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "110051",
+    "ThreadId": "32947",
+    "Html": "<div>yes....on the next week I'll try to install it on windows server 2003. I'm sure that there will be ok.</div>\r\n<div>My first yes was to confirm that both are installed on XP machine.</div>\r\n<div>So I'll update you about my new installation and please, update me about the possible bug on XP.</div>\r\n<div> </div>\r\n<div>Best Regards,</div>\r\n<div> </div>\r\n<div>Sergio<br><br> </div>\r\n<div><span>7 Aug 2008 15:54:54 -0700, ReedMe &lt;<a href=\"mailto:notifications@codeplex.com\">notifications@codeplex.com</a>&gt;:</span>\r\n<blockquote style=\"padding-left:1ex;margin:0px 0px 0px 0.8ex;border-left:#ccc 1px solid\">\r\n<div>\r\n<p>From: ReedMe</p>\r\n<div>I'm not specifically aware of any limitations on Windows XP related to sparse files. I have an installer bug on XP that I need to troubleshoot next week, so I'll try out snapshots, too, when I get ahold of an XP machine. (They're getting hard to find here in Redmond. ;-)<br>\r\n<br>Are both Windows and SQL Server the same localization on your XP machine? Just wondering if there might be a language mismatch bug.<br><br>I would like to know what happens when you test on 2003. </div><span>\r\n<div>\r\n<p>Read the <a href=\"http://www.codeplex.com/SqlServerSamples/Thread/View.aspx?ThreadId=32947&ANCHOR#Post109807\">full discussion online</a>.</p>\r\n<p>To add a post to this discussion, reply to this email (<a href=\"mailto:SqlServerSamples@discussions.codeplex.com?subject=[SqlServerSamples:32947]\">SqlServerSamples@discussions.codeplex.com</a>)</p>\r\n\r\n<p>To start a new discussion for this project, email <a href=\"mailto:SqlServerSamples@discussions.codeplex.com\">SqlServerSamples@discussions.codeplex.com</a></p>\r\n\r\n<p>You are receiving this email because you subscribed to this discussion on CodePlex. You can <a href=\"http://www.codeplex.com/site/discussions/thread/unsubscribe/32947\">unsubscribe</a> on codePlex.com.</p>\r\n\r\n<p>Please note: Images and attachments will be removed from emails. Any posts to this discussion will also be available online at <a href=\"http://codeplex.com/\">codeplex.com</a></p>\r\n</div></span></div></blockquote></div><br>",
+    "PostedDate": "2008-08-08T15:04:23.597-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "Id": "129428",
+    "ThreadId": "39008",
+    "Html": "I'm missing the v2005-files. When will they be available again? I created a sample solution based on SQL Server 2005 and the new Adventure Works Database. Now the database is not available anymore. Was all the work for nothing and can I throw away my sample solution? It's not very friendly to take the files away without any replacement...\r\n",
+    "PostedDate": "2008-11-01T15:03:39.46-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "129435",
+    "ThreadId": "39008",
+    "Html": "Lost? Where did you put them?? <br>\r\n<br>\r\nJust kidding...<br>\r\n<br>\r\nWe have simplified the entire AdventureWorks download selection and setup experience for Samples Refresh 1. There is now only ONE set of files which contains BOTH year model versions in a single package. Hence the naming convention of *All_Databases*.* for the files. Both the v2005 and v2008 schemas are contained therein.<br>\r\n<br>\r\n<a href=\"http://www.codeplex.com/MSFTDBProdSamples/Release/ProjectReleases.aspx?ReleaseId=18407\">http://www.codeplex.com/MSFTDBProdSamples/Release/ProjectReleases.aspx?ReleaseId=18407</a><br>\r\n<br>\r\nBe warned that the v2005 schema will always remain available for SQL Server 2008, but it has been deprecated. All future versions of AdventureWorks for SQL Server Kilimanjaro (AdventureWorks2010, which is already in the planning stages) and future versions of SQL Server will be based on the AdventureWorks2008 data model. We will not update the v2005 schemas for future versions of SQL Server.<br>\r\n<br>\r\nIf there are v2008 and later changes or additions that you would like for us to consider, or to vote on work that we'll be putting up there in the coming months, see the public work items for SQL Server sample databases: <a href=\"http://www.codeplex.com/MSFTDBProdSamples/WorkItem/List.aspx\">http://www.codeplex.com/MSFTDBProdSamples/WorkItem/List.aspx</a><br>\r\n<br>\r\nPlease let us know what other questions you may have.\r\n",
+    "PostedDate": "2008-11-01T16:20:12.747-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "129483",
+    "ThreadId": "39008",
+    "Html": "Certainly I've allready seen, that there is now only one set of files.<br>\r\n<br>\r\nBut there is a problem when I try to process the &quot;Adventure Works DW&quot;-Analysis Services-Project (Version 2005). I get many errors... Two of them are references to dbo.vTargetMail and dbo.vAssocSeqOrders, which do not exist after running the setup program. So version 2005 doesn't work anymore... How can I fix this? Do you have any scripts for building the views?\r\n",
+    "PostedDate": "2008-11-02T06:03:28.31-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "129731",
+    "ThreadId": "39008",
+    "Html": "Howdy, jantittel. Those views are still there. I downloaded the current version (just to be sure) and processed the v2005 cube from scratch against the v2005 DW schema just fine. The one adjustment that I had to make was to grant db_datareader privileges to the AdventureWorks databases for NETWORK SERVICE account. The errors that occur if your service account for SSAS doens't have privileges might be similar to what you describe, but the first failure you'll see is a log on failure... If you can provide the full error(s), perhaps I can help more.\r\n",
+    "PostedDate": "2008-11-03T11:09:12.6-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

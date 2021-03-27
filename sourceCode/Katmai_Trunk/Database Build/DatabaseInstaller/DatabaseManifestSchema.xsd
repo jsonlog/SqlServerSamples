@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DatabaseManifestSchema"
+    targetNamespace="http://schemas.microsoft.com/sqlserver/2009/10/adventure-works/database-manifest"
+    elementFormDefault="qualified"
+    xmlns="http://schemas.microsoft.com/sqlserver/2009/10/adventure-works/database-manifest"
+    xmlns:mstns="http://schemas.microsoft.com/sqlserver/2009/10/adventure-works/database-manifest"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="DatabaseManifest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="InstallerTitle" type="xs:string"  minOccurs="1" maxOccurs="1" />
+        <xs:element name="DefaultScriptInstallPath" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="RequiredMajorVersion" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="RequiredMinorVersion" type="xs:string" minOccurs="1" maxOccurs="1" />
+        <xs:element name="BuildNumber" type="xs:integer" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Database" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DatabaseName" type="xs:string" minOccurs="1" maxOccurs="1" />
+              <xs:element name="PrettyName" type="xs:string" minOccurs="1" maxOccurs="1" />
+              <xs:element name="SourceDatabaseScriptRelativePath" type="xs:string" minOccurs="1" maxOccurs="1" />
+              <xs:element name="TargetDatabaseFile" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+              <xs:element name="TargetDatabaseAdditionaiDirectory" minOccurs="0" maxOccurs="unbounded" />
+              <xs:element name="IsOLAPRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" />
+              <xs:element name="IsFTSRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" />
+              <xs:element name="IsFileStreamRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" />
+              <xs:element name="IsEnterpriseRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" />
+              <xs:element name="IsStandardRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" />
+              <xs:element name="ApproximateMessageCount" type="xs:int" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,65 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I downloaded AdventureWorks2008R2, but I cannot get the file to excecute on my laptop. I keep getting this fatal error:\n \nFailed object intialization (ISupportInitalize.EndInit). Property FilestreamLevel is not available for Server \"[JERMAINESNIPE]'. This property may not exist for this object, or may not be retrievable due to insufficient access right. Error at object \"DatabaseSelection' in markup file 'DatabaseInstaller;component/databaseselection.xaml' Line 78 Position 3.\n \nAny help would be greatly appreciated.",
+    "LastUpdatedDate": "2013-02-21T18:37:35.74-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2010-05-24T12:17:21.303-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Fatal Error with AdventureWorks",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 3,
+    "Id": 13301
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I too am getting the same error. Please advice.",
+      "PostedDate": "2010-06-07T00:18:18.483-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "I am getting the same error on windows xp professional. I originally installed the sql server on the second hard drive so I uninstalled and put it on the system drive so the default paths would be correct. That didn't help. Error at object 'DatabaseSelection' in markup file 'DatabaseInstaller;component/databaseselection.xaml' Line 78 Position 3.",
+      "PostedDate": "2010-06-23T00:44:14.273-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2010-09-04T13:42:47.073-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2010-10-05T20:14:16.54-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T18:37:35.74-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

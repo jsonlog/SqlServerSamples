@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "58847",
+    "ThreadId": "18021",
+    "Html": "\r\nHi,<br /><br />I have installed the AdventureWorksDBCI.msi and the AdventureWorksLT.msi and when I wa trying to attach the databases I am keep getting an error message saying<br />\" Could not find row in sysindexes for database ID 7, object ID 1, index ID 1. Run DBCC CHECKTABLE on sysindexes.<br />Could not open new database 'AdventureWorks'. CREATE DATABASE is aborted. (Microsoft SQL Server, Error: 602) \"<br /><br />I have sql server 2005 enterprise installed in my PC also my Operating system is XP Professional with SP2. <br /><br />Can some one help me with this problem please. Thank you!!<br />",
+    "PostedDate": "2007-11-19T05:08:18.603-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "58875",
+    "ThreadId": "18021",
+    "Html": "\r\nGood morning,<br />Please help!!<br />I am strugling with my SQL Server 2005 management studio. In fact I have installed<br />AdventureWorksDB.msi on my computer. I use Window XP SP2 (Home).<br />the problem is that when I open the  <br />MICROSOFT SQL SERVER MANAGEMENT STUDIO EXPRESS, I cannot stil see the<br />AdventureWorks in the PRJECT EXPLORER. but when search AdventureWorks in the <br />hard disk (C:\\) , the AdventureWorks is there under C:\\programfiles\\mssql\\data.<br />Iwonder if you could tell me how it can display in the object explorer.<br /><br />Please help!<br />",
+    "PostedDate": "2007-11-19T08:14:40.12-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "76905",
+    "ThreadId": "18021",
+    "Html": "\r\nAre you sure you downloaded the sample database installers from the appropriate page? The default installers are for SQL Server <b>2008</b>.  Please see our <a href=\"http://www.codeplex.com/SqlServerSamples/Wiki/View.aspx?title=HowToUseCodePlex&amp;referringTitle=Home\" class=\"externalLink\">FAQ<span class=\"externalLinkIcon\" style=\"font-family:Consolas, Courier New, Courier, Monospace;\"></span></a> for how to locate the SQL Server 2005 sample database installers.<br />",
+    "PostedDate": "2008-02-27T15:44:10.947-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Database_List Include="AdventureWorks_Files">
+      <DatabaseName>AdventureWorks_Files</DatabaseName>
+      <FeatureName>F_ScriptFiles4AdventureWorks</FeatureName>
+    </Database_List>
+    <AdventureWorks_Files
+      Include="
+				$(BuildSourcePath)Tools\Samples\AdventureWorks OLTP\**\*.*;
+      "
+      Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Database_List Include="AdventureWorksDW_Files">
+      <DatabaseName>AdventureWorksDW_Files</DatabaseName>
+      <FeatureName>F_ScriptFiles4AdventureWorksDW</FeatureName>
+    </Database_List>
+    <AdventureWorksDW_Files
+      Include="
+				$(BuildSourcePath)Tools\Samples\AdventureWorks Data Warehouse\**\*.*;
+      "
+      Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Database_List Include="AdventureWorksLT_Files">
+      <DatabaseName>AdventureWorksLT_Files</DatabaseName>
+      <FeatureName>F_ScriptFiles4AdventureWorksLT</FeatureName>
+    </Database_List>
+    <AdventureWorksLT_Files
+      Include="
+				$(BuildSourcePath)Tools\Samples\AdventureWorks LT\**\*.*;
+      "
+      Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Database_List Include="AdventureWorksOLAP_Files">
+      <DatabaseName>AdventureWorksOLAP_Files</DatabaseName>
+      <FeatureName>F_ScriptFiles4AdventureWorksOLAP</FeatureName>
+    </Database_List>
+    <AdventureWorksOLAP_Files
+      Include="
+				$(BuildSourcePath)Tools\Samples\AdventureWorks Analysis Services Project\**\*.*;
+      "
+      Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Database_List Include="AdventureWorks2008_Files">
+      <DatabaseName>AdventureWorks2008_Files</DatabaseName>
+      <FeatureName>F_ScriptFiles4AdventureWorks2008</FeatureName>
+    </Database_List>
+    <AdventureWorks2008_Files
+      Include="
+				$(BuildSourcePath)Tools\Samples\AdventureWorks 2008 OLTP\**\*.*;
+      "
+      Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Database_List Include="AdventureWorksDW2008_Files">
+      <DatabaseName>AdventureWorksDW2008_Files</DatabaseName>
+      <FeatureName>F_ScriptFiles4AdventureWorksDW2008</FeatureName>
+    </Database_List>
+    <AdventureWorksDW2008_Files
+      Include="
+				$(BuildSourcePath)Tools\Samples\AdventureWorks 2008 Data Warehouse\**\*.*;
+      "
+      Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Database_List Include="AdventureWorksLT2008_Files">
+      <DatabaseName>AdventureWorksLT2008_Files</DatabaseName>
+      <FeatureName>F_ScriptFiles4AdventureWorksLT2008</FeatureName>
+    </Database_List>
+    <AdventureWorksLT2008_Files
+      Include="
+				$(BuildSourcePath)Tools\Samples\AdventureWorks 2008 LT\**\*.*;
+      "
+      Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Database_List Include="AdventureWorksOLAP2008_Files">
+      <DatabaseName>AdventureWorksOLAP2008_Files</DatabaseName>
+      <FeatureName>F_ScriptFiles4AdventureWorksOLAP2008</FeatureName>
+    </Database_List>
+    <AdventureWorksOLAP2008_Files
+      Include="
+				$(BuildSourcePath)Tools\Samples\AdventureWorks 2008 Analysis Services Project\**\*.*;
+      "
+      Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="AdventureWorks_All_Databases">
+      <InstallerName>SQL2008.AdventureWorks_All_Databases</InstallerName>
+      <InstallerDesc>AdventureWorks Databases</InstallerDesc>
+      <InstallerProductId>{41704DC5-9E69-43f3-B2C7-AC1DB1D9ECCE}</InstallerProductId>
+      <InstallerUpgradeCode>{6EF55F2C-8E4D-4c1f-A2DF-081BE3A30B6B}</InstallerUpgradeCode>
+      <InstallerTag>AdventureWorks_All_Databases</InstallerTag>
+      <InstallerDatabase>All</InstallerDatabase>
+      <SvnExportBaseDirStem>Tools\Samples</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem />
+      <CodePlex_Project_Name>MSFTDBProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <AdventureWorks_All_Databases
+			Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Tools\Samples\*.htm;
+				"
+			Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamples_Files">
+      <InstallerName>SQL2008.All_Product_Samples_Without_DBs</InstallerName>
+      <InstallerDesc>Product (no databases)</InstallerDesc>
+      <InstallerProductId>{220928A7-7A95-47D2-B13E-9A2811FFC3D4}</InstallerProductId>
+      <InstallerUpgradeCode>{FE8939B6-093B-4E47-925C-82F77C12ED48}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamples_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem />
+      <SvnExportCleanUpStem />
+      <CodePlex_Project_Name>SqlServerSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamples_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Analysis Services\**\*.*;
+				$(BuildSourcePath)Samples\Engine\**\*.*;
+				$(BuildSourcePath)Samples\Integrated Samples\**\*.*;
+				$(BuildSourcePath)Samples\Integration Services\**\*.*;
+				$(BuildSourcePath)Samples\Replication\**\*.*;
+				$(BuildSourcePath)Samples\Reporting Services\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesAS_Files">
+      <InstallerName>SQL2008.Analysis_Services.Samples</InstallerName>
+      <InstallerDesc>Analysis Services</InstallerDesc>
+      <InstallerProductId>{D6E9D3D5-F2AF-4BFC-95CA-94200F8FFE12}</InstallerProductId>
+      <InstallerUpgradeCode>{98E538EB-424B-46B4-A6BE-CCF0026D894A}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesAS_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\AnalysisServices</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem>Samples\Analysis Services</SvnExportCleanUpStem>
+      <CodePlex_Project_Name>MSFTASProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesAS_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Analysis Services\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesDE_Files">
+      <InstallerName>SQL2008.Data_Engine_and_FTS.Samples</InstallerName>
+      <InstallerDesc>Data Engine Programmability and FTS</InstallerDesc>
+      <InstallerProductId>{094E7ED7-B2E9-45BD-88CE-978EE4262F36}</InstallerProductId>
+      <InstallerUpgradeCode>{F9FDB00A-4E35-428D-8CA1-77090588FA2E}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesDE_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\Engine</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem />
+      <CodePlex_Project_Name>MSFTEngProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesDE_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Engine\Full Text Search\**\*.*;
+				$(BuildSourcePath)Samples\Engine\Programmability\**\*.*;
+				$(BuildSourcePath)Samples\Engine\Query Processing\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesDP_Files">
+      <InstallerName>SQL2008.Data_Access_and_DP.Samples</InstallerName>
+      <InstallerDesc>Data Access and Data Programmability</InstallerDesc>
+      <InstallerProductId>{4F1EC4A1-DB07-4E03-82A7-FF8C41781DEF}</InstallerProductId>
+      <InstallerUpgradeCode>{33033936-D1A7-4046-8EE3-81C4BF1B0A29}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesDP_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\Engine\DataAccess</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem>Samples\Engine\Data Access</SvnExportCleanUpStem>
+      <CodePlex_Project_Name>MSFTDPProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesDP_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Engine\Data Access\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesIN_Files">
+      <InstallerName>SQL2008.Integrated_and_End-to-End.Samples</InstallerName>
+      <InstallerDesc>Integrated, Multi-Technology and End-to-End Samples</InstallerDesc>
+      <InstallerProductId>{9EAB4992-DBE2-4AB5-A379-53B1C8A2A945}</InstallerProductId>
+      <InstallerUpgradeCode>{CF761D67-70FF-4694-91FE-66E5DDFC9E3F}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesIN_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\IntegratedSamples</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem>Samples\Integrated Samples</SvnExportCleanUpStem>
+      <CodePlex_Project_Name>MSFTEEProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesIN_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Integrated Samples\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesIS_Files">
+      <InstallerName>SQL2008.Integration_Services.Samples</InstallerName>
+      <InstallerDesc>Integration Services</InstallerDesc>
+      <InstallerProductId>{578354FC-76F7-439C-B435-7171B4743ACE}</InstallerProductId>
+      <InstallerUpgradeCode>{4D6C0884-1061-4643-AC48-53516F10E41E}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesIS_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\IntegrationServices</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem>Samples\Integration Services</SvnExportCleanUpStem>
+      <CodePlex_Project_Name>MSFTISProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesIS_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Integration Services\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesRP_Files">
+      <InstallerName>SQL2008.Merge_Replication.Samples</InstallerName>
+      <InstallerDesc>Merge Replication</InstallerDesc>
+      <InstallerProductId>{963CB4C1-DDC6-4CC9-8BBA-84DC2C70F711}</InstallerProductId>
+      <InstallerUpgradeCode>{98E538EB-424B-46B4-A6BE-CCF0026D894A}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesRP_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\Replication</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem />
+      <CodePlex_Project_Name>MSFTReplProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesRP_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Replication\Merge\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesRS_Files">
+      <InstallerName>SQL2008.Reporting_Services.Samples</InstallerName>
+      <InstallerDesc>Reporting Services</InstallerDesc>
+      <InstallerProductId>{945A40E2-27A6-455E-98E7-216133B39686}</InstallerProductId>
+      <InstallerUpgradeCode>{9B8C4436-E222-4C39-BB10-0ABD5D5ABB8C}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesRS_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\ReportingServices</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem>Samples\Reporting Services</SvnExportCleanUpStem>
+      <CodePlex_Project_Name>MSFTRSProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesRS_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Reporting Services\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesSB_Files">
+      <InstallerName>SQL2008.Service_Broker.Samples</InstallerName>
+      <InstallerDesc>Service Broker</InstallerDesc>
+      <InstallerProductId>{8633A6F1-33E7-4B5E-96FE-7FF3522E412F}</InstallerProductId>
+      <InstallerUpgradeCode>{E1252F1A-90F9-4C5F-B6F6-087720750AB6}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesSB_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\Engine\ServiceBroker</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem />
+      <CodePlex_Project_Name>MSFTSBProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesSB_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Engine\ServiceBroker\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesSC_Files">
+      <InstallerName>SQL2008.Data_Engine_Admin_Script.Samples</InstallerName>
+      <InstallerDesc>Data Engine Administration Scripts</InstallerDesc>
+      <InstallerProductId>{26E9692B-E0FA-4287-86E4-97B464FEDFDB}</InstallerProductId>
+      <InstallerUpgradeCode>{B7F8EF9B-7A33-4B5F-90F0-E4200909E5C1}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesSC_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\Engine\Administration</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem />
+      <CodePlex_Project_Name>MSFTScrptProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesSC_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Engine\Administration\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+
+    <Installer_List Include="SqlServerSamplesXM_Files">
+      <InstallerName>SQL2008.XML.Samples</InstallerName>
+      <InstallerDesc>XML</InstallerDesc>
+      <InstallerProductId>{9123F4F5-24F1-4273-BDE6-19B31BB135E4}</InstallerProductId>
+      <InstallerUpgradeCode>{497F8197-BB6E-47AD-8AF4-7FD9A15677F8}</InstallerUpgradeCode>
+      <InstallerTag>SqlServerSamplesXM_Files</InstallerTag>
+      <InstallerDatabase>None</InstallerDatabase>
+      <SvnExportBaseDirStem>Samples\Engine\XML</SvnExportBaseDirStem>
+      <SvnExportCleanUpStem />
+      <CodePlex_Project_Name>MSFTXmlProdSamples</CodePlex_Project_Name>
+    </Installer_List>
+    <SqlServerSamplesXM_Files
+        Include="
+				$(BuildSourcePath)Samples\*.htm;
+				$(BuildSourcePath)Samples\Engine\XML\**\*.*;"
+        Exclude="$(BuildSourcePath)**\CodeTags.txt;$(BuildSourcePath)**\sd.ini;" />
+  </ItemGroup>
+</Project>

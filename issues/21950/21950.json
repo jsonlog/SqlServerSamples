@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Hello,\n\nI have an error message on one of my t-sql queries in my PHP code, and I not find the error so if anyone can help me\n\nSELECT dbo.GROUP_CONCAT(\"<span style=color:\", IF([dbo].events_categories.color IS NOT NULL, [dbo].events_categories.color, \"#000000\"), \";>\" + [dbo].events.name, \"</span>\") ORDER BY [dbo].calendar.event_time ASC SEPARATOR \"$$\" as cnt, [dbo].calendar.event_date, dbo.GROUP_CONCAT([dbo].events.id + \"===\" + [dbo].events.description) ORDER BY [dbo].calendar.event_time ASC SEPARATOR \"$$\") as id_description, SUBSTRING([dbo].calendar.event_date, 9, 2) as day FROM [dbo].calendar INNER JOIN [dbo].events ON [dbo].calendar.event_id = [dbo].events.id LEFT OUTER JOIN [dbo].events_categories ON [dbo].events.category_id = [dbo].events_categories.id WHERE SUBSTRING([dbo].calendar.event_date, 1, 4) = '2015' AND SUBSTRING([dbo].calendar.event_date, 6, 2) = '07' AND SUBSTRING([dbo].calendar.event_time, 4, 2) = '00' AND SUBSTRING([dbo].calendar.event_time, 1, 2) < '22' GROUP BY SUBSTRING([dbo].calendar.event_date, 9, 2) \n\n[Microsoft][ODBC Driver 11 for SQL Server][SQL Server]Incorrect syntax near the keyword 'IF'.\n\nGROUP_CONCAT  function I installed it and tested it on.\n\nTHANK YOU",
+    "LastUpdatedDate": "2015-07-23T04:54:35.173-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Unassigned",
+      "Severity": 0,
+      "Id": 0
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2015-07-23T04:54:35.173-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "problem with T-SQL query on SQL Server 2008",
+    "Type": {
+      "Name": "Unassigned",
+      "Id": 5
+    },
+    "VoteCount": 1,
+    "Id": 21950
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

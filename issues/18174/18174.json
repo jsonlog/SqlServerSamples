@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I'm trying to install Adventureworks sample dB and i get an error.\nI successfully downloaded the mdf file however when attach, add and click OK from SSMS I get the error:\n \nMsg 5172, Level 16, State 15, Line 1\nThe header for file 'C:\\Program Files\\Microsoft SQL Server\\AdventureWorks2012_Data.mdf' is not a valid database file header. The FILE SIZE property is incorrect.",
+    "LastUpdatedDate": "2013-02-21T18:37:34.263-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2012-06-01T17:07:54.617-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "SQL Server 2008 Developer edition sample database install error",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 18174
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

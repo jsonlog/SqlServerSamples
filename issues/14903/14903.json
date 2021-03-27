@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "We have a .net app and of course it requires reporting future.  Anyone uses this app is going to login and base on database roles (stored in an Oracle DB) they are able to see their screens on this App.  Let’s say they are four groups of people that using this app and each group have its own rights. There are 10 reports they need to access but each group can see all or some of them again base on their role.  \nCan I create a dynamic report page that contains the link to their reports base on userID?  So I have only one main page with links to the proper reports!\nThanks",
+    "LastUpdatedDate": "2013-02-21T18:37:34.96-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2010-12-16T17:09:15.593-08:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "A dynamic report menu page",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 14903
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

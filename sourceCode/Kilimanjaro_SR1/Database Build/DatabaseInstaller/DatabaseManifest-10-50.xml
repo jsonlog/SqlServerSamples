@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DatabaseManifest xmlns="http://schemas.microsoft.com/sqlserver/2009/10/adventure-works/database-manifest">
+  <InstallerTitle>SQL Server 2008R2 RTM Sample Databases</InstallerTitle>
+  <DefaultScriptInstallPath>Microsoft SQL Server\100\Tools\Samples</DefaultScriptInstallPath>
+  <RequiredMajorVersion>10</RequiredMajorVersion>
+  <RequiredMinorVersion>5</RequiredMinorVersion>
+  <BuildNumber>00511</BuildNumber>
+  <Database>
+    <DatabaseName>AdventureWorks2008R2</DatabaseName>
+    <PrettyName>AdventureWorks OLTP 2008R2</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks 2008R2 OLTP\instawdb.sql</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile>AdventureWorks2008R2_Data.mdf</TargetDatabaseFile>
+    <TargetDatabaseFile>AdventureWorks2008R2_Log.ldf</TargetDatabaseFile>
+    <TargetDatabaseAdditionaiDirectory>Documents2008R2</TargetDatabaseAdditionaiDirectory>
+    <IsOLAPRequired>false</IsOLAPRequired>
+    <IsFTSRequired>true</IsFTSRequired>
+    <IsFileStreamRequired>true</IsFileStreamRequired>
+    <IsEnterpriseRequired>false</IsEnterpriseRequired>
+    <IsStandardRequired>false</IsStandardRequired>
+    <ApproximateMessageCount>600</ApproximateMessageCount>
+  </Database>
+  <Database>
+    <DatabaseName>AdventureWorksDW2008R2</DatabaseName>
+    <PrettyName>AdventureWorks Data Warehouse 2008R2</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks 2008R2 Data Warehouse\instawdwdb.sql</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile>AdventureWorksDW2008R2_Data.mdf</TargetDatabaseFile>
+    <TargetDatabaseFile>AdventureWorksDW2008R2_Log.LDF</TargetDatabaseFile>
+    <IsOLAPRequired>false</IsOLAPRequired>
+    <IsFTSRequired>false</IsFTSRequired>
+    <IsFileStreamRequired>false</IsFileStreamRequired>
+    <IsEnterpriseRequired>false</IsEnterpriseRequired>
+    <IsStandardRequired>false</IsStandardRequired>
+    <ApproximateMessageCount>34</ApproximateMessageCount>
+  </Database>
+  <Database>
+    <DatabaseName>AdventureWorksLT2008R2</DatabaseName>
+    <PrettyName>AdventureWorks LT 2008R2</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks 2008R2 LT\instawltdb.sql</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile>AdventureWorksLT2008R2_Data.mdf</TargetDatabaseFile>
+    <TargetDatabaseFile>AdventureWorksLT2008R2_Log.ldf</TargetDatabaseFile>
+    <IsOLAPRequired>false</IsOLAPRequired>
+    <IsFTSRequired>false</IsFTSRequired>
+    <IsFileStreamRequired>false</IsFileStreamRequired>
+    <IsEnterpriseRequired>false</IsEnterpriseRequired>
+    <IsStandardRequired>false</IsStandardRequired>
+    <ApproximateMessageCount>42</ApproximateMessageCount>
+  </Database>
+  <Database>
+    <DatabaseName>Adventure Works</DatabaseName>
+    <PrettyName>AdventureWorks OLAP Standard 2008R2</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks 2008R2 Analysis Services Project\standard\Adventure Works.sln</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile></TargetDatabaseFile>
+    <IsOLAPRequired>true</IsOLAPRequired>
+    <IsFTSRequired>false</IsFTSRequired>
+    <IsFileStreamRequired>false</IsFileStreamRequired>
+    <IsEnterpriseRequired>false</IsEnterpriseRequired>
+    <IsStandardRequired>true</IsStandardRequired>
+  </Database>
+  <Database>
+    <DatabaseName>Adventure Works</DatabaseName>
+    <PrettyName>Adventure Works OLAP Enterprise 2008R2</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks 2008R2 Analysis Services Project\enterprise\Adventure Works.sln</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile></TargetDatabaseFile>
+    <IsOLAPRequired>true</IsOLAPRequired>
+    <IsFTSRequired>false</IsFTSRequired>
+    <IsFileStreamRequired>false</IsFileStreamRequired>
+    <IsEnterpriseRequired>true</IsEnterpriseRequired>
+    <IsStandardRequired>false</IsStandardRequired>
+  </Database>
+  <Database>
+    <DatabaseName>AdventureWorks</DatabaseName>
+    <PrettyName>AdventureWorks OLTP</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks OLTP\instawdb.sql</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile>AdventureWorks_Data.mdf</TargetDatabaseFile>
+    <TargetDatabaseFile>AdventureWorks_Log.ldf</TargetDatabaseFile>
+    <IsOLAPRequired>false</IsOLAPRequired>
+    <IsFTSRequired>false</IsFTSRequired>
+    <IsFileStreamRequired>false</IsFileStreamRequired>
+    <IsEnterpriseRequired>false</IsEnterpriseRequired>
+    <IsStandardRequired>false</IsStandardRequired>
+    <ApproximateMessageCount>600</ApproximateMessageCount>
+  </Database>
+  <Database>
+    <DatabaseName>AdventureWorksDW</DatabaseName>
+    <PrettyName>AdventureWorks Data Warehouse</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks Data Warehouse\instawdwdb.sql</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile>AdventureWorksDW_Data.mdf</TargetDatabaseFile>
+    <TargetDatabaseFile>AdventureWorksDW_Log.LDF</TargetDatabaseFile>
+    <IsOLAPRequired>false</IsOLAPRequired>
+    <IsFTSRequired>false</IsFTSRequired>
+    <IsFileStreamRequired>false</IsFileStreamRequired>
+    <IsEnterpriseRequired>false</IsEnterpriseRequired>
+    <IsStandardRequired>false</IsStandardRequired>
+    <ApproximateMessageCount>34</ApproximateMessageCount>
+  </Database>
+  <Database>
+    <DatabaseName>AdventureWorksLT</DatabaseName>
+    <PrettyName>AdventureWorks LT</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks LT\instawltdb.sql</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile>AdventureWorksLT_Data.mdf</TargetDatabaseFile>
+    <TargetDatabaseFile>AdventureWorksLT_Log.ldf</TargetDatabaseFile>
+    <IsOLAPRequired>false</IsOLAPRequired>
+    <IsFTSRequired>false</IsFTSRequired>
+    <IsFileStreamRequired>false</IsFileStreamRequired>
+    <IsEnterpriseRequired>false</IsEnterpriseRequired>
+    <IsStandardRequired>false</IsStandardRequired>
+    <ApproximateMessageCount>42</ApproximateMessageCount>
+  </Database>
+  <Database>
+    <DatabaseName>Adventure Works</DatabaseName>
+    <PrettyName>AdventureWorks OLAP Standard</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks Analysis Services Project\standard\Adventure Works.sln</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile></TargetDatabaseFile>
+    <IsOLAPRequired>true</IsOLAPRequired>
+    <IsFTSRequired>false</IsFTSRequired>
+    <IsFileStreamRequired>false</IsFileStreamRequired>
+    <IsEnterpriseRequired>false</IsEnterpriseRequired>
+    <IsStandardRequired>true</IsStandardRequired>
+  </Database>
+  <Database>
+    <DatabaseName>Adventure Works</DatabaseName>
+    <PrettyName>Adventure Works OLAP Enterprise</PrettyName>
+    <SourceDatabaseScriptRelativePath>AdventureWorks Analysis Services Project\enterprise\Adventure Works.sln</SourceDatabaseScriptRelativePath>
+    <TargetDatabaseFile></TargetDatabaseFile>
+    <IsOLAPRequired>true</IsOLAPRequired>
+    <IsFTSRequired>false</IsFTSRequired>
+    <IsFileStreamRequired>false</IsFileStreamRequired>
+    <IsEnterpriseRequired>true</IsEnterpriseRequired>
+    <IsStandardRequired>false</IsStandardRequired>
+  </Database>
+</DatabaseManifest>

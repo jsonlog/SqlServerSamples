@@ -1,0 +1,70 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2009-02-10T22:58:50.067-08:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Environment:\n===============\n1. VS2005\n2. SQL Samples\n \nRepro Steps:\n===============\n1. Unzip 'SQL2008.Data_Access_and_DP.Samples.zip' to <SampleRoot>\n2. Local to '<SampleRoot>\\Samples\\'\n \nExpectation:\n===============\nThere should be only Data Access' and DP's Samples in this zip.\n \nActual Result:\n===============\nThere are Analysis Services' Samples.",
+    "LastUpdatedDate": "2013-05-16T05:28:15.237-07:00",
+    "PlannedForRelease": "SQL Server 2008 SR2",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2009-01-20T01:19:33.4-08:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Installer: Engine’s installers contain Analysis Services’ Sample",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 0,
+    "Id": 8970
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "I can't reproduce this, leilu. I only see the Engine\\Data Access\\ samples in that zip.",
+      "PostedDate": "2009-01-26T14:22:16.36-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2009-01-26T14:22:17.047-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "This bug was created on old builds.\nWe verified it on the latest builds(090206), and it's not repro.\nSo close it.",
+      "PostedDate": "2009-02-10T22:58:50.067-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2009-02-12T01:11:05.56-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T18:37:37.687-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T05:28:15.237-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "The AdventureWorks databases are a separate download from the SSRS samples.",
+    "ClosedDate": "2008-08-12T12:14:02.147-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "This is releated to 2005 Reporting services. I installed sql server 2005. I downloadedand installed  Sqlsamples.msi from codeplex (under SQL Server 2005 SP2). Now where do I find the MDF/Data to attach it in my Database, I mean in Management studio to check the below query. The reason is.. I am NOT able to run the query which i found in \"How to do ---> Reporting Services\" from the help menu.\n \nThe following is the query.\n \nSELECT  S.OrderDate, S.SalesOrderNumber, S.TotalDue, C.FirstName, C.LastName\nFROM    HumanResources.Employee E INNER JOIN\n        Person.Contact C ON E.ContactID = C.ContactID INNER JOIN\n        Sales.SalesOrderHeader S ON E.EmployeeID = S.SalesPersonID\n \nAnd the samples.msi doesnt have it.",
+    "LastUpdatedDate": "2013-05-16T05:28:16.45-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2008-03-25T13:24:23.433-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "SQL Server 2005 Samples Download - Reporting Services.",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 5829
+  },
+  "FileAttachments": [],
+  "Comments": [
+    {
+      "Message": "Microsoft provides tutorials when hit F1 in SQL Management studio, when navigated into tutorials related to Reporting Services topics like create basic reports are available but microsoft provide a link within the tutorial to download the sample database, the way to configure and start. ",
+      "PostedDate": "2008-03-25T13:27:48.01-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "ohhhh noo.. probably i was drunk at work. ignore my previous post :) \r\n\r\nMicrosoft provides tutorials when hit F1 in SQL Management studio. When navigated into tutorials related to Reporting Services, topics like create basic reports, connect datasource, etc.. are found, but there is no link within the tutorial which points to the correct sample database, It would be better if microsoft provides \"please do this before starting the tutorial\".",
+      "PostedDate": "2008-03-25T13:31:13.433-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2008-08-12T12:14:02.147-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T18:37:39.58-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T05:28:16.45-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

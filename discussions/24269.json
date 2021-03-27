@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "81319",
+    "ThreadId": "24269",
+    "Html": "\r\nHi!<br /><br />I'm having a hard time trying to get C++ user-defined function to work. Are there any C++ sample code that I can learn from, other than samples in C# and VB?<br />I'm running SQL 2005 and my problem is that the server don't accept load or execute the function because of permission error.<br />\"An error occurred in the Microsoft .NET Framework while trying to load assembly id 65561. The server may be running out of resources, or the assembly may not be trusted with PERMISSION<i>SET = EXTERNAL</i>ACCESS or UNSAFE. Run the query again, or check documentation to see how to solve the assembly trust issues.\"<br /><br />The assembly was created with <br />CREATE ASSEMBLY &lt;name&gt; FROM '&lt;path&gt;' WHERE PERMISSION_SET=SAFE<br /><br />Are there C++ sample code?<br /><br />",
+    "PostedDate": "2008-03-18T07:30:20.353-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "81385",
+    "ThreadId": "24269",
+    "Html": "<br />Did you use managed C++ and remember to compile with the /safe switch? There is a Visual Studio C++ project for SQL Server assemblies tshat should have all the right compiler setting<br /><br /><br /><div class=\"quote\" style=\"border: dotted .1em #aaa; border-left: none; border-right: none; font-style: italic; margin: 1em 0em 2.5em 3em;padding: .2em;\"><br />perrog wrote:<br />Hi!<br /><br />I'm having a hard time trying to get C++ user-defined function to work. Are there any C++ sample code that I can learn from, other than samples in C# and VB?<br />I'm running SQL 2005 and my problem is that the server don't accept load or execute the function because of permission error.<br />\"An error occurred in the Microsoft .NET Framework while trying to load assembly id 65561. The server may be running out of resources, or the assembly may not be trusted with PERMISSION<i>SET = EXTERNAL</i>ACCESS or UNSAFE. Run the query again, or check documentation to see how to solve the assembly trust issues.\"<br /><br />The assembly was created with <br />CREATE ASSEMBLY &lt;name&gt; FROM '&lt;path&gt;' WHERE PERMISSION_SET=SAFE<br /><br />Are there C++ sample code?<br /><br /><br /></div>",
+    "PostedDate": "2008-03-18T10:15:05.947-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "81558",
+    "ThreadId": "24269",
+    "Html": "<br /><div class=\"quote\" style=\"border: dotted .1em #aaa; border-left: none; border-right: none; font-style: italic; margin: 1em 0em 2.5em 3em;padding: .2em;\"><br />bobb wrote:<br /><br />Did you use managed C++ and remember to compile with the /safe switch? There is a Visual Studio C++ project for SQL Server assemblies tshat should have all the right compiler setting<br /><br /></div>Are you sure there is one such project template in VS 2008? I can't find anyone. (yes, I'm using VS 2008, but SQL Server 2005.)<br /><br />After playing around a bit (essentially inside SQL) I managed to run a C++ compiled function in SQL. I am having the assembly compiled with /clr:safe and a strong name.<br />But when I create the assembly inside SQL I always need to set UNSAFE security context, otherwise it wont work (according to the error message above.) Also, I have to import the assembly's private key into MSSQL, and then set up a new login and user that have access to this key. Luckely, there is a posting about this on <a href=\"http://forums.microsoft.com:%20http://forums.microsoft.com/MSDN/ShowPost.aspx?PostID=1673459&amp;SiteID=1\" class=\"externalLink\">http://forums.microsoft.com: http://forums.microsoft.com/MSDN/ShowPost.aspx?PostID=1673459&amp;SiteID=1<span class=\"externalLinkIcon\" style=\"font-family:Consolas, Courier New, Courier, Monospace;\"></span></a><br /><br />I thought the /clr:safe compile option was only required for security context safe mode. Is unrestricted mode for mixed /clr, but not working yet? (C.p. <a href=\"http://msdn2.microsoft.com/en-us/library/hc912f03(VS.80).aspx\" class=\"externalLink\">http://msdn2.microsoft.com/en-us/library/hc912f03(VS.80).aspx<span class=\"externalLinkIcon\" style=\"font-family:Consolas, Courier New, Courier, Monospace;\"></span></a>)<br /><br />Anyway, is this the reason there are no C++ sample code? :-)<br />",
+    "PostedDate": "2008-03-19T01:25:34.903-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

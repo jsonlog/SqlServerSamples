@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "117056",
+    "ThreadId": "35205",
+    "Html": "Is there a schema (xsd) for the column &quot;Demographics&quot; on the Person table in the 08 to 08 OLTP Db? <br>\r\n<br>\r\nI am curious if&nbsp;it&nbsp;would be&nbsp;good practice, to reduce the number of tables created (within the Person schema for example),&nbsp;to place a one-to-many relationship on a &quot;column&quot; of the Person table? For example, a Person can have many EmailAddress(es). Would it be possible, and if so a good practice, to represent the correct relationship&nbsp;between a Person and his many email addresses using an xml column (only) on the Person table? Personally, I like and prefer the fact that the one-to-many relationship is represented out in the open like depicted in the Adventureworks 08 schema for example; however, am being asked to reduce the number of tables - and to create the relationships on a column similar to the Demographics column). Please help. Thanks.\r\n",
+    "PostedDate": "2008-09-08T16:43:12.097-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "117388",
+    "ThreadId": "35205",
+    "Html": "<p>Data modeling can easily turn into a religious war, hence it's often necessary to tread lightly. I'm just sayin'... ;-) If you think that people get passionate about semicolons and curly braces (or VB or Java or)...</p>\r\n<p>The XSD is already in the AdventureWorks2008 schema, applied to the column as a schema collection. You can see the schema here:&nbsp;<a href=\"http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey/IndividualSurvey.xsd\">http://schemas.microsoft.com/sqlserver/2004/07/adventure-works/IndividualSurvey/IndividualSurvey.xsd</a><br>\r\n<br>\r\nMy objection to the kind of denormalization that you're describing is that you're losing valuable information from your model and you're making the structure of information&nbsp;far less discoverable, and is exactly the kind of use that critics of XML in a relational database point to as Something Not To Do®.&nbsp;Reducing the number of tables from a model is not a mature data modeling goal, IMNSHO. If there's a good reason to store data in XML, such as a document, and if the data doesn't need to be available for other relational purposes, then it might be an appropriate use of XML, but not just to reduce table count. Often the goal of &quot;as simple as possible, but no simpler&quot; gets misinterpreted as &quot;fewer objects is always better.&quot;<br>\r\n<br>\r\nIf you're looking for data modeling ammunition, you could do worse than:&nbsp;<a href=\"http://www.amazon.com/Database-Depth-Relational-Theory-Practitioners/dp/0596100124/ref=pd_bbs_sr_2?ie=UTF8&s=books&qid=1221001316&sr=8-2\">http://www.amazon.com/Database-Depth-Relational-Theory-Practitioners/dp/0596100124/ref=pd_bbs_sr_2?ie=UTF8&amp;s=books&amp;qid=1221001316&amp;sr=8-2</a></p>\r\n",
+    "PostedDate": "2008-09-09T16:06:31.16-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "117433",
+    "ThreadId": "35205",
+    "Html": "Thank you ReedMe.\r\n",
+    "PostedDate": "2008-09-09T19:57:08.053-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

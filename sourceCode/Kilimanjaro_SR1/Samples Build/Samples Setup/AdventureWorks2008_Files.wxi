@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Not sure why the namespace causes Xquery to barf; proably missing a namespace manager or something. xmlns="http://schemas.microsoft.com/wix/2006/wi" -->
+<Include>
+</Include>

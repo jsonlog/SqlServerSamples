@@ -1,0 +1,71 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2009-07-29T20:23:24.853-07:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Environment\n===========\n1> Sql Server 2008\n2> Sample Build 90720\n \nRepro Steps\n===========\n1> Run one installer to setup samples by default steps\n2> Notice the branding on wizard\n \nExpectation\n==========\nThe current branding should be 'Refresh 3'\n \nActually\n========\nthe branding on wizard is still 'Refresh 2'\nplease take a look the attached pictures:\n1> installer_branding_1.png\n2> installer_branding_2.png",
+    "LastUpdatedDate": "2013-05-16T05:28:14.79-07:00",
+    "PlannedForRelease": "Latest SQL Server 2008 Samples",
+    "ReleaseVisibleToPublic": true,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2009-07-27T19:23:43.03-07:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Installer: the branding referred by installation wizard  is still 'Refresh 2' but not 'Refresh 3'",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 0,
+    "Id": 10354
+  },
+  "FileAttachments": [
+    {
+      "FileId": 3218,
+      "FileName": "Installer_Branding_1.PNG",
+      "DownloadUrl": ".\\3218"
+    },
+    {
+      "FileId": 3217,
+      "FileName": "Installer_Branding_2.PNG",
+      "DownloadUrl": ".\\3217"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "I believe this is fixed in internal drop 90728.  Please confirm and close if you can verify.  Thanks!\r\n",
+      "PostedDate": "2009-07-29T00:22:24.737-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "It's Fixed.\nVerified on 90728.",
+      "PostedDate": "2009-07-29T20:23:24.853-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T18:37:36.567-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-05-16T05:28:14.79-07:00",
+      "Id": -2147483648
+    }
+  ]
+}

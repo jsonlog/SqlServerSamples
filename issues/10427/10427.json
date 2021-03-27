@@ -1,0 +1,61 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "Environment\n===========\n1> KJ: 10.50.1093.00\n2> SQL Sample: 90728\n \nRepro Steps\n===========\n1> launch DB installer to setup DB\n2> Follow wizard until Select Instance\n3> Select the instances and then click Next\n \nExpectation\n===========\nAt 3rd step, the user can select one local instance\n \nActually\n===========\nThere is no OLAP instance option\nPlease take a look the attached picture: InstallDB_KJ_Error.jpg",
+    "LastUpdatedDate": "2017-11-27T15:06:57.85-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Medium",
+      "Severity": 100,
+      "Id": 2
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2009-08-09T23:12:14.5-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "Installer: With KJ, the DB installer can't find the local OLAP instance.",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 0,
+    "Id": 10427
+  },
+  "FileAttachments": [
+    {
+      "FileId": 3250,
+      "FileName": "InstallDB_KJ_Error.jpg",
+      "DownloadUrl": ".\\3250"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "We need to take this bug for KJ Samples work.",
+      "PostedDate": "2009-08-27T10:30:09.75-07:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T18:37:36.15-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2017-11-27T15:06:57.85-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

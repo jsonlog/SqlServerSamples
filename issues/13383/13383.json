@@ -1,0 +1,66 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "There is a gap in dates between 2008 and 2010 in the AdventureWorksDW2008R2 DimDate table. PerformancePoint Server (and Services) requires continguous dates for the Time Intelligence feature to function properly. Please ensure the records in the DimDaet table are contiguous.",
+    "LastUpdatedDate": "2013-02-21T18:37:35.56-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2010-05-28T14:33:03.303-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "AdventureWorksDW2008R2 DimDate table has missing dates",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 13383
+  },
+  "FileAttachments": [
+    {
+      "FileId": 6267,
+      "FileName": "AdventureWorksDW2008R2_FixDimDate.sql",
+      "DownloadUrl": ".\\6267"
+    }
+  ],
+  "Comments": [
+    {
+      "Message": "Hello,\r\nIs this been taken care? If so, please share the latest data for DimDate. I'm working on some POC which requires dates in between 2008 and 2010 as well. If it is not already done, can someone let me know is there is any way I can generate the data for those missing dates in that table?",
+      "PostedDate": "2012-02-23T03:47:18.107-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2012-02-25T22:21:26.397-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "The attached script will fix the problem. Use the stored procedure to extend to future dates if needed.",
+      "PostedDate": "2012-02-25T22:21:28.27-08:00",
+      "Id": -2147483648
+    },
+    {
+      "Message": "",
+      "PostedDate": "2013-02-21T18:37:35.56-08:00",
+      "Id": -2147483648
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "Id": "122796",
+    "ThreadId": "37015",
+    "Html": "My server is up and running it is SqlServer Express 2008 (SqlServev management studio shows the system tables and I can connect to an mdb for northwind). However, I have tried SQL2008.AdventureWorks_OLTP_DB_v2008.x86.msi, SQL2008.AdventureWorks_DW_BI_v2008.x86.msi, and SQL2008.AdventureWorks_LT_DB_v2008.x86.msi install without without errors, but I am not able to locate any mdb or mdf files. I find certificate files (.cer) in C:\\Program Files\\Microsoft SQL Server\\MSSQL.1\\MSSQL\\Data. <br>\r\n<br>\r\nSo I don't know where the db files are for the AdventureWorksLT database (and others), so that I can see them in the management studio, or with SQLCMD<br>\r\n(I have just installed SQLCMD&nbsp; - the 2005 version of the tools).<br>\r\n<br>\r\nHow do I find the installed db files?<br>\r\n<br>\r\nAccording to http://www.herongyang.com/jdbc/AdventureWorksLT-Sample-Database.html, there are supposed to wind up in C:\\Program Files\\Microsoft SQL Server\\MSSQL.1\\MSSQL\\Data, but there I can only find some certificate files.<br>\r\n<br>\r\nThanks<br>\r\n<br>\r\n<br>\r\n<br>\r\n",
+    "PostedDate": "2008-10-03T16:55:13.377-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "122799",
+    "ThreadId": "37015",
+    "Html": "Howdy, intrader. The installer has a feature for automatically restoring the backup; the BAK files are in Tools\\Samples\\ from the base directory you installed to. You can either run the included SQL script or use the GUI to manually restore the backup, or reinstall.<br>\r\n<br>\r\nThe blog post you referenced is for the SQL Server 2005 samples.\r\n",
+    "PostedDate": "2008-10-03T17:09:47.057-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "122809",
+    "ThreadId": "37015",
+    "Html": "Thanks ReedMe, I find AdventureWorksLT2008.bak in the folder you mention. I find a cmd file BuildAdventureWorks.cmd, as well as RestoreAdventureWorksLT2008.sql. Don't quite know that to do with these., I am really new at this.<br>\r\nThe cmd file wants &quot;common root path and instance name&quot;'; what is common root, that is a new term for me, I asssume that the instance name is &quot;INTRADERT61P&quot;.<br>\r\nThe .sql script wants the source_path; what is this?, the script will raise an error source_path must not be empty. Set this value above to the path for the root directory of your SQL Server 2008 installation.', 16, 1); seems strange that it would need to know this (does it not know where is is installed?). Well, so far I still need your help.<br>\r\n<br>\r\nI have determined that I can execute the sql file in the Management Studio, one has to set tue path to source_path to where you found the bak file. The process is successful and outputs and mdf and ldf files to the server keeps its data: C:\\Program Files\\Microsoft SQL Server\\MSSQL.1\\MSSQL\\Data<br>\r\n<br>\r\nNow I close the management studio and I open again, I don't see the database. If I attempt to open-&gt;file_with_new_connection, it fails saying the &quot;File can't be opened because it is being used by another process....&quot;. <br>\r\n<br>\r\nI don't quite understand, Please help<br>\r\n<br>\r\nThanks<br>\r\n<br>\r\n<br>\r\n<br>\r\n",
+    "PostedDate": "2008-10-03T17:48:34.487-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "122887",
+    "ThreadId": "37015",
+    "Html": "Well I found an attach script in http://www.herongyang.com/jdbc/AdventureWorksLT-Sample-Database.html and adapted it to where the database is<br>\r\n<br>\r\nEXEC sp_attach_db @dbname=N'AdventureWorksLT', <br>\r\n&nbsp;&nbsp; @filename1=N'C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLEXPRESS\\MSSQL\\DATA\\AdventureWorksLT2008.mdf',<br>\r\n&nbsp;&nbsp; @filename2=N'C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLEXPRESS\\MSSQL\\DATA\\AdventureWorksLT2008.ldf'<br>\r\nGO<br>\r\n<br>\r\nWhen I first executed this I got the message about &quot;File can't be opened...&quot;<br>\r\n<br>\r\nHowever, after I rebooted, and I now see the db . <br>\r\n<br>\r\nThanks for the help<br>\r\n<br>\r\n",
+    "PostedDate": "2008-10-04T10:56:39.137-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "135663",
+    "ThreadId": "37015",
+    "Html": "I'm still tring to get this thing to fly as well.  I have Full-text search and FILESTREAM installed.  I downloaded the files and have several folders for different versions of the Adventureworks DB.  <br>\r\n<br>\r\nC:\\SQL2008.AdventureWorks_All_Databases\\Tools\\Samples<br>\r\nIn those folders however I have a bunch of .csv files, a .pdf file, a .png, a .vsd and the instawdb.sql file.   I opened the .sql file in a query window in SQL Server Management Studio.<br>\r\n<br>\r\nI found the menu item to turn on SQLCMD mode on the Query menu which is only available once a query window is open.<br>\r\n<br>\r\nMy current error is <br>\r\nMsg 102, Level 15, State 1, Line 32<br>\r\nIncorrect syntax near ':'.<br>\r\n<br>\r\nDouble clicking it takes me the the statement<br>\r\n:on error exit<br>\r\n<br>\r\nCan't find anything that tells me why this is an error.<br>\r\nA similiar thing is further down and if I remove the first problem statement I get the same message on the next statement that uses the <strong>:</strong> symbol.\r\n",
+    "PostedDate": "2008-11-26T11:18:42.043-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "137435",
+    "ThreadId": "37015",
+    "Html": "Was there some part of the current version MSI that required you to try to install them by hand? All of the AW databases were consolidated into a single installer with the Halloween Refresh™ of samples which will automatically create all the databases if your installation meets all the requirements and you do nothing but click next all the way through...<br>\r\n<br>\r\n<a href=\"http://www.codeplex.com/SqlServerSamples/Release/ProjectReleases.aspx?ReleaseId=18648\">http://www.codeplex.com/SqlServerSamples/Release/ProjectReleases.aspx?ReleaseId=18648</a><br>\r\n<br>\r\nRunning that script in SSMS isn't the recommend approach for creating the AW databases, since it does require some prior knowledge of SSMS, SQLCMD mode, etc, which can be found in Books Online.\r\n",
+    "PostedDate": "2008-12-03T14:10:06.193-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "137447",
+    "ThreadId": "37015",
+    "Html": "<p style=\"margin:0in 0in 10pt\"><span style=\"font-family:calibri\">Thanks.  I got it to work.  I am running SQL in a VM.  The security in my Win 2008 VM was giving me every possible complaint when I tried to download directly in to the VM environment.  So all my sample DB files were downloaded to my host OS and then copied to the VM environment. If the MSI file was the ticket to an easy install my  &quot;round-about&quot; environment short circuited that process.  Any way not completely sure what happened other than a few days off for the Thanksgiving holiday, but Monday I just commented out the lines with the <b><span style=\"font-family:'calibri','sans-serif'\">colons</span></b> such as <b><span style=\"font-family:'calibri','sans-serif'\">:on error whatever, </span></b>hard coded the path names and voila!  It appears to have worked.  Thanks however for the info as far as using the MSI to automatically install all the sample DBs if I end up needing that too.</span></p>\r\n",
+    "PostedDate": "2008-12-03T14:35:26.973-08:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

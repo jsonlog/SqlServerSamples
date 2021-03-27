@@ -1,0 +1,45 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": "2009-01-15T14:58:53.28-08:00",
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "test, please remove this item.",
+    "LastUpdatedDate": "2013-05-16T05:28:15.533-07:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2008-11-20T21:13:36.97-08:00",
+    "Status": {
+      "Name": "Closed",
+      "Id": 4
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "test, please remove this item.",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 8169
+  },
+  "FileAttachments": [
+    {
+      "FileId": 2300,
+      "FileName": "test.txt",
+      "DownloadUrl": ".\\2300"
+    }
+  ],
+  "Comments": []
+}

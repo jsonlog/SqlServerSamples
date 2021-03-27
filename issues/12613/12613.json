@@ -1,0 +1,39 @@
+{
+  "WorkItem": {
+    "AffectedComponent": {
+      "Name": "",
+      "DisplayName": ""
+    },
+    "ClosedComment": "",
+    "ClosedDate": null,
+    "CommentCount": 0,
+    "Custom": null,
+    "Description": "I downloaded the BSP for Beagleboard. Opening the .sln file in MS Visual studio, I tried to build the solution which yields NK.bin file in \"Rel\" directory. I copied this file to SD card to make the beagleboard to boot in WINCE. This is not successful. What else files required to boot ?  If needed from where I can find those files? Is there any setting required to be done in Visual Studio.",
+    "LastUpdatedDate": "2013-02-21T18:37:35.93-08:00",
+    "PlannedForRelease": "",
+    "ReleaseVisibleToPublic": false,
+    "Priority": {
+      "Name": "Low",
+      "Severity": 50,
+      "Id": 1
+    },
+    "ProjectName": "SqlServerSamples",
+    "ReportedDate": "2010-04-11T22:25:59.317-07:00",
+    "Status": {
+      "Name": "Proposed",
+      "Id": 1
+    },
+    "ReasonClosed": {
+      "Name": "Unassigned"
+    },
+    "Summary": "How to boot Beagleboard with WINCE",
+    "Type": {
+      "Name": "Issue",
+      "Id": 3
+    },
+    "VoteCount": 1,
+    "Id": 12613
+  },
+  "FileAttachments": [],
+  "Comments": []
+}

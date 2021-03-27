@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "119241",
+    "ThreadId": "35874",
+    "Html": "<p>Hi all,</p>\r\n<p>I've been trying to install SQL Server Express all day.&nbsp; The install wizard shows every step as successful, but in the end I only have Configuration Tools and Import/Export Data - no<br>\r\nMS SQL Server Database Engine.</p>\r\n<p>A colleague of mine has the path to the exe as:</p>\r\n<p>&quot;C:\\Program Files\\Microsoft SQL Server\\90\\Tools\\Binn\\VSShell\\Common7\\IDE\\ssmsee.exe&quot;</p>\r\n<p>I do not have a Tools folder under my 90 folder.</p>\r\n<p>I'm running XP sp3.</p>\r\n<p>All help/suggestions are appreciated!</p>\r\n",
+    "PostedDate": "2008-09-17T14:55:20.367-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "119660",
+    "ThreadId": "35874",
+    "Html": "Try this thread to see if it answers your question:&nbsp;<a href=\"http://www.codeplex.com/SqlServerSamples/Thread/View.aspx?ThreadId=33751\">http://www.codeplex.com/SqlServerSamples/Thread/View.aspx?ThreadId=33751</a>\r\n",
+    "PostedDate": "2008-09-19T12:22:10.23-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]

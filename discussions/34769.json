@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "115447",
+    "ThreadId": "34769",
+    "Html": "I noticed something strange about the schema in the Visio (or html) diagram for the AdventureWorks 2008 database schema. According to the Visio drawing, there should be a direct relationship between the &quot;<span style=\"text-decoration:underline\">Employee</span>&quot; table, and the &quot;<span style=\"text-decoration:underline\">Business Entity</span>&quot; table. However, this is not the case when viewing the drawing generated from the actual AdventureWorks 2008 database! Within the actual database, the relationship is tied directly to the Person table (i.e., the direct relationship is not between &quot;Employee&quot; and &quot;Business Entity&quot; it is between &quot;<span style=\"text-decoration:underline\"><strong>Employee</strong></span>&quot; and &quot;<span style=\"text-decoration:underline\"><strong>Person</strong></span>.&quot; Please help! Of the two options available, which way does Microsoft believe is the correct schema?\r\n",
+    "PostedDate": "2008-09-02T12:17:57.387-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "115473",
+    "ThreadId": "34769",
+    "Html": "Thanks for catching this mistake.&nbsp; The database schema is correct.&nbsp; The current diagram is incorrect and we expect to update it in an upcoming release.<br>\r\n",
+    "PostedDate": "2008-09-02T13:47:30.213-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  },
+  {
+    "Id": "115528",
+    "ThreadId": "34769",
+    "Html": "Thanks for the quick response, and for answering even though I did not specify the 08 to 08 OLTP db. :-)\r\n",
+    "PostedDate": "2008-09-02T19:00:14.78-07:00",
+    "UserRole": null,
+    "MarkedAsAnswerDate": null
+  }
+]
